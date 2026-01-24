@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+# Darshan Parmar | Fullstack Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my personal portfolio! This is a modern, high-performance web application built with **React**, **Vite**, and **Three.js**, featuring a unique split-screen layout and interactive visual effects.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
 
-## React Compiler
+- **Interactive Hero Section**: A stunning Three.js-powered grid distortion effect that reacts to mouse movement.
+- **Split-Screen Desktop Layout**: A fixed-sidebar branding area paired with a smooth-scrolling content section.
+- **Dynamic Content**:
+  - **GitRoll Integration**: Live API-based badge showing real-time coding status.
+  - **GitHub Calendar**: Interactive contribution graph for user `darshan02parmar`.
+  - **Work Experience**: Integrated with `react-snowfall` for a unique seasonal touch.
+- **Modern UI/UX**:
+  - Custom typography using `Chromate` (Headings) and `Inter` (Body).
+  - Smooth scroll animations using **AOS**.
+  - Interactive floating shapes using **Framer Motion**.
+  - Responsive dark-mode aesthetics.
+- **Functional Contact Form**: Built with `axios` and `react-hot-toast` for seamless user feedback.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS v3](https://tailwindcss.com/)
+- **Visuals**: [Three.js](https://threejs.org/) (Custom Shader Distortion)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/), [AOS](https://michalsnik.github.io/aos/)
+- **Icons**: [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
+- **Notifications**: [React Hot Toast](https://react-hot-toast.com/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
+- [Node.js](https://nodejs.org/) (Recommended: v18 or later)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/darshan02parmar/Portfolio.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Portfolio
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Development
+Start the development server:
+```bash
+npm run dev
+```
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
+
+### Build
+Generate a production-ready build:
+```bash
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📧 Contact
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Email**: [darshanparmar0302@gmail.com](mailto:darshanparmar0302@gmail.com)
+- **GitHub**: [@darshan02parmar](https://github.com/darshan02parmar)
+- **LinkedIn**: [Parmar Darshan](https://linkedin.com/in/parmar-darshan)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+Built with ❤️ by Darshan Parmar
