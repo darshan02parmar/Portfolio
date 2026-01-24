@@ -1,0 +1,142 @@
+'use client';
+
+import AOSComponent from '@/lib/aos';
+
+const frontend = [
+    { path: 'next.svg', name: 'Next.js' },
+    { path: 'ts.svg', name: 'TypeScript' },
+    { path: 'js.svg', name: 'JavaScript' },
+    { path: 'react.svg', name: 'React' },
+    { path: 'react_query.svg', name: 'React Query' },
+    { path: 'tailwindcss.svg', name: 'Tailwind CSS' },
+    { path: 'html.svg', name: 'HTML' },
+    { path: 'css.svg', name: 'CSS' },
+];
+
+const backend = [
+    { path: 'workers.svg', name: 'Cloudflare Workers' },
+    { path: 'node.svg', name: 'Node.js' },
+    { path: 'express.svg', name: 'Express.js' },
+    { path: 'mongodb.svg', name: 'MongoDB' },
+    { path: 'sqlite.svg', name: 'SQLite' },
+    { path: 'postman.svg', name: 'Postman' },
+];
+
+const misc = [
+    { path: 'vercel.svg', name: 'Vercel' },
+    { path: 'cloudflare.svg', name: 'Cloudflare' },
+    { path: 'linux.svg', name: 'Linux' },
+    { path: 'git-light.svg', name: 'Git' },
+    { path: 'github.svg', name: 'GitHub' },
+    { path: 'figma.svg', name: 'Figma' },
+];
+
+export default function TechStack() {
+    return (
+        <AOSComponent>
+            <section
+                id="tech-stack"
+                className="mt-32 flex max-w-[630px] flex-col gap-6 p-6 pb-0 text-slate-900 relative z-10"
+            >
+                <h3
+                    className="tech-stack-title mb-4 font-heading text-4xl"
+                    data-aos="fade-down"
+                >
+                    Tech Stack <span className="hidden md:inline">/ Tools</span>
+                </h3>
+
+                <div className="stack-wrapper flex grid-cols-[2.2fr_0.9fr] grid-rows-[1fr_1fr] flex-col gap-6 md:grid">
+                    <div
+                        data-aos="fade-right"
+                        className="col-start-1 col-end-2 row-start-1 row-end-2"
+                    >
+                        <div className="wrapper rounded-[30px] border-[3px] border-slate-900 p-6 shadow-[4px_4px_0px_0px_#1e293b] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+                            <h3 className="vertical mb-4 font-heading text-3xl">Frontend</h3>
+
+                            <div className="flex max-w-80 flex-wrap gap-4">
+                                {frontend.map((elm) => (
+                                    <span
+                                        className="hint--top hint--rounded relative group"
+                                        key={elm.path}
+                                        // aria-label={elm.name}
+                                    >
+                                        <img
+                                            height={45}
+                                            width={45}
+                                            alt={elm.name}
+                                            src={`/skillicons/${elm.path}`}
+                                            className="transition-transform group-hover:scale-110"
+                                        />
+                                        <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 px-2 py-1 bg-slate-800 text-white text-xs rounded transition-all group-hover:scale-100 z-50 whitespace-nowrap shadow-lg">
+                                            {elm.name}
+                                        </span>
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        data-aos="fade-right"
+                        className="col-start-1 col-end-2 row-start-2 row-end-3"
+                    >
+                        <div className="wrapper rounded-[30px] border-[3px] border-slate-900 p-6 shadow-[4px_4px_0px_0px_#1e293b] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+                            <h3 className="vertical mb-4 font-heading text-3xl">Backend</h3>
+
+                            <div className="flex max-w-80 flex-wrap gap-4">
+                                {backend.map((elm) => (
+                                    <span
+                                        className="hint--top hint--rounded relative group"
+                                        key={elm.path}
+                                        // aria-label={elm.name}
+                                    >
+                                        <img
+                                            height={45}
+                                            width={45}
+                                            alt={elm.name}
+                                            src={`/skillicons/${elm.path}`}
+                                            className="transition-transform group-hover:scale-110"
+                                        />
+                                        <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 px-2 py-1 bg-slate-800 text-white text-xs rounded transition-all group-hover:scale-100 z-50 whitespace-nowrap shadow-lg">
+                                            {elm.name}
+                                        </span>
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        data-aos="fade-up"
+                        className="col-start-2 col-end-3 row-start-1 row-end-3 md:h-full"
+                    >
+                        <div className="wrapper rounded-[30px] border-[3px] border-slate-900 p-6 shadow-[4px_4px_0px_0px_#1e293b] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none md:h-full">
+                            <h3 className="vertical mb-4 font-heading text-3xl">Misc.</h3>
+
+                            <div className="flex max-w-80 flex-wrap gap-4">
+                                {misc.map((elm) => (
+                                    <span
+                                        className="hint--top hint--rounded relative group"
+                                        key={elm.path}
+                                        // aria-label={elm.name}
+                                    >
+                                        <img
+                                            height={45}
+                                            width={45}
+                                            alt={elm.name}
+                                            src={`/skillicons/${elm.path}`}
+                                            className="transition-transform group-hover:scale-110"
+                                        />
+                                        <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 px-2 py-1 bg-slate-800 text-white text-xs rounded transition-all group-hover:scale-100 z-50 whitespace-nowrap shadow-lg">
+                                            {elm.name}
+                                        </span>
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </AOSComponent>
+    );
+}
