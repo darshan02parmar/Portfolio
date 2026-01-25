@@ -12,18 +12,18 @@ const FloatingShape: React.FC<FloatingShapeProps> = ({ shapeUrl, directionClass 
     // Simplified animation for now, can be enhanced with complex framer-motion variants
     return (
         <motion.div
-            className={`absolute z-[-1] pointer-events-none ${directionClass}`}
+            className={`absolute z-0 pointer-events-none ${directionClass}`}
             animate={{
-                y: [0, -20, 0],
-                rotate: [0, 5, -5, 0],
+                y: [0, -40, 0],
+                rotate: [0, 10, -10, 0],
             }}
             transition={{
-                duration: 5,
+                duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut"
             }}
         >
-            <img src={shapeUrl} alt="Floating Shape" className="w-32 h-32 opacity-50" />
+            <img src={shapeUrl} alt="Floating Shape" className="w-[150px] h-[150px] opacity-80" />
         </motion.div>
     );
 };

@@ -5,23 +5,9 @@ import { BsBuildingsFill as CompanyIcon } from 'react-icons/bs';
 import { FaLocationDot as LocationIcon } from 'react-icons/fa6';
 import { FaRegCalendarAlt as DateIcon } from "react-icons/fa";
 import AOSComponent from '@/lib/aos'; // Make sure tsconfig paths are set or relative import
-import Snowfall from 'react-snowfall';
-
 export default function WorkExperience() {
     return (
         <AOSComponent>
-            <Snowfall
-                style={{
-                    position: 'fixed',
-                    width: '100vw',
-                    height: '100vh',
-                    zIndex: -1, // Ensure it's behind content
-                }}
-                snowflakeCount={100}
-                radius={[0.5, 3.0]}
-                speed={[0.5, 3.0]}
-                wind={[-0.5, 2.0]}
-            />
             <section
                 id="work"
                 className="relative z-10 mt-32 2xl:mt-52 p-6 text-slate-900"

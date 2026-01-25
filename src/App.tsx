@@ -19,6 +19,7 @@ import WorkExperience from './components/WorkExperience';
 import Footer from './components/Footer';
 import GitRoll from './components/GitRoll';
 import CodeBlock from './components/CodeBlock';
+import Snowfall from 'react-snowfall';
 
 // Placeholder for spinning shape if complex to port immediately, else simple div
 const SpinningShape = () => (
@@ -121,51 +122,83 @@ function App() {
 
         <ScrollButton />
 
-        <div className="lg:ml-[750px] w-full px-4 lg:px-0 max-w-[1200px]">
-          {/* <div className="lg:ml-[35%] w-full lg:w-[65%] px-4 lg:px-10"> */}
+        <div className="lg:ml-[750px] w-full px-4 lg:px-0 max-w-[1200px] relative">
+          <Snowfall
+            color="#cbd5e1"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              zIndex: 0,
+              pointerEvents: 'none'
+            }}
+            snowflakeCount={250}
+            radius={[0.5, 3.0]}
+            speed={[0.5, 3.0]}
+          />
           <HeroImage />
-          <WorkExperience />
-          <FloatingShape
-            shapeUrl="/shapes/shape-81.svg"
-            directionClass="left-[-20px] bottom-[-20px]"
-            amplitude={[40, 100, 30]}
-            speed={0.2}
-          />
-          <ProjectList />
-          <FloatingShape
-            shapeUrl="/shapes/shape-77.svg"
-            directionClass="left-[-20px] bottom-[-20px]"
-            amplitude={[40, 100, 30]}
-            speed={0.2}
-          />
-          <TechStack />
-          <FloatingShape
-            shapeUrl="/shapes/custom/shape-86-green.svg"
-            directionClass="right-0"
-            amplitude={[100, 100, 30]}
-            speed={0.2}
-          />
-          <Github />
-          <FloatingShape
-            shapeUrl="/shapes/shape-79.svg"
-            directionClass="left-[-20px] bottom-[-20px]"
-            amplitude={[40, 100, 30]}
-            speed={0.2}
-          />
-          <GitRoll />
-          <FloatingShape
-            shapeUrl="/shapes/shape-82.svg"
-            directionClass="right-0"
-            amplitude={[100, 100, 30]}
-            speed={0.2}
-          />
-          <FloatingShape
-            shapeUrl="/shapes/shape-80.svg"
-            directionClass="left-[-20px] bottom-[-20px]"
-            amplitude={[40, 100, 30]}
-            speed={0.2}
-          />
-          <Contact />
+
+          <div className="relative">
+            <WorkExperience />
+          </div>
+
+          <div className="relative">
+            <FloatingShape
+              shapeUrl="/shapes/shape-81.svg"
+              directionClass="left-[-20px] bottom-[-20px]"
+              amplitude={[40, 100, 30]}
+              speed={0.2}
+            />
+            <ProjectList />
+          </div>
+
+          <div className="relative">
+            <FloatingShape
+              shapeUrl="/shapes/shape-77.svg"
+              directionClass="left-[-20px] bottom-[-20px]"
+              amplitude={[40, 100, 30]}
+              speed={0.2}
+            />
+            <TechStack />
+          </div>
+
+          <div className="relative">
+            <FloatingShape
+              shapeUrl="/shapes/custom/shape-86-green.svg"
+              directionClass="right-0"
+              amplitude={[100, 100, 30]}
+              speed={0.2}
+            />
+            <Github />
+          </div>
+
+          <div className="relative">
+            <FloatingShape
+              shapeUrl="/shapes/shape-79.svg"
+              directionClass="left-[-20px] bottom-[-20px]"
+              amplitude={[40, 100, 30]}
+              speed={0.2}
+            />
+            <GitRoll />
+          </div>
+
+          <div className="relative">
+            <FloatingShape
+              shapeUrl="/shapes/shape-85.svg"
+              directionClass="right-5 top-[-50px]"
+              amplitude={[100, 100, 30]}
+              speed={0.2}
+            />
+            <FloatingShape
+              shapeUrl="/shapes/shape-80.svg"
+              directionClass="left-[-20px] bottom-[-20px] z-0"
+              amplitude={[40, 100, 30]}
+              speed={0.2}
+            />
+            <Contact />
+          </div>
           <Footer />
         </div>
       </main>
