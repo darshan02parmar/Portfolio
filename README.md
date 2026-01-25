@@ -1,5 +1,3 @@
-# Darshan Parmar | Fullstack Developer Portfolio
-
 Welcome to my personal portfolio! This is a modern, high-performance web application built with **React**, **Vite**, and **Three.js**, featuring a unique split-screen layout and interactive visual effects.
 
 
