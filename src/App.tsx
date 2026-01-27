@@ -122,7 +122,7 @@ function App() {
 
         <ScrollButton />
 
-        <div className="lg:ml-[750px] w-full px-4 lg:px-0 max-w-[1200px] relative">
+        <div className="lg:ml-[50%] lg:w-[50%] w-full px-4 lg:px-10 relative">
           <Snowfall
             color="#cbd5e1"
             style={{

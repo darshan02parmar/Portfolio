@@ -12,17 +12,12 @@
   font-display: swap;
 }
 
-html {
-  scroll-behavior: smooth;
-  background-color: white;
-}
-
-.font-chromate {
-  font-family: 'Chromate', sans-serif;
-}
-
+html,
 body {
   overflow-x: hidden;
+  max-width: 100vw;
+  scroll-behavior: smooth;
+  background-color: white;
 }
 
 .images {
