@@ -141,15 +141,26 @@ function App() {
           <HeroImage />
 
           <div className="relative">
+            <FloatingShape
+              shapeUrl="/shapes/shape-81.svg"
+              directionClass="left-[-60px] bottom-[-90px]"
+              amplitude={[20, 100, 30]}
+              speed={0.1}
+            />
+            <img
+              src="/background/br1.png"
+              alt="Background"
+              className="absolute top-20 left-1/2 -translate-x-1/2 w-[450px] h-auto object-contain z-0 pointer-events-none opacity-60"
+            />
             <WorkExperience />
           </div>
 
           <div className="relative">
-            <FloatingShape
-              shapeUrl="/shapes/shape-81.svg"
-              directionClass="left-[-20px] bottom-[-20px]"
-              amplitude={[40, 100, 30]}
-              speed={0.2}
+
+            <img
+              src="/background/br3.png"
+              alt="Background"
+              className="absolute top-10 left-1/2 -translate-x-1/2 w-[750px] h-auto object-contain z-0 pointer-events-none opacity-80"
             />
             <ProjectList />
           </div>
@@ -160,6 +171,11 @@ function App() {
               directionClass="left-[-20px] bottom-[-20px]"
               amplitude={[40, 100, 30]}
               speed={0.2}
+            />
+            <img
+              src="/background/br2.png"
+              alt="Background"
+              className="absolute top-10 left-1/2 -translate-x-1/2 w-[580px] h-auto object-contain z-0 pointer-events-none opacity-80"
             />
             <TechStack />
           </div>
