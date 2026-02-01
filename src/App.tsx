@@ -18,7 +18,7 @@ import HeroImage from './components/HeroImage';
 import WorkExperience from './components/WorkExperience';
 import Footer from './components/Footer';
 import GitRoll from './components/GitRoll';
-import CodeBlock from './components/CodeBlock';
+
 import Snowfall from 'react-snowfall';
 
 // Placeholder for spinning shape if complex to port immediately, else simple div
