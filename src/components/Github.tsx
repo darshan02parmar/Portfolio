@@ -4,7 +4,7 @@ import AOSComponent from '@/lib/aos';
 import { GitHubCalendar } from 'react-github-calendar';
 
 export default function Github() {
-    const years = [2025, 2024];
+    const years = [2026, 2025, 2024];
 
     return (
         <AOSComponent>
