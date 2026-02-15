@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { projects } from '../lib/projects';
 import { LuExternalLink as LinkIcon, LuArrowLeft as BackIcon, LuLightbulb as IdeaIcon, LuConstruction as EngineeringIcon, LuNetwork as ArchIcon, LuRocket as ImpactIcon, LuTarget as ProblemIcon, LuLayers as OverviewIcon } from 'react-icons/lu';
 import { FaCodeBranch as CodeIcon } from 'react-icons/fa6';
