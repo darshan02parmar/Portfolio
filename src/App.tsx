@@ -1,7 +1,8 @@
-import { useEffect, Suspense } from 'react';
+import { useEffect, Suspense, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Sun, Moon } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import { FaGithub as GithubIcon } from 'react-icons/fa';
 import { FaLinkedin as LinkedinIcon } from 'react-icons/fa';
@@ -26,7 +27,7 @@ const SpinningShape = () => (
   <img
     src='/gr1.png'
     alt="spinning blob"
-    className="images glow absolute left-[-85px] top-[-95px] z-[-10] h-[400px] w-[400px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out"
+    className="images glow absolute left-[-85px] top-[-95px] z-[-10] h-[400px] w-[400px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out dark:opacity-40"
   />
 );
 
@@ -38,17 +39,38 @@ const ScrollToTop = () => {
   return null;
 };
 
-const Home = () => {
+const MouseGlow = () => {
+  const glowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (glowRef.current) {
+        glowRef.current.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(80, 224, 179, 0.15), transparent 80%)`;
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div
+      ref={glowRef}
+      className="pointer-events-none fixed inset-0 z-30 opacity-0 dark:opacity-100 transition-opacity duration-300"
+    />
+  );
+};
+
+const Home = ({ theme }: { theme: 'light' | 'dark' }) => {
   return (
     <>
-      <aside className="pl-10 pr-6 pt-14 lg:fixed text-slate-900 lg:w-[35%] lg:pl-32 lg:h-screen lg:overflow-hidden">
+      <aside className="pl-10 pr-6 pt-14 lg:fixed text-slate-900 dark:text-slate-100 lg:w-[35%] lg:pl-32 lg:h-screen lg:overflow-hidden transition-colors duration-300">
         <Suspense fallback={<div>Loading...</div>}>
           <SpinningShape />
         </Suspense>
         <Glow />
 
         <h1
-          className="mt-4 animate-fade-right animate-duration-500 font-heading text-[60px] leading-tight lg:text-[70px]"
+          className="mt-4 animate-fade-right animate-duration-500 font-heading text-[60px] leading-tight lg:text-[70px] dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]"
           id="my-name"
         >
           Darshan Parmar
@@ -80,13 +102,13 @@ const Home = () => {
           href="/DarshanParmar_resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="motion-preset-slide-right mt-6 inline-block !animate-blur-in-800 rounded-[30px] border-2 border-slate-900 bg-slate-900 px-6 py-2 text-sm font-medium text-white shadow-[4px_4px_0px_0px_#84cc16] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none md:text-xl xl:border-[3px]"
+          className="motion-preset-slide-right mt-6 inline-block !animate-blur-in-800 rounded-[30px] border-2 border-slate-900 bg-slate-900 dark:border-[#50e0b3] dark:bg-[#0f172a] dark:text-[#50e0b3] px-6 py-2 text-sm font-medium text-white shadow-[4px_4px_0px_0px_#84cc16] dark:shadow-[4px_4px_0px_0px_#50e0b3] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-800 dark:hover:bg-[#50e0b3] dark:hover:text-[#0f172a] md:text-xl xl:border-[3px]"
         >
           Résumé
         </a>
         <a
           href="/#contact"
-          className="motion-preset-slide-right ml-[20px] inline-block !animate-blur-in-800 rounded-[30px] border-[3px] border-slate-900 px-6 py-2 text-sm font-medium shadow-[4px_4px_0px_0px_#1e293b] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none md:text-xl"
+          className="motion-preset-slide-right ml-[20px] inline-block !animate-blur-in-800 rounded-[30px] border-[3px] border-slate-900 dark:border-slate-100 px-6 py-2 text-sm font-medium shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-100 dark:hover:bg-white dark:hover:text-[#0f172a] md:text-xl dark:text-slate-100"
         >
           Contact me
         </a>
@@ -121,7 +143,7 @@ const Home = () => {
 
       <div className="lg:ml-[50%] lg:w-[50%] w-full px-4 lg:px-10 relative">
         <Snowfall
-          color="#cbd5e1"
+          color={theme === 'dark' ? '#334155' : '#cbd5e1'}
           style={{
             position: 'absolute',
             top: 0,
@@ -147,7 +169,7 @@ const Home = () => {
           <img
             src="/background/br1.png"
             alt="Background"
-            className="absolute top-20 left-1/2 -translate-x-1/2 w-[450px] h-auto object-contain z-0 pointer-events-none opacity-60"
+            className="absolute top-20 left-1/2 -translate-x-1/2 w-[450px] h-auto object-contain z-0 pointer-events-none opacity-60 dark:opacity-20 dark:invert"
           />
           <WorkExperience />
         </div>
@@ -156,7 +178,7 @@ const Home = () => {
           <img
             src="/background/br3.png"
             alt="Background"
-            className="absolute top-10 left-1/2 -translate-x-1/2 w-[750px] h-auto object-contain z-0 pointer-events-none opacity-80"
+            className="absolute top-10 left-1/2 -translate-x-1/2 w-[750px] h-auto object-contain z-0 pointer-events-none opacity-80 dark:opacity-20 dark:invert"
           />
           <ProjectList />
         </div>
@@ -171,7 +193,7 @@ const Home = () => {
           <img
             src="/background/br2.png"
             alt="Background"
-            className="absolute top-10 left-1/2 -translate-x-1/2 w-[580px] h-auto object-contain z-0 pointer-events-none opacity-80"
+            className="absolute top-10 left-1/2 -translate-x-1/2 w-[580px] h-auto object-contain z-0 pointer-events-none opacity-80 dark:opacity-20 dark:invert"
           />
           <TechStack />
         </div>
@@ -183,7 +205,7 @@ const Home = () => {
             amplitude={[100, 100, 30]}
             speed={0.2}
           />
-          <Github />
+          <Github theme={theme} />
         </div>
 
         <div className="relative">
@@ -193,7 +215,7 @@ const Home = () => {
             amplitude={[40, 100, 30]}
             speed={0.2}
           />
-          <GitRoll />
+          <GitRoll theme={theme} />
         </div>
 
         <div className="relative">
@@ -218,6 +240,32 @@ const Home = () => {
 };
 
 function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'light';
+  });
+
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const next = prev === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', next);
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [theme]);
+
   useEffect(() => {
     AOS.init({
       once: false,
@@ -229,11 +277,21 @@ function App() {
     <Router>
       <ScrollToTop />
       <Toaster position="top-right" />
-      <main className="relative mx-auto overflow-hidden">
+      <main className="relative mx-auto overflow-hidden bg-background text-foreground transition-colors duration-300 min-h-screen">
         <ScrollButton />
+        <MouseGlow />
+
+        {/* Neo-brutalist Theme Toggle Button */}
+        <button
+          onClick={toggleTheme}
+          className="fixed top-8 right-8 z-50 p-3 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-full border-[3px] border-slate-900 dark:border-slate-100 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200"
+          aria-label="Toggle Theme"
+        >
+          {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+        </button>
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home theme={theme} />} />
           <Route path="/project/:id" element={
             <div className="w-full relative">
               <ProjectDetail />
@@ -244,7 +302,6 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;
 

@@ -8,22 +8,35 @@ interface FloatingShapeProps {
     speed: number;
 }
 
-const FloatingShape: React.FC<FloatingShapeProps> = ({ shapeUrl, directionClass }) => {
-    // Simplified animation for now, can be enhanced with complex framer-motion variants
+const FloatingShape: React.FC<FloatingShapeProps> = ({ 
+    shapeUrl, 
+    directionClass, 
+    amplitude = [40, 10, 10], 
+    speed = 0.2 
+}) => {
+    // Dynamically calculate keyframes based on amplitude prop
+    const yKeyframes = [0, -amplitude[0], 0];
+    const xKeyframes = [0, (amplitude[1] || 0) * 0.15, 0];
+    const rotateKeyframes = [0, amplitude[2] || 10, -(amplitude[2] || 10), 0];
+    
+    // Duration is inversely proportional to speed, e.g., speed of 0.2 results in a 5s duration
+    const duration = speed > 0 ? 1 / speed : 6;
+
     return (
         <motion.div
             className={`absolute z-0 pointer-events-none ${directionClass}`}
             animate={{
-                y: [0, -40, 0],
-                rotate: [0, 10, -10, 0],
+                y: yKeyframes,
+                x: xKeyframes,
+                rotate: rotateKeyframes,
             }}
             transition={{
-                duration: 6,
+                duration: duration,
                 repeat: Infinity,
                 ease: "easeInOut"
             }}
         >
-            <img src={shapeUrl} alt="Floating Shape" className="w-[150px] h-[150px] opacity-80" />
+            <img src={shapeUrl} alt="Floating Shape" className="w-[150px] h-[150px] opacity-80 transition-all duration-300 glowing-shape" />
         </motion.div>
     );
 };
