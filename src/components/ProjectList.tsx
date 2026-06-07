@@ -4,6 +4,7 @@ import { FaCodeBranch as CodeIcon } from 'react-icons/fa6';
 import { VscGitStash as CodeStashIcon } from 'react-icons/vsc';
 import AOSComponent from '@/lib/aos';
 import { projects } from '@/lib/projects';
+import TiltCard from './TiltCard';
 
 export default function Projects() {
     return (
@@ -19,7 +20,8 @@ export default function Projects() {
                 <div id="projects-container" className="mb-6 flex flex-col gap-6">
                     {projects.map((project, index) => (
                         <div key={project.id} data-aos={index % 2 === 0 ? "fade-left" : "fade-right"}>
-                            <div className="wrapper flex flex-col gap-4 rounded-[30px] border-[3px] border-slate-900 dark:border-slate-100 p-6 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none bg-white/10 dark:bg-slate-900 backdrop-blur-sm">
+                            <TiltCard>
+                                <div className="wrapper flex flex-col gap-4 rounded-[30px] border-[3px] border-slate-900 dark:border-slate-100 p-6 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] bg-white/10 dark:bg-slate-900 backdrop-blur-sm">
                                 <h3 className="flex gap-4 font-heading text-3xl text-slate-900 dark:text-slate-100">
                                     {project.title}
                                     {project.id === 'wanderlust' && <CodeStashIcon className="text-green-600 dark:text-green-400" />}
@@ -72,7 +74,8 @@ export default function Projects() {
                                         ))}
                                     </div>
                                 </div>
-                            </div>
+                                </div>
+                            </TiltCard>
                         </div>
                     ))}
                 </div>

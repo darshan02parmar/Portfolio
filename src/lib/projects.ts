@@ -56,7 +56,7 @@ export const projects: Project[] = [
     },
     {
         id: 'ideaflow',
-        title: 'IdeaFlow 🚀',
+        title: 'IdeaFlow',
         description: 'AI-powered Generative UI tool that converts startup ideas into structured product blueprints.',
         oneLinePitch: 'Transforming napkin sketches into comprehensive product roadmaps with AI.',
         longDescription: 'IdeaFlow is a cutting-edge generative tool designed for entrepreneurs and product managers. By leveraging advanced AI models, it takes a simple startup idea and transforms it into a comprehensive product blueprint. This includes detailed product briefs, user journey mappings, recommended tech stacks, MVP roadmaps, and even preliminary business models, significantly accelerating the early stages of product development.',

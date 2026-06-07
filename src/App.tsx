@@ -1,5 +1,6 @@
 import { useEffect, Suspense, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Sun, Moon } from 'lucide-react';
@@ -20,6 +21,7 @@ import WorkExperience from './components/WorkExperience';
 import Footer from './components/Footer';
 import GitRoll from './components/GitRoll';
 import ProjectDetail from './components/ProjectDetail';
+import CommandPalette from './components/CommandPalette';
 
 import Snowfall from 'react-snowfall';
 
@@ -139,6 +141,10 @@ const Home = ({ theme }: { theme: 'light' | 'dark' }) => {
             <MailIcon className="h-10 w-10" />
           </a>
         </div>
+
+        <div className="mt-8 text-xs text-slate-500 dark:text-slate-400 font-mono animate-fade-right animate-delay-600 hidden lg:block">
+          Press <kbd className="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700">Ctrl</kbd> + <kbd className="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700">K</kbd> to open commands
+        </div>
       </aside>
 
       <div className="lg:ml-[50%] lg:w-[50%] w-full px-4 lg:px-10 relative">
@@ -239,6 +245,41 @@ const Home = ({ theme }: { theme: 'light' | 'dark' }) => {
   );
 };
 
+const PageWrapper = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -15 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      className="w-full relative"
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const AnimatedRoutes = ({ theme }: { theme: 'light' | 'dark' }) => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={
+          <PageWrapper>
+            <Home theme={theme} />
+          </PageWrapper>
+        } />
+        <Route path="/project/:id" element={
+          <PageWrapper>
+            <ProjectDetail />
+          </PageWrapper>
+        } />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
@@ -266,6 +307,19 @@ function App() {
     }
   }, [theme]);
 
+  const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsPaletteOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   useEffect(() => {
     AOS.init({
       once: false,
@@ -280,6 +334,12 @@ function App() {
       <main className="relative mx-auto overflow-hidden bg-background text-foreground transition-colors duration-300 min-h-screen">
         <ScrollButton />
         <MouseGlow />
+        <CommandPalette
+          isOpen={isPaletteOpen}
+          onClose={() => setIsPaletteOpen(false)}
+          toggleTheme={toggleTheme}
+          theme={theme}
+        />
 
         {/* Neo-brutalist Theme Toggle Button */}
         <button
@@ -290,14 +350,7 @@ function App() {
           {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
         </button>
 
-        <Routes>
-          <Route path="/" element={<Home theme={theme} />} />
-          <Route path="/project/:id" element={
-            <div className="w-full relative">
-              <ProjectDetail />
-            </div>
-          } />
-        </Routes>
+        <AnimatedRoutes theme={theme} />
       </main>
     </Router>
   );
