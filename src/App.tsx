@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Sun, Moon } from 'lucide-react';
-import { Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import { FaGithub as GithubIcon } from 'react-icons/fa';
 import { FaLinkedin as LinkedinIcon } from 'react-icons/fa';
 import { MdOutgoingMail as MailIcon } from 'react-icons/md';
@@ -22,6 +22,12 @@ import Footer from './components/Footer';
 import GitRoll from './components/GitRoll';
 import ProjectDetail from './components/ProjectDetail';
 import CommandPalette from './components/CommandPalette';
+import MatrixRain from './components/MatrixRain';
+import DevSecretsDrawer from './components/DevSecretsDrawer';
+import HintModal from './components/HintModal';
+import AchievementBadge from './components/AchievementBadge';
+import WhoamiTerminal from './components/WhoamiTerminal';
+import ConfettiOverlay from './components/ConfettiOverlay';
 
 import Snowfall from 'react-snowfall';
 
@@ -62,7 +68,7 @@ const MouseGlow = () => {
   );
 };
 
-const Home = ({ theme }: { theme: 'light' | 'dark' }) => {
+const Home = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpenHints: () => void }) => {
   return (
     <>
       <aside className="pl-10 pr-6 pt-14 lg:fixed text-slate-900 dark:text-slate-100 lg:w-[35%] lg:pl-32 lg:h-screen lg:overflow-hidden transition-colors duration-300">
@@ -142,9 +148,6 @@ const Home = ({ theme }: { theme: 'light' | 'dark' }) => {
           </a>
         </div>
 
-        <div className="mt-8 text-xs text-slate-500 dark:text-slate-400 font-mono animate-fade-right animate-delay-600 hidden lg:block">
-          Press <kbd className="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700">Ctrl</kbd> + <kbd className="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700">K</kbd> to open commands
-        </div>
       </aside>
 
       <div className="lg:ml-[50%] lg:w-[50%] w-full px-4 lg:px-10 relative">
@@ -237,7 +240,7 @@ const Home = ({ theme }: { theme: 'light' | 'dark' }) => {
             amplitude={[40, 100, 30]}
             speed={0.2}
           />
-          <Contact />
+          <Contact onOpenHints={onOpenHints} />
         </div>
         <Footer />
       </div>
@@ -259,7 +262,7 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const AnimatedRoutes = ({ theme }: { theme: 'light' | 'dark' }) => {
+const AnimatedRoutes = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpenHints: () => void }) => {
   const location = useLocation();
 
   return (
@@ -267,7 +270,7 @@ const AnimatedRoutes = ({ theme }: { theme: 'light' | 'dark' }) => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={
           <PageWrapper>
-            <Home theme={theme} />
+            <Home theme={theme} onOpenHints={onOpenHints} />
           </PageWrapper>
         } />
         <Route path="/project/:id" element={
@@ -308,17 +311,171 @@ function App() {
   }, [theme]);
 
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+  const [isMatrixActive, setIsMatrixActive] = useState(false);
+  const [isNeoModeActive, setIsNeoModeActive] = useState(false);
+  const [isSecretsDrawerActive, setIsSecretsDrawerActive] = useState(false);
+  const [isHintModalOpen, setIsHintModalOpen] = useState(false);
+  const [isWhoamiOpen, setIsWhoamiOpen] = useState(false);
+  const [isConfettiActive, setIsConfettiActive] = useState(false);
+
+  // Stored achievements
+  const [unlockedSecrets, setUnlockedSecrets] = useState<string[]>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        return JSON.parse(localStorage.getItem('discovered_secrets') || '[]');
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  });
+
+  const keyBufferRef = useRef<string[]>([]);
+  const konamiBufferRef = useRef<string[]>([]);
+  const konamiCode = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+
+  const triggerRewardSound = () => {
+    try {
+      const AudioContext = window.AudioContext || (window as unknown as { webkitAudioContext: typeof window.AudioContext }).webkitAudioContext;
+      if (!AudioContext) return;
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+      
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+      osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
+      osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.2);
+      osc.frequency.setValueAtTime(1046.50, ctx.currentTime + 0.3);
+
+      gainNode.gain.setValueAtTime(0.08, ctx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+      
+      osc.connect(gainNode);
+      gainNode.connect(ctx.destination);
+      
+      osc.start();
+      osc.stop(ctx.currentTime + 0.5);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const unlockSecret = (key: string) => {
+    setUnlockedSecrets(prev => {
+      if (prev.includes(key)) return prev;
+      const next = [...prev, key];
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('discovered_secrets', JSON.stringify(next));
+      }
+      
+      toast.custom((t) => (
+        <div className={`${t.visible ? 'scale-100 opacity-100' : 'scale-90 opacity-0'} max-w-xs w-full bg-amber-400 border-[3px] border-slate-900 p-4 rounded-2xl shadow-[4px_4px_0px_0px_#1e293b] font-mono text-[11px] font-bold text-slate-950 flex items-center gap-3 transition-all duration-300 pointer-events-auto`}>
+          <span className="text-xl">🏆</span>
+          <div>
+            <div>ACHIEVEMENT UNLOCKED!</div>
+            <div className="text-[9px] text-slate-800 font-normal">Found secret: {key.toUpperCase()} ({next.length}/5)</div>
+          </div>
+        </div>
+      ), { duration: 4000 });
+
+      triggerRewardSound();
+
+      if (next.length === 5) {
+        setTimeout(() => {
+          setIsConfettiActive(true);
+          toast.success('🎉 Incredible! You discovered all 5 Developer Secrets!', {
+            style: { border: '3px solid #eab308', fontSize: '11px', fontFamily: 'monospace', fontWeight: 'bold' }
+          });
+        }, 800);
+      }
+
+      return next;
+    });
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // 1. Ctrl + K / Cmd + K for Command Palette
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
         setIsPaletteOpen(prev => !prev);
+        return;
+      }
+
+      // If user presses Escape, close active overlays
+      if (e.key === 'Escape') {
+        setIsMatrixActive(false);
+        setIsSecretsDrawerActive(false);
+        setIsPaletteOpen(false);
+        setIsWhoamiOpen(false);
+        setIsHintModalOpen(false);
+        return;
+      }
+
+      const key = e.key.toLowerCase();
+
+      // Track Konami Code sequence
+      const konamiBuffer = konamiBufferRef.current;
+      konamiBuffer.push(key);
+      if (konamiBuffer.length > konamiCode.length) {
+        konamiBuffer.shift();
+      }
+      if (konamiBuffer.join(',') === konamiCode.join(',')) {
+        unlockSecret('konami');
+        setIsConfettiActive(true);
+        toast.custom((t) => (
+          <div className={`${t.visible ? 'scale-100 opacity-100' : 'scale-90 opacity-0'} max-w-sm w-full bg-slate-900 border-[3px] border-[#eab308] p-4 rounded-2xl shadow-[6px_6px_0px_0px_#eab308] font-mono text-[11px] font-bold text-white flex flex-col gap-1 transition-all duration-300 pointer-events-auto`}>
+            <div className="text-[#eab308] text-xs">🚀 DEVELOPER GOD MODE ACTIVATED</div>
+            <div className="text-[9px] text-slate-400 font-normal">Gravity inverted, confetti engine primed, secrets count incremented.</div>
+          </div>
+        ), { duration: 5000 });
+        konamiBufferRef.current = [];
+        return;
+      }
+
+      // Ignore modifiers and non-character keys
+      if (e.key.length !== 1) return;
+
+      // Append lowercase key to buffer for standard word checks
+      const buffer = keyBufferRef.current;
+      buffer.push(key);
+      if (buffer.length > 15) {
+        buffer.shift();
+      }
+
+      const typed = buffer.join('');
+
+      // Check codes
+      if (typed.endsWith('matrix')) {
+        unlockSecret('matrix');
+        setIsNeoModeActive(false);
+        setIsMatrixActive(true);
+        keyBufferRef.current = [];
+      } else if (typed.endsWith('neo')) {
+        unlockSecret('matrix');
+        setIsNeoModeActive(true);
+        setIsMatrixActive(true);
+        keyBufferRef.current = [];
+      } else if (typed.endsWith('secrets')) {
+        unlockSecret('secrets');
+        setIsSecretsDrawerActive(prev => !prev);
+        keyBufferRef.current = [];
+      } else if (typed.endsWith('theme')) {
+        unlockSecret('theme');
+        toggleTheme();
+        keyBufferRef.current = [];
+      } else if (typed.endsWith('darshan')) {
+        unlockSecret('darshan');
+        setIsWhoamiOpen(true);
+        keyBufferRef.current = [];
       }
     };
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme]);
 
   useEffect(() => {
     AOS.init({
@@ -341,6 +498,42 @@ function App() {
           theme={theme}
         />
 
+        {/* Matrix Rain Canvas overlay */}
+        <AnimatePresence>
+          {isMatrixActive && (
+            <MatrixRain onClose={() => setIsMatrixActive(false)} isNeoMode={isNeoModeActive} />
+          )}
+        </AnimatePresence>
+
+        {/* Dev Diagnostics Drawer overlay */}
+        <AnimatePresence>
+          {isSecretsDrawerActive && (
+            <DevSecretsDrawer onClose={() => setIsSecretsDrawerActive(false)} />
+          )}
+        </AnimatePresence>
+
+        {/* Retro Whoami Terminal overlay */}
+        <AnimatePresence>
+          {isWhoamiOpen && (
+            <WhoamiTerminal onClose={() => setIsWhoamiOpen(false)} />
+          )}
+        </AnimatePresence>
+
+        {/* Hint Clue Modal */}
+        <AnimatePresence>
+          {isHintModalOpen && (
+            <HintModal isOpen={isHintModalOpen} onClose={() => setIsHintModalOpen(false)} />
+          )}
+        </AnimatePresence>
+
+        {/* Canvas Confetti Explosion */}
+        {isConfettiActive && (
+          <ConfettiOverlay onComplete={() => setIsConfettiActive(false)} />
+        )}
+
+        {/* Secret Achievements Counter Progress Widget */}
+        <AchievementBadge unlockedSecrets={unlockedSecrets} />
+
         {/* Neo-brutalist Theme Toggle Button */}
         <button
           onClick={toggleTheme}
@@ -350,7 +543,7 @@ function App() {
           {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
         </button>
 
-        <AnimatedRoutes theme={theme} />
+        <AnimatedRoutes theme={theme} onOpenHints={() => setIsHintModalOpen(true)} />
       </main>
     </Router>
   );
