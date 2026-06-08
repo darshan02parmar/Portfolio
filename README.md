@@ -1,4 +1,4 @@
-# 💼 Portfolio - darshan.dev
+# 💼 Portfolio -[ darshan.dev](https://darshan-parmar.vercel.app/)
 
 Welcome to the repository for my personal portfolio website, showcasing my projects, skills, professional experience, and hidden interactive developer easter eggs as a full-stack developer.
 
@@ -147,7 +147,7 @@ This project is licensed under the MIT License.
 
 ## 🤝 Contact
 
-- **Website**: [darshan.dev](https://darshan02parmar.github.io/Portfolio)
+- **Website**: [darshan.dev](https://darshan-parmar.vercel.app/)
 - **Email**: [darshanparmar0302@gmail.com](mailto:darshanparmar0302@gmail.com)
 - **GitHub**: [@darshan02parmar](https://github.com/darshan02parmar)
 - **LinkedIn**: [Parmar Darshan](https://linkedin.com/in/parmar-darshan)
