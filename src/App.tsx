@@ -29,6 +29,7 @@ import AchievementBadge from './components/AchievementBadge';
 import WhoamiTerminal from './components/WhoamiTerminal';
 import ConfettiOverlay from './components/ConfettiOverlay';
 import DevSandbox from './components/DevSandbox';
+import NotFound from './components/NotFound';
 
 import Snowfall from 'react-snowfall';
 
@@ -277,6 +278,11 @@ const AnimatedRoutes = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpe
         <Route path="/project/:id" element={
           <PageWrapper>
             <ProjectDetail />
+          </PageWrapper>
+        } />
+        <Route path="*" element={
+          <PageWrapper>
+            <NotFound />
           </PageWrapper>
         } />
       </Routes>
