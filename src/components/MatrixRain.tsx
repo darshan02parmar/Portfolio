@@ -15,6 +15,21 @@ export default function MatrixRain({ onClose, isNeoMode = false }: MatrixRainPro
     const [exitText, setExitText] = useState('');
     const [isExiting, setIsExiting] = useState(false);
 
+    // Easter Egg: Change favicon dynamically on mount and restore on unmount
+    useEffect(() => {
+        const favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+        if (!favicon) return;
+
+        const originalFavicon = favicon.href;
+
+        const matrixFaviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="%23000000" stroke="%2310b981" stroke-width="2.5"/><text x="16" y="22" font-family="monospace" font-weight="bold" font-size="16" fill="%2310b981" text-anchor="middle">▣</text></svg>`;
+        favicon.href = `data:image/svg+xml,${matrixFaviconSvg}`;
+
+        return () => {
+            favicon.href = originalFavicon;
+        };
+    }, []);
+
     // Escape Handler with Typewriter Sequence
     const handleExit = () => {
         if (isExiting) return;
