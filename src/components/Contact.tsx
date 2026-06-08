@@ -16,7 +16,7 @@ export default function Contact({ onOpenHints }: { onOpenHints?: () => void }) {
             return;
         }
 
-        const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '6693c76e-2577-422e-a264-716bd7eb6091';
+        const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
 
         const emailPromise = axios
             .post('https://api.web3forms.com/submit', {
