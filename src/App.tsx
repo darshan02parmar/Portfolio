@@ -28,6 +28,7 @@ import HintModal from './components/HintModal';
 import AchievementBadge from './components/AchievementBadge';
 import WhoamiTerminal from './components/WhoamiTerminal';
 import ConfettiOverlay from './components/ConfettiOverlay';
+import DevSandbox from './components/DevSandbox';
 
 import Snowfall from 'react-snowfall';
 
@@ -107,7 +108,7 @@ const Home = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpenHints: ()
         </p>
 
         <a
-          href="/DarshanParmar_resume.pdf"
+          href="/DarshanParmar.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="motion-preset-slide-right mt-6 inline-block !animate-blur-in-800 rounded-[30px] border-2 border-slate-900 bg-slate-900 dark:border-[#50e0b3] dark:bg-[#0f172a] dark:text-[#50e0b3] px-6 py-2 text-sm font-medium text-white shadow-[4px_4px_0px_0px_#84cc16] dark:shadow-[4px_4px_0px_0px_#50e0b3] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-800 dark:hover:bg-[#50e0b3] dark:hover:text-[#0f172a] md:text-xl xl:border-[3px]"
@@ -317,6 +318,7 @@ function App() {
   const [isHintModalOpen, setIsHintModalOpen] = useState(false);
   const [isWhoamiOpen, setIsWhoamiOpen] = useState(false);
   const [isConfettiActive, setIsConfettiActive] = useState(false);
+  const [isSandboxOpen, setIsSandboxOpen] = useState(false);
 
   // Stored achievements
   const [unlockedSecrets, setUnlockedSecrets] = useState<string[]>(() => {
@@ -410,6 +412,7 @@ function App() {
         setIsPaletteOpen(false);
         setIsWhoamiOpen(false);
         setIsHintModalOpen(false);
+        setIsSandboxOpen(false);
         return;
       }
 
@@ -424,6 +427,7 @@ function App() {
       if (konamiBuffer.join(',') === konamiCode.join(',')) {
         unlockSecret('konami');
         setIsConfettiActive(true);
+        setIsSandboxOpen(true);
         toast.custom((t) => (
           <div className={`${t.visible ? 'scale-100 opacity-100' : 'scale-90 opacity-0'} max-w-sm w-full bg-slate-900 border-[3px] border-[#eab308] p-4 rounded-2xl shadow-[6px_6px_0px_0px_#eab308] font-mono text-[11px] font-bold text-white flex flex-col gap-1 transition-all duration-300 pointer-events-auto`}>
             <div className="text-[#eab308] text-xs">🚀 DEVELOPER GOD MODE ACTIVATED</div>
@@ -468,6 +472,17 @@ function App() {
       } else if (typed.endsWith('darshan')) {
         unlockSecret('darshan');
         setIsWhoamiOpen(true);
+        keyBufferRef.current = [];
+      } else if (typed.endsWith('konami')) {
+        unlockSecret('konami');
+        setIsConfettiActive(true);
+        setIsSandboxOpen(true);
+        toast.custom((t) => (
+          <div className={`${t.visible ? 'scale-100 opacity-100' : 'scale-90 opacity-0'} max-w-sm w-full bg-slate-900 border-[3px] border-[#eab308] p-4 rounded-2xl shadow-[6px_6px_0px_0px_#eab308] font-mono text-[11px] font-bold text-white flex flex-col gap-1 transition-all duration-300 pointer-events-auto`}>
+            <div className="text-[#eab308] text-xs">🚀 DEVELOPER GOD MODE ACTIVATED</div>
+            <div className="text-[9px] text-slate-400 font-normal">Gravity inverted, confetti engine primed, secrets count incremented.</div>
+          </div>
+        ), { duration: 5000 });
         keyBufferRef.current = [];
       }
     };
@@ -530,6 +545,17 @@ function App() {
         {isConfettiActive && (
           <ConfettiOverlay onComplete={() => setIsConfettiActive(false)} />
         )}
+
+        {/* Dev God Mode Sandbox Console */}
+        <AnimatePresence>
+          {isSandboxOpen && (
+            <DevSandbox
+              isOpen={isSandboxOpen}
+              onClose={() => setIsSandboxOpen(false)}
+              unlockedSecretsCount={unlockedSecrets.length}
+            />
+          )}
+        </AnimatePresence>
 
         {/* Secret Achievements Counter Progress Widget */}
         <AchievementBadge unlockedSecrets={unlockedSecrets} />
