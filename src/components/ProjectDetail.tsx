@@ -54,6 +54,7 @@ interface CaseStudy {
         title: string;
         url: string;
         visualType: 'input' | 'processing' | 'blueprint' | 'roadmap' | 'listings' | 'auth' | 'map';
+        imgUrl?: string;
     }[];
 }
 
@@ -117,10 +118,10 @@ const caseStudyData: Record<string, CaseStudy> = {
             { title: 'UX for AI Latency', desc: 'Designed custom skeletons and simulated log streams to maintain engagement during API loads.' }
         ],
         mockScreenshots: [
-            { title: 'User Input Form', url: '/ideaflow-form', visualType: 'input' },
+            { title: 'User Input Form', url: '/ideaflow-form', visualType: 'input', imgUrl: '/projects/ideaflow-1.png' },
             { title: 'AI Structuring Engines', url: '/ideaflow-processing', visualType: 'processing' },
-            { title: 'Interactive Technical Blueprint', url: '/ideaflow-blueprint', visualType: 'blueprint' },
-            { title: 'MVP Development Roadmap', url: '/ideaflow-roadmap', visualType: 'roadmap' }
+            { title: 'Interactive Technical Blueprint', url: '/ideaflow-blueprint', visualType: 'blueprint', imgUrl: '/projects/ideaflow-3.png' },
+            { title: 'MVP Development Roadmap', url: '/ideaflow-roadmap', visualType: 'roadmap', imgUrl: '/projects/ideaflow-4.png' }
         ]
     },
     wanderlust: {
@@ -180,16 +181,17 @@ const caseStudyData: Record<string, CaseStudy> = {
             { title: 'Third-party API Performance', desc: 'Optimized map renders by caching geolocated coordinates locally.' }
         ],
         mockScreenshots: [
-            { title: 'Secure Authentication & Login', url: '/wanderlust-auth', visualType: 'auth' },
-            { title: 'Property Listings Dashboard', url: '/wanderlust-listings', visualType: 'listings' },
-            { title: 'Mapbox Location Mapping', url: '/wanderlust-map', visualType: 'map' }
+            { title: 'Secure Authentication & Login', url: '/wanderlust-auth', visualType: 'auth', imgUrl: '/projects/wanderlust-auth.png' },
+            { title: 'Property Listings Dashboard', url: '/wanderlust-listings', visualType: 'listings', imgUrl: '/projects/wanderlust-listings.png' },
+            { title: 'Mapbox Location Mapping', url: '/wanderlust-map', visualType: 'map', imgUrl: '/projects/wanderlust-map.png' },
+            { title: 'Full Listing Overview', url: '/wanderlust-overview', visualType: 'listings', imgUrl: '/projects/wanderlust-overview.png' }
         ]
     }
 };
 
-const BrowserMock = ({ title, url, type }: { title: string; url: string; type: string }) => {
+const BrowserMock = ({ title, url, type, imgUrl }: { title: string; url: string; type: string; imgUrl?: string }) => {
     return (
-        <div className="w-full rounded-2xl border-[3px] border-slate-900 dark:border-slate-100 bg-[#0f172a] overflow-hidden shadow-[8px_8px_0px_0px_#1e293b] dark:shadow-[8px_8px_0px_0px_#50e0b3] transition-transform duration-300 hover:scale-[1.01] relative z-10">
+        <div className="w-full rounded-2xl border-[3px] border-slate-900 dark:border-slate-100 bg-[#0f172a] overflow-hidden shadow-[8px_8px_0px_0px_#1e293b] dark:shadow-[8px_8px_0px_0px_#50e0b3] transition-transform duration-300 hover:scale-[1.01] relative z-10 group">
             {/* Header Bar */}
             <div className="flex items-center justify-between px-4 py-3 border-b-2 border-slate-800 bg-slate-900/60 text-xs">
                 <div className="flex items-center gap-1.5">
@@ -197,90 +199,103 @@ const BrowserMock = ({ title, url, type }: { title: string; url: string; type: s
                     <span className="w-3 h-3 rounded-full bg-amber-500 border border-amber-600 block"></span>
                     <span className="w-3 h-3 rounded-full bg-emerald-500 border border-emerald-600 block"></span>
                 </div>
-                <div className="bg-[#1e293b] text-slate-400 px-6 py-1 rounded-md border border-slate-800 font-mono w-[60%] text-center truncate">
+                <div className="bg-[#1e293b] text-slate-400 px-6 py-1 rounded-md border border-slate-800 font-mono w-[60%] text-center truncate transition-colors group-hover:text-slate-300 group-hover:bg-[#1e293b]/80">
                     {url}
                 </div>
                 <span className="text-slate-500 font-mono hidden sm:inline-block">HTTPS</span>
             </div>
             
             {/* Mock Content */}
-            <div className="p-6 bg-slate-950 min-h-[200px] flex flex-col justify-center text-slate-300 font-sans">
-                {type === 'input' && (
-                    <div className="space-y-3">
-                        <div className="w-[80%] h-4 bg-slate-800 rounded animate-pulse"></div>
-                        <div className="w-full h-10 bg-slate-900 border border-slate-800 rounded-lg p-3 text-xs flex items-center text-slate-500">Enter your startup idea here...</div>
-                        <div className="w-24 h-8 bg-lime-500 rounded-full flex items-center justify-center text-slate-950 font-bold text-xs">Submit Idea</div>
+            <div className="bg-slate-950 min-h-[200px] flex flex-col justify-center text-slate-300 font-sans relative">
+                {imgUrl ? (
+                    <div className="w-full h-[250px] overflow-hidden">
+                        <img 
+                            src={imgUrl} 
+                            alt={title} 
+                            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                )}
-                {type === 'processing' && (
-                    <div className="space-y-4 flex flex-col items-center justify-center text-center">
-                        <div className="relative flex h-10 w-10 items-center justify-center">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-8 w-8 bg-blue-500"></span>
-                        </div>
-                        <div className="space-y-1">
-                            <div className="text-xs font-mono text-lime-400">CONNECTING TO LLM CLUSTER...</div>
-                            <div className="text-[10px] text-slate-500">Analyzing market size & matching optimal libraries...</div>
-                        </div>
-                    </div>
-                )}
-                {type === 'blueprint' && (
-                    <div className="space-y-3">
-                        <div className="border border-slate-800 bg-slate-900/50 p-4 rounded-xl space-y-2">
-                            <div className="text-xs font-mono text-blue-400">PRODUCT BRIEF</div>
-                            <div className="w-full h-3 bg-slate-800 rounded"></div>
-                            <div className="w-[90%] h-3 bg-slate-800 rounded"></div>
-                            <div className="w-[60%] h-3 bg-slate-800 rounded"></div>
-                        </div>
-                    </div>
-                )}
-                {type === 'roadmap' && (
-                    <div className="space-y-3">
-                        <div className="text-xs font-mono text-purple-400">MVP GANTT TIMELINE</div>
-                        <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                                <span className="w-12 text-[10px] text-slate-500 font-mono">Sprint 1</span>
-                                <div className="h-4 bg-purple-500/30 border border-purple-500 rounded flex-1 w-[30%]"></div>
+                ) : (
+                    <div className="p-6">
+                        {type === 'input' && (
+                            <div className="space-y-3">
+                                <div className="w-[80%] h-4 bg-slate-800 rounded animate-pulse"></div>
+                                <div className="w-full h-10 bg-slate-900 border border-slate-800 rounded-lg p-3 text-xs flex items-center text-slate-500">Enter your startup idea here...</div>
+                                <div className="w-24 h-8 bg-lime-500 rounded-full flex items-center justify-center text-slate-950 font-bold text-xs">Submit Idea</div>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <span className="w-12 text-[10px] text-slate-500 font-mono">Sprint 2</span>
-                                <div className="h-4 bg-blue-500/30 border border-blue-500 rounded flex-1 w-[60%] ml-[30%]"></div>
+                        )}
+                        {type === 'processing' && (
+                            <div className="space-y-4 flex flex-col items-center justify-center text-center">
+                                <div className="relative flex h-10 w-10 items-center justify-center">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-8 w-8 bg-blue-500"></span>
+                                </div>
+                                <div className="space-y-1">
+                                    <div className="text-xs font-mono text-lime-400">CONNECTING TO LLM CLUSTER...</div>
+                                    <div className="text-[10px] text-slate-500">Analyzing market size & matching optimal libraries...</div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                )}
-                {type === 'auth' && (
-                    <div className="max-w-xs mx-auto space-y-3 w-full border border-slate-800 p-4 rounded-xl bg-slate-900/40">
-                        <div className="text-center font-heading text-sm text-slate-200">Register Account</div>
-                        <div className="h-8 bg-slate-950 border border-slate-800 rounded-lg p-2 text-[10px] text-slate-650 flex items-center">Username</div>
-                        <div className="h-8 bg-slate-950 border border-slate-800 rounded-lg p-2 text-[10px] text-slate-650 flex items-center">Password</div>
-                        <div className="h-8 bg-lime-50 text-slate-950 rounded-lg font-bold text-[11px] flex items-center justify-center">Sign Up</div>
-                    </div>
-                )}
-                {type === 'listings' && (
-                    <div className="grid grid-cols-2 gap-3">
-                        <div className="border border-slate-800 bg-slate-900 p-2 rounded-lg space-y-2">
-                            <div className="h-16 bg-slate-800 rounded-md animate-pulse"></div>
-                            <div className="w-[80%] h-2 bg-slate-700 rounded"></div>
-                            <div className="w-[40%] h-2 bg-slate-700 rounded"></div>
-                        </div>
-                        <div className="border border-slate-800 bg-slate-900 p-2 rounded-lg space-y-2">
-                            <div className="h-16 bg-slate-800 rounded-md animate-pulse"></div>
-                            <div className="w-[80%] h-2 bg-slate-700 rounded"></div>
-                            <div className="w-[40%] h-2 bg-slate-700 rounded"></div>
-                        </div>
-                    </div>
-                )}
-                {type === 'map' && (
-                    <div className="relative border border-slate-800 bg-slate-900 p-2 rounded-lg h-[150px] overflow-hidden flex items-center justify-center">
-                        <div className="absolute inset-0 opacity-20 bg-grid-pattern"></div>
-                        <div className="z-10 flex flex-col items-center">
-                            <span className="relative flex h-3 w-3">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                            </span>
-                            <div className="bg-slate-950 border border-slate-800 px-2 py-1 rounded text-[9px] font-bold text-slate-300 shadow mt-1">Eiffel Tower Listing</div>
-                        </div>
+                        )}
+                        {type === 'blueprint' && (
+                            <div className="space-y-3">
+                                <div className="border border-slate-800 bg-slate-900/50 p-4 rounded-xl space-y-2">
+                                    <div className="text-xs font-mono text-blue-400">PRODUCT BRIEF</div>
+                                    <div className="w-full h-3 bg-slate-800 rounded"></div>
+                                    <div className="w-[90%] h-3 bg-slate-800 rounded"></div>
+                                    <div className="w-[60%] h-3 bg-slate-800 rounded"></div>
+                                </div>
+                            </div>
+                        )}
+                        {type === 'roadmap' && (
+                            <div className="space-y-3">
+                                <div className="text-xs font-mono text-purple-400">MVP GANTT TIMELINE</div>
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-12 text-[10px] text-slate-500 font-mono">Sprint 1</span>
+                                        <div className="h-4 bg-purple-500/30 border border-purple-500 rounded flex-1 w-[30%]"></div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-12 text-[10px] text-slate-500 font-mono">Sprint 2</span>
+                                        <div className="h-4 bg-blue-500/30 border border-blue-500 rounded flex-1 w-[60%] ml-[30%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        {type === 'auth' && (
+                            <div className="max-w-xs mx-auto space-y-3 w-full border border-slate-800 p-4 rounded-xl bg-slate-900/40">
+                                <div className="text-center font-heading text-sm text-slate-200">Register Account</div>
+                                <div className="h-8 bg-slate-950 border border-slate-800 rounded-lg p-2 text-[10px] text-slate-650 flex items-center">Username</div>
+                                <div className="h-8 bg-slate-950 border border-slate-800 rounded-lg p-2 text-[10px] text-slate-650 flex items-center">Password</div>
+                                <div className="h-8 bg-lime-50 text-slate-950 rounded-lg font-bold text-[11px] flex items-center justify-center">Sign Up</div>
+                            </div>
+                        )}
+                        {type === 'listings' && (
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className="border border-slate-800 bg-slate-900 p-2 rounded-lg space-y-2">
+                                    <div className="h-16 bg-slate-800 rounded-md animate-pulse"></div>
+                                    <div className="w-[80%] h-2 bg-slate-700 rounded"></div>
+                                    <div className="w-[40%] h-2 bg-slate-700 rounded"></div>
+                                </div>
+                                <div className="border border-slate-800 bg-slate-900 p-2 rounded-lg space-y-2">
+                                    <div className="h-16 bg-slate-800 rounded-md animate-pulse"></div>
+                                    <div className="w-[80%] h-2 bg-slate-700 rounded"></div>
+                                    <div className="w-[40%] h-2 bg-slate-700 rounded"></div>
+                                </div>
+                            </div>
+                        )}
+                        {type === 'map' && (
+                            <div className="relative border border-slate-800 bg-slate-900 p-2 rounded-lg h-[150px] overflow-hidden flex items-center justify-center">
+                                <div className="absolute inset-0 opacity-20 bg-grid-pattern"></div>
+                                <div className="z-10 flex flex-col items-center">
+                                    <span className="relative flex h-3 w-3">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                                    </span>
+                                    <div className="bg-slate-950 border border-slate-800 px-2 py-1 rounded text-[9px] font-bold text-slate-300 shadow mt-1">Eiffel Tower Listing</div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
@@ -561,6 +576,7 @@ export default function ProjectDetail() {
                                             title={scr.title}
                                             url={scr.url}
                                             type={scr.visualType}
+                                            imgUrl={scr.imgUrl}
                                         />
                                     ))}
                                 </div>
