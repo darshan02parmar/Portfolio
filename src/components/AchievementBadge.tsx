@@ -37,7 +37,7 @@ export default function AchievementBadge({ unlockedSecrets }: AchievementBadgePr
 
     return (
         <AnimatePresence>
-            {isVisible && (
+            {isVisible && foundCount > 0 && foundCount < totalSecrets && (
                 <div 
                     className="fixed bottom-28 right-8 z-[9980] flex flex-col items-end gap-3 select-none pointer-events-auto"
                     onMouseEnter={() => setIsHovered(true)}
@@ -82,14 +82,32 @@ export default function AchievementBadge({ unlockedSecrets }: AchievementBadgePr
                     {/* Main Floating Badge Button */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        animate={
+                            foundCount === totalSecrets 
+                            ? { opacity: 1, scale: [1, 1.02, 1], y: 0, boxShadow: ["4px 4px 0px 0px #1e293b", "4px 4px 15px 0px #eab308", "4px 4px 0px 0px #1e293b"] }
+                            : { opacity: 1, scale: 1, y: 0 }
+                        }
                         exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                        transition={
+                            foundCount === totalSecrets 
+                            ? { repeat: Infinity, duration: 2, ease: "easeInOut" } 
+                            : {}
+                        }
                         whileHover={{ scale: 1.05, rotate: -2 }}
                         whileTap={{ scale: 0.95 }}
                         className="bg-amber-400 border-[3px] border-slate-900 dark:border-slate-100 text-slate-950 font-mono text-xs font-bold px-4 py-2.5 rounded-full flex items-center gap-2 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] cursor-pointer"
                     >
-                        <span className="text-sm">🏆</span>
-                        <span>{foundCount}/{totalSecrets} Secrets Found</span>
+                        {foundCount === totalSecrets ? (
+                            <>
+                                <span className="text-sm">✨</span>
+                                <span>All secrets discovered!</span>
+                            </>
+                        ) : (
+                            <>
+                                <span className="text-sm">🏆</span>
+                                <span>{foundCount}/{totalSecrets} Secrets Found</span>
+                            </>
+                        )}
                     </motion.div>
                 </div>
             )}
