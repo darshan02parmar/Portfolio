@@ -28,6 +28,8 @@ import HintModal from './components/HintModal';
 import AchievementBadge from './components/AchievementBadge';
 import WhoamiTerminal from './components/WhoamiTerminal';
 import ConfettiOverlay from './components/ConfettiOverlay';
+import Preloader from './components/Preloader';
+import TypewriterEffect from './components/TypewriterEffect';
 import DevSandbox from './components/DevSandbox';
 import NotFound from './components/NotFound';
 
@@ -87,10 +89,10 @@ const Home = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpenHints: ()
         </h1>
 
         <h2
-          className="mt-20 animate-fade-right animate-duration-600 animate-delay-200 font-heading text-[27px] lg:text-[32px]"
+          className="mt-20 animate-fade-right animate-duration-600 animate-delay-200 font-heading text-[27px] lg:text-[32px] min-h-[40px] text-[#1E293B] dark:text-[#1E293B] whitespace-nowrap"
           id="profession"
         >
-          Fullstack Developer
+          <TypewriterEffect words={["Software Developer", "Full-Stack Developer", "Open Source Contributor"]} />
         </h2>
 
         <p
@@ -291,6 +293,8 @@ const AnimatedRoutes = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpe
 };
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
@@ -509,7 +513,8 @@ function App() {
     <Router>
       <ScrollToTop />
       <Toaster position="top-right" />
-      <main className="relative mx-auto overflow-hidden bg-background text-foreground transition-colors duration-300 min-h-screen">
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      <main className={`relative mx-auto bg-background text-foreground transition-colors duration-300 min-h-screen ${isLoading ? 'h-screen overflow-hidden' : 'overflow-hidden'}`}>
         <ScrollButton />
         <MouseGlow />
         <CommandPalette
