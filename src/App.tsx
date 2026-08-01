@@ -89,7 +89,7 @@ const Home = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpenHints: ()
         </h1>
 
         <h2
-          className="mt-20 animate-fade-right animate-duration-600 animate-delay-200 font-heading text-[27px] lg:text-[32px] min-h-[40px] text-[#1E293B] dark:text-[#1E293B] whitespace-nowrap"
+          className="mt-20 animate-fade-right animate-duration-600 animate-delay-200 font-heading text-[27px] lg:text-[32px] min-h-[40px] text-lime-600 dark:text-lime-400 whitespace-nowrap"
           id="profession"
         >
           <TypewriterEffect words={["Software Developer", "Full-Stack Developer", "Open Source Contributor"]} />
