@@ -186,8 +186,72 @@ const caseStudyData: Record<string, CaseStudy> = {
             { title: 'Mapbox Location Mapping', url: '/wanderlust-map', visualType: 'map', imgUrl: '/projects/wanderlust-map.png' },
             { title: 'Full Listing Overview', url: '/wanderlust-overview', visualType: 'listings', imgUrl: '/projects/wanderlust-overview.png' }
         ]
+    },
+    investease: {
+        status: 'Completed',
+        type: 'Investment Management Platform',
+        role: 'Solo Developer',
+        duration: '4 Weeks',
+        year: '2026',
+        snapshot: {
+            role: 'Solo Full-Stack Developer, System Designer & Backend Engineer',
+            goal: 'Build a secure, scalable investor self-service platform that centralizes portfolio management, SIPs, digital KYC, nominee management, statements, notifications, and support operations into a unified experience.',
+            impact: 'Delivered a production-inspired MERN platform featuring secure authentication, dynamic portfolio operations, digital KYC workflows, PDF statement generation, and a role-based admin dashboard that streamlines investor and operational workflows.',
+            stack: 'React • Node.js • Express.js • MongoDB Atlas • JWT • Tailwind CSS • PDFKit • Multer • Render • Vercel'
+        },
+        before: [
+            'Fragmented investor workflows across multiple platforms.',
+            'Manual KYC verification and support processes.',
+            'Limited visibility into portfolio and account operations.',
+            'Disconnected administrative workflows.'
+        ],
+        after: [
+            'Unified investor self-service dashboard.',
+            'Digital KYC with approval workflow.',
+            'Integrated portfolio, SIP, nominee, and statement management.',
+            'Dedicated admin operations dashboard.'
+        ],
+        timeline: [
+            { day: 'Reliability', label: 'Deployment', details: 'Secure cloud deployment with independent frontend and backend hosting.' },
+            { day: 'Security', label: 'Authentication', details: 'JWT authentication with role-based authorization.' },
+            { day: 'Scalability', label: 'Architecture', details: 'Modular MERN architecture supporting future integrations.' }
+        ],
+        logs: [
+            'Initializing InvestEase investor dashboard...',
+            'Connecting to MongoDB Atlas cluster...',
+            'Authenticating user via JWT token...',
+            'Fetching dynamic portfolio calculations...',
+            'Generating PDF statement for Q3 2026...',
+            '✓ KYC document verified by admin.',
+            'Case study loaded. Ready for display.'
+        ],
+        contributions: [
+            { area: 'Frontend & UI Design', percent: 100 },
+            { area: 'Backend API & Architecture', percent: 100 },
+            { area: 'Database Design', percent: 100 },
+            { area: 'PDF Generation Engine', percent: 100 }
+        ],
+        uniqueFeatures: [
+            'Role-based Access Control (Admin/User)',
+            'Dynamic Portfolio & Health Score Calculations',
+            'Digital KYC Document Workflows',
+            'Dynamic PDF Account Statements'
+        ],
+        lessons: [
+            { title: 'System Design', desc: 'Designed a modular three-tier MERN architecture with reusable service layers.' },
+            { title: 'Authentication & Security', desc: 'Implemented JWT authentication, role-based authorization, password hashing, and protected routes.' },
+            { title: 'Business Logic', desc: 'Developed dynamic portfolio calculations, Health Score computation, notification workflows, and event-driven updates.' },
+            { title: 'Deployment & DevOps', desc: 'Configured cloud deployment using Vercel, Render, and MongoDB Atlas while handling production environment variables and deployment workflows.' }
+        ],
+        mockScreenshots: [
+            { title: 'Premium Landing Experience', url: '/landing', visualType: 'input' },
+            { title: 'Investor Command Center', url: '/dashboard', visualType: 'processing' },
+            { title: 'Dynamic Portfolio Management', url: '/portfolio', visualType: 'blueprint' },
+            { title: 'Digital KYC Workflow', url: '/kyc', visualType: 'roadmap' }
+        ]
     }
 };
+
 
 const BrowserMock = ({ title, url, type, imgUrl }: { title: string; url: string; type: string; imgUrl?: string }) => {
     return (
@@ -364,9 +428,11 @@ export default function ProjectDetail() {
 
                 <div className="flex">
                     {/* Scroll Progress Indicator (Left Sidebar) */}
-                    <aside className="fixed left-0 top-0 hidden h-screen w-72 flex-col justify-center border-r-[3px] border-slate-900 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 lg:flex transition-colors duration-300">
-                        <div className="absolute left-[38px] top-1/4 h-1/2 w-[2px] bg-slate-200 dark:bg-slate-800" />
-                        <nav className="relative flex flex-col gap-8">
+                    <aside className="fixed left-0 top-0 hidden h-screen w-72 flex-col pt-32 pb-8 px-8 border-r-[3px] border-slate-900 dark:border-slate-800 bg-white dark:bg-slate-900 lg:flex transition-colors duration-300 overflow-y-auto">
+                        <nav className="relative flex flex-col gap-8 mt-auto mb-auto">
+                            {/* Connecting Line */}
+                            <div className="absolute left-[19px] top-4 bottom-4 w-[2px] bg-slate-200 dark:bg-slate-800 z-0" />
+                            
                             {sections.map((section) => (
                                 <a
                                     key={section.id}
@@ -375,10 +441,10 @@ export default function ProjectDetail() {
                                         e.preventDefault();
                                         document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' });
                                     }}
-                                    className={`group relative flex items-center gap-4 transition-all ${activeSection === section.id ? 'text-lime-600 dark:text-lime-400' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
+                                    className={`group relative flex items-center gap-4 transition-all z-10 ${activeSection === section.id ? 'text-lime-600 dark:text-lime-400' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
                                         }`}
                                 >
-                                    <div className={`z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all ${activeSection === section.id
+                                    <div className={`z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 transition-all ${activeSection === section.id
                                         ? 'border-lime-600 dark:border-lime-400 bg-lime-50 dark:bg-lime-950 scale-110 shadow-[2px_2px_0px_0px_#65a30d]'
                                         : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900'
                                         }`}>
@@ -528,23 +594,77 @@ export default function ProjectDetail() {
                                 {/* Data Lifecycle flow diagram */}
                                 <div className="mb-16">
                                     <h3 className="font-heading text-xl mb-8 text-slate-500 uppercase tracking-widest text-center">Data Lifecycle</h3>
-                                    <div className="flex flex-col items-stretch justify-center gap-4 lg:flex-row lg:items-center">
-                                        {project.flowDiagram.map((step, i) => (
-                                            <React.Fragment key={i}>
-                                                <div className="flex-1 flex flex-col items-center gap-4 w-full relative">
-                                                    <div className="relative flex h-28 w-full items-center justify-center rounded-2xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-6 text-center font-heading text-lg shadow-[6px_6px_0px_0px_#3b82f6] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none dark:text-slate-100">
-                                                        <div className="absolute top-2 left-3 text-xs font-mono font-bold text-blue-500 dark:text-blue-400">0{i + 1}</div>
-                                                        <span className="mt-2">{step}</span>
+                                    {project.id === 'investease' ? (
+                                        <div className="flex flex-col items-center w-full max-w-sm mx-auto font-heading">
+                                            {/* Login Box */}
+                                            <div className="rounded-xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 px-8 py-3 text-lg shadow-[4px_4px_0px_0px_#3b82f6] z-10">
+                                                Authentication (Login)
+                                            </div>
+                                            
+                                            {/* Arrow Down */}
+                                            <div className="w-[3px] h-8 bg-blue-500 relative">
+                                                <div className="absolute -bottom-2 -left-[4.5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-500"></div>
+                                            </div>
+
+                                            {/* Dashboard Box */}
+                                            <div className="rounded-xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 px-12 py-4 text-xl font-bold shadow-[6px_6px_0px_0px_#84cc16] z-10 mt-2">
+                                                Investor Dashboard
+                                            </div>
+
+                                            {/* Branching Section */}
+                                            <div className="relative flex flex-col items-start w-full pl-[50%] mt-2">
+                                                {/* Continuous Vertical Line */}
+                                                <div className="absolute left-[50%] ml-[-1.5px] top-0 bottom-[-10px] w-[3px] bg-blue-500 z-0"></div>
+                                                
+                                                {/* Branches */}
+                                                {[
+                                                    'Portfolio Operations',
+                                                    'SIP Management',
+                                                    'KYC Verifications',
+                                                    'Account Statements',
+                                                    'Push Notifications',
+                                                    'Nominee Management'
+                                                ].map((item, i) => (
+                                                    <div key={i} className="flex items-center w-full my-3 z-10">
+                                                        {/* Horizontal Connector */}
+                                                        <div className="h-[3px] w-8 bg-blue-500 shrink-0"></div>
+                                                        {/* Item Box */}
+                                                        <div className="rounded-lg border-2 border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 px-4 py-2 text-sm shadow-[3px_3px_0px_0px_#a855f7] flex-1 truncate">
+                                                            {item}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                {i < project.flowDiagram.length - 1 && (
-                                                    <div className="flex items-center justify-center py-2 lg:py-0">
-                                                        <ArrowRight className="text-blue-500 font-bold rotate-90 lg:rotate-0 animate-pulse" size={24} />
+                                                ))}
+                                            </div>
+
+                                            {/* Arrow Down from the vertical line */}
+                                            <div className="w-[3px] h-8 bg-blue-500 relative mt-[10px]">
+                                                <div className="absolute -bottom-2 -left-[4.5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-500"></div>
+                                            </div>
+
+                                            {/* Admin Dashboard */}
+                                            <div className="rounded-xl border-[3px] border-slate-900 dark:border-slate-100 bg-slate-900 text-white dark:bg-slate-800 px-8 py-3 text-lg shadow-[4px_4px_0px_0px_#ef4444] mt-2 z-10 text-center">
+                                                Admin Operations Dashboard
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="flex flex-col items-stretch justify-center gap-4 lg:flex-row lg:items-center">
+                                            {project.flowDiagram.map((step, i) => (
+                                                <React.Fragment key={i}>
+                                                    <div className="flex-1 flex flex-col items-center gap-4 w-full relative">
+                                                        <div className="relative flex h-28 w-full items-center justify-center rounded-2xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-6 text-center font-heading text-lg shadow-[6px_6px_0px_0px_#3b82f6] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none dark:text-slate-100">
+                                                            <div className="absolute top-2 left-3 text-xs font-mono font-bold text-blue-500 dark:text-blue-400">0{i + 1}</div>
+                                                            <span className="mt-2">{step}</span>
+                                                        </div>
                                                     </div>
-                                                )}
-                                            </React.Fragment>
-                                        ))}
-                                    </div>
+                                                    {i < project.flowDiagram.length - 1 && (
+                                                        <div className="flex items-center justify-center py-2 lg:py-0">
+                                                            <ArrowRight className="text-blue-500 font-bold rotate-90 lg:rotate-0 animate-pulse" size={24} />
+                                                        </div>
+                                                    )}
+                                                </React.Fragment>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* System Mapping Connectors */}

@@ -91,5 +91,42 @@ export const projects: Project[] = [
         impact: 'Reduces the time taken to create a professional product brief from days to seconds, allowing founders to validate and iterate on their ideas much faster.',
         difficulty: 'Designing a dynamic Generative UI that updates in real-time as the AI processes the input, and ensuring the AI provides structured, actionable blueprints across different industries.',
     },
+    {
+        id: 'investease',
+        title: 'InvestEase',
+        description: 'A full-stack MERN platform for modern investor self-service and portfolio management.',
+        oneLinePitch: 'One secure platform for investors to manage portfolios, compliance, and account operations—backed by a powerful administrative workflow.',
+        longDescription: 'Built a complete investor operations platform that demonstrates secure authentication, portfolio management, digital KYC, SIP workflows, nominee management, statement generation, and administrator operations within a single, integrated application. InvestEase demonstrates how fragmented investor services can be unified into a secure, scalable, and user-friendly platform.',
+        techStack: ['React', 'Node.js', 'Express.js', 'MongoDB Atlas', 'JWT', 'Tailwind CSS', 'PDFKit', 'Multer'],
+        flowDiagram: ['Authentication', 'Investor Dashboard', 'Portfolio Operations', 'SIP Management', 'KYC & Nominees', 'Statements & Notifications', 'Admin Verification'],
+        architecture: [
+            { from: 'React Frontend', to: 'Express REST API' },
+            { from: 'Express REST API', to: 'MongoDB Atlas' },
+            { from: 'Node.js Engine', to: 'PDFKit Generation' }
+        ],
+        badges: [
+            {
+                src: 'https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB',
+                alt: 'React',
+            },
+            {
+                src: 'https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white',
+                alt: 'Node.js',
+            },
+            {
+                src: 'https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white',
+                alt: 'MongoDB',
+            },
+            {
+                src: 'https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB',
+                alt: 'Express.js',
+            }
+        ],
+        deployedUrl: 'https://invest-ease-sand.vercel.app/',
+        githubUrl: 'https://github.com/darshan02parmar/InvestEase',
+        problemSolved: 'Modern investor services are often fragmented across multiple systems for portfolio management, KYC verification, nominee updates, account statements, and customer support, leading to inefficient workflows and inconsistent user experiences.',
+        impact: 'Delivered a production-inspired MERN platform featuring secure authentication, dynamic portfolio operations, digital KYC workflows, PDF statement generation, and a role-based admin dashboard that streamlines investor and operational workflows.',
+        difficulty: 'Designed a modular three-tier MERN architecture with reusable service layers, dynamic portfolio calculations, and secure JWT role-based authorization.',
+    }
 ];
 
