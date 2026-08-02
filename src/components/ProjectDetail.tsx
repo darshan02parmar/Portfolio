@@ -252,6 +252,155 @@ const caseStudyData: Record<string, CaseStudy> = {
     }
 };
 
+const FlowNode = ({ title, tooltip, color = 'blue', width = 'max-w-[200px]', noZ = false, tooltipPos = 'right' }: { title: string | React.ReactNode, tooltip?: string, color?: string, width?: string, noZ?: boolean, tooltipPos?: 'top' | 'right' | 'left' }) => {
+    const shadowColor = color === 'lime' ? '#84cc16' : color === 'purple' ? '#a855f7' : color === 'rose' ? '#f43f5e' : '#3b82f6';
+    const bgColor = color === 'lime' ? 'hover:bg-lime-50 dark:hover:bg-lime-900/30' : color === 'purple' ? 'hover:bg-purple-50 dark:hover:bg-purple-900/30' : color === 'rose' ? 'hover:bg-rose-50 dark:hover:bg-rose-900/30' : 'hover:bg-blue-50 dark:hover:bg-blue-900/30';
+    
+    const tooltipClasses = tooltipPos === 'right' 
+        ? "absolute left-full top-1/2 -translate-y-1/2 ml-4 w-56"
+        : tooltipPos === 'left'
+        ? "absolute right-full top-1/2 -translate-y-1/2 mr-4 w-56"
+        : "absolute left-1/2 -translate-x-1/2 bottom-full mb-3 w-56";
+    
+    const arrowClasses = tooltipPos === 'right'
+        ? "absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-r-[6px] border-r-slate-900 dark:border-r-slate-800"
+        : tooltipPos === 'left'
+        ? "absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[6px] border-l-slate-900 dark:border-l-slate-800"
+        : "absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-slate-900 dark:border-t-slate-800";
+
+    return (
+        <div className={`relative group ${noZ ? '' : 'z-10'} w-full ${width} text-center rounded-xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 px-4 py-3 font-bold cursor-pointer transition-all duration-300 shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none ${bgColor} hover:border-blue-500 dark:hover:border-blue-400`} style={{ '--shadow-color': shadowColor } as React.CSSProperties}>
+            <div className="relative z-10">{title}</div>
+            {tooltip && (
+                <div className={`${tooltipClasses} p-3 bg-slate-900 dark:bg-slate-800 text-white text-xs font-sans rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-[100] shadow-2xl border border-slate-700 leading-relaxed text-left`}>
+                    {tooltip}
+                    <div className={arrowClasses}></div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+const FlowArrow = ({ h = 8 }) => (
+    <div className={`w-[3px] h-${h} bg-blue-500 relative shrink-0`}>
+        <div className="absolute -bottom-2 -left-[4.5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-500"></div>
+    </div>
+);
+
+const WanderlustFlow = () => (
+    <div className="flex flex-col items-center w-full max-w-lg mx-auto font-heading">
+        <FlowNode title="Visitor" tooltip="A new user arriving at the landing page." color="blue" />
+        <FlowArrow />
+        <FlowNode title="Browse Listings" tooltip="Exploring available properties globally." color="blue" />
+        <FlowArrow />
+        <FlowNode title="View Property" tooltip="Checking details, images, and reviews." color="blue" />
+        
+        {/* Split Branch */}
+        <div className="w-[3px] h-6 bg-blue-500 shrink-0"></div>
+        <div className="w-64 h-[3px] bg-blue-500 relative shrink-0">
+            <div className="absolute left-[58px] top-0 w-[3px] h-6 bg-blue-500">
+                 <div className="absolute -bottom-2 -left-[4.5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-500"></div>
+            </div>
+            <div className="absolute right-[58px] top-0 w-[3px] h-6 bg-blue-500">
+                 <div className="absolute -bottom-2 -left-[4.5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-500"></div>
+            </div>
+        </div>
+        
+        <div className="w-64 flex justify-between mt-6 gap-4 z-10">
+            <FlowNode title="Login" tooltip="User authenticates." color="rose" width="flex-1" tooltipPos="left" />
+            <FlowNode title="Search & Filter" tooltip="Finding specific dates & locations." color="lime" width="flex-1" />
+        </div>
+        
+        {/* Merge Branch */}
+        <div className="w-64 h-6 relative shrink-0">
+            <div className="absolute left-[58px] top-0 w-[3px] h-6 bg-blue-500"></div>
+            <div className="absolute right-[58px] top-0 w-[3px] h-6 bg-blue-500"></div>
+            <div className="absolute left-[58px] right-[58px] bottom-0 h-[3px] bg-blue-500"></div>
+            
+            {/* Center stem down */}
+            <div className="absolute left-1/2 ml-[-1.5px] top-6 w-[3px] h-6 bg-blue-500">
+                 <div className="absolute -bottom-2 -left-[4.5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-500"></div>
+            </div>
+        </div>
+        
+        <div className="mt-8 w-full flex justify-center"><FlowNode title="Book Stay" tooltip="Initiating the booking process." color="purple" /></div>
+        <FlowArrow />
+        <FlowNode title="Payment / Reservation" tooltip="Processing via Stripe API." color="blue" />
+        <FlowArrow />
+        <FlowNode title="Booking Confirmed" tooltip="Email notification sent." color="lime" />
+        <FlowArrow />
+        <FlowNode title="Leave Review" tooltip="Post-stay feedback loop." color="blue" />
+    </div>
+);
+
+const IdeaFlowFlow = () => (
+    <div className="flex flex-col items-center w-full max-w-sm mx-auto font-heading">
+        <FlowNode title="Startup Idea" tooltip="The initial seed from the founder." color="blue" />
+        <FlowArrow />
+        <FlowNode title="Prompt Builder" tooltip="Structuring the idea for the LLM." color="purple" />
+        <FlowArrow />
+        <FlowNode title={<span className="text-xl">Tambo AI</span>} tooltip="Core processing engine." color="lime" />
+        <FlowArrow />
+        <FlowNode title="Idea Analysis" tooltip="Evaluating market fit & viability." color="blue" />
+        <FlowArrow />
+        
+        {/* Generate Box */}
+        <div className="relative group z-10 w-full max-w-[200px] text-center rounded-xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 px-4 py-3 font-bold cursor-pointer transition-all duration-300 shadow-[4px_4px_0px_0px_#f59e0b] hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:border-amber-500 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+            <div className="text-amber-500 mb-2 uppercase tracking-widest text-xs">Generate</div>
+            <div className="w-full h-[2px] bg-slate-200 dark:bg-slate-800 mb-2 transition-colors duration-300 group-hover:bg-amber-200 dark:group-hover:bg-amber-900"></div>
+            <div className="flex flex-col gap-1 text-sm font-sans text-slate-600 dark:text-slate-400">
+                <div>Product Brief</div>
+                <div>User Personas</div>
+                <div>Roadmap</div>
+                <div>Tech Stack</div>
+                <div>Business Model</div>
+            </div>
+            <div className="w-full h-[2px] bg-slate-200 dark:bg-slate-800 mt-2 transition-colors duration-300 group-hover:bg-amber-200 dark:group-hover:bg-amber-900"></div>
+            
+            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-56 p-3 bg-slate-900 dark:bg-slate-800 text-white text-xs font-sans rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-[100] shadow-2xl border border-slate-700 leading-relaxed text-left">
+                AI generates a comprehensive blueprint.
+                <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-r-[6px] border-r-slate-900 dark:border-r-slate-800"></div>
+            </div>
+        </div>
+        <FlowArrow />
+        <FlowNode title="Interactive UI" tooltip="User reviews and edits the results." color="purple" />
+        <FlowArrow />
+        <FlowNode title="Export / Save" tooltip="Finalizing the brief to PDF or DB." color="blue" />
+    </div>
+);
+
+const InvestEaseFlow = () => (
+    <div className="flex flex-col items-center w-full max-w-sm mx-auto font-heading">
+        <FlowNode title="Authentication (Login)" tooltip="Role-based JWT access." color="blue" />
+        <FlowArrow />
+        <FlowNode title={<span className="text-xl">Investor Dashboard</span>} tooltip="The central hub for all user operations." color="lime" width="max-w-[280px]" />
+        
+        {/* Branching Section */}
+        <div className="relative flex flex-col items-start w-full pl-[50%] mt-2">
+            {/* Continuous Vertical Line */}
+            <div className="absolute left-[50%] ml-[-1.5px] top-0 bottom-[-10px] w-[3px] bg-blue-500 z-0"></div>
+            
+            {/* Branches */}
+            {[
+                { title: 'Portfolio Operations', tooltip: 'Dynamic value calculation.' },
+                { title: 'SIP Management', tooltip: 'Automated monthly investments.' },
+                { title: 'KYC Verifications', tooltip: 'Digital document uploads.' },
+                { title: 'Account Statements', tooltip: 'Dynamic PDF generation.' },
+                { title: 'Push Notifications', tooltip: 'Real-time alerts.' },
+                { title: 'Nominee Management', tooltip: 'Update beneficiaries.' }
+            ].map((item, i) => (
+                <div key={i} className="flex items-center w-full my-2 z-10">
+                    <div className="h-[3px] w-6 bg-blue-500 shrink-0"></div>
+                    <FlowNode title={item.title} tooltip={item.tooltip} color="purple" width="w-auto flex-1 text-sm py-2" />
+                </div>
+            ))}
+        </div>
+        
+        <FlowArrow h={12} />
+        <FlowNode title="Admin Operations" tooltip="KYC review and support tickets." color="rose" width="max-w-[280px]" />
+    </div>
+);
+
 
 const BrowserMock = ({ title, url, type, imgUrl }: { title: string; url: string; type: string; imgUrl?: string }) => {
     return (
@@ -593,59 +742,15 @@ export default function ProjectDetail() {
                                 
                                 {/* Data Lifecycle flow diagram */}
                                 <div className="mb-16">
-                                    <h3 className="font-heading text-xl mb-8 text-slate-500 uppercase tracking-widest text-center">Data Lifecycle</h3>
-                                    {project.id === 'investease' ? (
-                                        <div className="flex flex-col items-center w-full max-w-sm mx-auto font-heading">
-                                            {/* Login Box */}
-                                            <div className="rounded-xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 px-8 py-3 text-lg shadow-[4px_4px_0px_0px_#3b82f6] z-10">
-                                                Authentication (Login)
-                                            </div>
-                                            
-                                            {/* Arrow Down */}
-                                            <div className="w-[3px] h-8 bg-blue-500 relative">
-                                                <div className="absolute -bottom-2 -left-[4.5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-500"></div>
-                                            </div>
-
-                                            {/* Dashboard Box */}
-                                            <div className="rounded-xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 px-12 py-4 text-xl font-bold shadow-[6px_6px_0px_0px_#84cc16] z-10 mt-2">
-                                                Investor Dashboard
-                                            </div>
-
-                                            {/* Branching Section */}
-                                            <div className="relative flex flex-col items-start w-full pl-[50%] mt-2">
-                                                {/* Continuous Vertical Line */}
-                                                <div className="absolute left-[50%] ml-[-1.5px] top-0 bottom-[-10px] w-[3px] bg-blue-500 z-0"></div>
-                                                
-                                                {/* Branches */}
-                                                {[
-                                                    'Portfolio Operations',
-                                                    'SIP Management',
-                                                    'KYC Verifications',
-                                                    'Account Statements',
-                                                    'Push Notifications',
-                                                    'Nominee Management'
-                                                ].map((item, i) => (
-                                                    <div key={i} className="flex items-center w-full my-3 z-10">
-                                                        {/* Horizontal Connector */}
-                                                        <div className="h-[3px] w-8 bg-blue-500 shrink-0"></div>
-                                                        {/* Item Box */}
-                                                        <div className="rounded-lg border-2 border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 px-4 py-2 text-sm shadow-[3px_3px_0px_0px_#a855f7] flex-1 truncate">
-                                                            {item}
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-
-                                            {/* Arrow Down from the vertical line */}
-                                            <div className="w-[3px] h-8 bg-blue-500 relative mt-[10px]">
-                                                <div className="absolute -bottom-2 -left-[4.5px] w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-500"></div>
-                                            </div>
-
-                                            {/* Admin Dashboard */}
-                                            <div className="rounded-xl border-[3px] border-slate-900 dark:border-slate-100 bg-slate-900 text-white dark:bg-slate-800 px-8 py-3 text-lg shadow-[4px_4px_0px_0px_#ef4444] mt-2 z-10 text-center">
-                                                Admin Operations Dashboard
-                                            </div>
-                                        </div>
+                                    <h3 className="font-heading text-xl mb-8 text-slate-500 uppercase tracking-widest text-center">
+                                        {project.id === 'wanderlust' ? 'User Journey' : project.id === 'ideaflow' ? 'AI Workflow' : 'Data Lifecycle'}
+                                    </h3>
+                                    {project.id === 'wanderlust' ? (
+                                        <WanderlustFlow />
+                                    ) : project.id === 'ideaflow' ? (
+                                        <IdeaFlowFlow />
+                                    ) : project.id === 'investease' ? (
+                                        <InvestEaseFlow />
                                     ) : (
                                         <div className="flex flex-col items-stretch justify-center gap-4 lg:flex-row lg:items-center">
                                             {project.flowDiagram.map((step, i) => (
