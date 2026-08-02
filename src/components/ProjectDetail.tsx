@@ -244,10 +244,10 @@ const caseStudyData: Record<string, CaseStudy> = {
             { title: 'Deployment & DevOps', desc: 'Configured cloud deployment using Vercel, Render, and MongoDB Atlas while handling production environment variables and deployment workflows.' }
         ],
         mockScreenshots: [
-            { title: 'Premium Landing Experience', url: '/landing', visualType: 'input' },
-            { title: 'Investor Command Center', url: '/dashboard', visualType: 'processing' },
-            { title: 'Dynamic Portfolio Management', url: '/portfolio', visualType: 'blueprint' },
-            { title: 'Digital KYC Workflow', url: '/kyc', visualType: 'roadmap' }
+            { title: 'Premium Landing Experience', url: '/landing', visualType: 'input', imgUrl: '/projects/landingpage.png' },
+            { title: 'Investor Command Center', url: '/dashboard', visualType: 'processing', imgUrl: '/projects/Dashboard-panel.png' },
+            { title: 'Dynamic Portfolio Management', url: '/portfolio', visualType: 'blueprint', imgUrl: '/projects/portfolio.png' },
+            { title: 'Support & Resolution Center', url: '/support', visualType: 'roadmap', imgUrl: '/projects/Support.png' }
         ]
     }
 };
