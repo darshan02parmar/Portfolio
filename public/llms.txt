@@ -1,0 +1,39 @@
+# Darshan Parmar - Fullstack Web Developer
+
+## About Me
+Darshan Parmar is a professional Software Developer and Fullstack Web Developer specializing in the MERN stack (MongoDB, Express.js, React, Node.js) and 3D web experiences using Three.js. He builds stunning, high-performance web applications with a focus on modern design trends, including Neo-brutalism and Glassmorphism.
+
+- **Portfolio URL**: https://darshan-parmar.vercel.app/
+- **GitHub**: https://github.com/darshan02parmar
+- **Role**: Software Developer,Fullstack Developer, System Designer, Backend Engineer
+
+## Core Skills & Technologies
+- **Frontend**: React, Vite, Tailwind CSS, HTML5, Semantic HTML, CSS3
+- **Backend**: Node.js, Express.js,python
+- **Database**: MongoDB (Atlas)
+- **3D & Graphics**: Three.js, WebGL shaders
+- **Authentication**: JWT (JSON Web Tokens)
+- **Deployment**: Vercel, Render
+
+## Featured Projects
+
+### 1. InvestEase
+- **Type**: Investment Management Platform
+- **Role**: Solo Full-Stack Developer
+- **Description**: A production-inspired MERN platform featuring role-based authentication, dynamic portfolio operations, digital KYC workflows, PDF statement generation, and a role-based admin dashboard that streamlines investor and operational workflows.
+- **Tech Stack**: React, Node.js, Express.js, MongoDB Atlas, JWT, Tailwind CSS, PDFKit, Multer, Render, Vercel.
+
+### 2. IdeaFlow
+- **Type**: AI Product Brainstorming Platform
+- **Role**: Full-Stack Engineer
+- **Description**: An AI-powered SaaS that transforms raw startup ideas into structured product blueprints. It uses natural language processing to generate personas, tech stacks, and feature roadmaps.
+- **Tech Stack**: Next.js, OpenAI API, Tailwind CSS, Supabase.
+
+### 3. WanderLust
+- **Type**: Global Property Rental Marketplace
+- **Role**: Full-Stack Developer
+- **Description**: A modern global accommodation marketplace with robust search and filtering capabilities, interactive maps, and a secure booking system.
+- **Tech Stack**: React, Node.js, MongoDB, Tailwind CSS, Stripe API.
+
+## Contact & Hire
+For business inquiries, freelance opportunities, or full-time roles, please reach out via the contact form on the portfolio website or connect on GitHub.
