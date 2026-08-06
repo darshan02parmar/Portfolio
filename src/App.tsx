@@ -72,9 +72,13 @@ const MouseGlow = () => {
   );
 };
 
+import OrganizationJsonLd from './components/seo/OrganizationJsonLd';
+import HomePageJsonLd from './components/seo/HomePageJsonLd';
+
 const Home = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpenHints: () => void }) => {
   return (
     <>
+      <HomePageJsonLd />
       <aside className="pl-10 pr-6 pt-14 lg:fixed text-slate-900 dark:text-slate-100 lg:w-[35%] lg:pl-32 lg:h-screen lg:overflow-hidden transition-colors duration-300">
         <Suspense fallback={<div>Loading...</div>}>
           <SpinningShape />
@@ -514,6 +518,7 @@ function App() {
       <ScrollToTop />
       <Toaster position="top-right" />
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      <OrganizationJsonLd />
       <main className={`relative mx-auto bg-background text-foreground transition-colors duration-300 min-h-screen ${isLoading ? 'h-screen overflow-hidden' : 'overflow-hidden'}`}>
         <ScrollButton />
         <MouseGlow />

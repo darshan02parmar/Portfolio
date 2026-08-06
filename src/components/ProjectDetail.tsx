@@ -521,6 +521,8 @@ const BrowserMock = ({ title, url, type, imgUrl }: { title: string; url: string;
     );
 };
 
+import ProjectJsonLd from './seo/ProjectJsonLd';
+
 export default function ProjectDetail() {
     const { id } = useParams<{ id: string }>();
     const project = projects.find((p) => p.id === id);
@@ -566,6 +568,7 @@ export default function ProjectDetail() {
 
     return (
         <AOSComponent>
+            <ProjectJsonLd project={project} />
             <div className="min-h-screen bg-background bg-grid-pattern text-foreground selection:bg-lime-200 transition-colors duration-300">
                 <Link
                     to="/"
