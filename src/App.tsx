@@ -21,6 +21,9 @@ import WorkExperience from './components/WorkExperience';
 import Footer from './components/Footer';
 import GitRoll from './components/GitRoll';
 import ProjectDetail from './components/ProjectDetail';
+import BlogHome from './components/BlogHome';
+import BlogPost from './components/BlogPost';
+import LatestPosts from './components/LatestPosts';
 import CommandPalette from './components/CommandPalette';
 import MatrixRain from './components/MatrixRain';
 import DevSecretsDrawer from './components/DevSecretsDrawer';
@@ -248,6 +251,7 @@ const Home = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpenHints: ()
             amplitude={[40, 100, 30]}
             speed={0.2}
           />
+          <LatestPosts />
           <Contact onOpenHints={onOpenHints} />
         </div>
         <Footer />
@@ -284,6 +288,16 @@ const AnimatedRoutes = ({ theme, onOpenHints }: { theme: 'light' | 'dark'; onOpe
         <Route path="/project/:id" element={
           <PageWrapper>
             <ProjectDetail />
+          </PageWrapper>
+        } />
+        <Route path="/blog" element={
+          <PageWrapper>
+            <BlogHome />
+          </PageWrapper>
+        } />
+        <Route path="/blog/:slug" element={
+          <PageWrapper>
+            <BlogPost />
           </PageWrapper>
         } />
         <Route path="*" element={

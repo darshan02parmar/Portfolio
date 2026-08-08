@@ -99,5 +99,6 @@ export default {
     require('tailwindcss-animated'),
     require('tailwindcss-motion'),
     require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
   ],
 } satisfies Config;
