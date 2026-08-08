@@ -580,7 +580,7 @@ export default function ProjectDetail() {
 
                 <div className="flex">
                     {/* Scroll Progress Indicator (Left Sidebar) */}
-                    <aside className="fixed left-0 top-0 hidden h-screen w-72 flex-col pt-32 pb-8 px-8 border-r-[3px] border-slate-900 dark:border-slate-800 bg-white dark:bg-slate-900 lg:flex transition-colors duration-300 overflow-y-auto">
+                    <aside className="fixed left-0 top-0 hidden h-screen w-72 flex-col pt-32 pb-8 px-8 lg:flex transition-colors duration-300 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-40 bg-transparent border-r border-slate-200 dark:border-slate-800/50">
                         <nav className="relative flex flex-col gap-8 mt-auto mb-auto">
                             {/* Connecting Line */}
                             <div className="absolute left-[19px] top-4 bottom-4 w-[2px] bg-slate-200 dark:bg-slate-800 z-0" />
@@ -614,8 +614,7 @@ export default function ProjectDetail() {
                     {/* Main Story Timeline */}
                     <main className="w-full p-6 pt-24 lg:pt-20 lg:ml-72 lg:p-20 xl:p-32">
                         <div className="mx-auto max-w-4xl relative">
-                            {/* Decorative vertical line for timeline */}
-                            <div className="absolute left-[-40px] top-0 bottom-0 w-[3px] bg-slate-200 dark:bg-slate-800 hidden xl:block" />
+                            {/* Decorative line moved to sidebar border */}
 
                             {/* Section 1: Hero & Status Header */}
                             <section id="overview" className="mb-24 scroll-mt-20">
