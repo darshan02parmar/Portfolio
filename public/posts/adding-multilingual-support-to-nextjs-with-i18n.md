@@ -1,4 +1,4 @@
-Multilingual Support in Next.js: A Practical i18n Guide
+## Multilingual Support in Next.js: A Practical i18n Guide
 
 A practical deep dive into i18n, locale routing, translation architecture, TypeScript, SEO, and accessibility in Next.js.
 

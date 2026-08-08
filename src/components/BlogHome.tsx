@@ -15,15 +15,15 @@ const BlogHome = () => {
             date: "Coming Soon", 
             readTime: "—" 
         }, 
-        { 
-            id: "coming-soon-2", 
-            slug: "", 
-            title: "Building a Neo-Brutalist Design System", 
-            description: "A look into how I translated a rough concept into a fully functional, highly styled React component library using Tailwind CSS and Framer Motion.", 
-            tags: ["Design", "Tailwind", "CSS"], 
-            date: "Coming Soon", 
-            readTime: "—" 
-        }
+        // { 
+        //     id: "coming-soon-2", 
+        //     slug: "", 
+        //     title: "", 
+        //     description: "  ", 
+        //     tags: [],
+        //     date: "Coming Soon", 
+        //     readTime: "—" 
+        // }
     ];
 
     return (
@@ -52,7 +52,7 @@ const BlogHome = () => {
                     Blog
                 </h1>
                 <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
-                    Thoughts on web development, programming, and building things on the internet.
+                    Things I’m learning, building, debugging, and figuring out along the way.
                 </p>
             </header>
 

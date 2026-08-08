@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { blogs } from '../data/blogs';
-import { ArrowLeft, ArrowUpRight, Copy, Check, Calendar, Clock } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Calendar, Clock, Briefcase } from 'lucide-react';
 import BlogPostJsonLd from './seo/BlogPostJsonLd';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -13,7 +13,6 @@ const BlogPost = () => {
     const { slug } = useParams<{ slug: string }>();
     const post = blogs.find(b => b.slug === slug);
     const [content, setContent] = useState('');
-    const [copied, setCopied] = useState(false);
 
     // Reading progress
     const { scrollYProgress } = useScroll();
@@ -36,12 +35,6 @@ const BlogPost = () => {
         return <Navigate to="/blog" replace />;
     }
 
-    const handleCopyLink = () => {
-        navigator.clipboard.writeText(window.location.href);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
-
     return (
         <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-lime-200 transition-colors duration-300 relative overflow-hidden font-sans">
             <BlogPostJsonLd post={post} />
@@ -57,30 +50,30 @@ const BlogPost = () => {
             <div className="absolute top-[0px] left-[-100px] w-[500px] h-[500px] bg-purple-300/30 dark:bg-purple-900/30 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
             <div className="absolute top-[-50px] left-[30%] w-[400px] h-[400px] bg-orange-300/20 dark:bg-orange-900/20 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
 
-            <div className="max-w-6xl mx-auto px-6 sm:px-8 pt-24 pb-32 relative z-10 flex flex-col">
+            <div className="max-w-6xl mx-auto px-6 sm:px-8 pt-16 md:pt-20 pb-24 relative z-10 flex flex-col">
                 
                 {/* Main Content Area */}
                 <main className="flex-1 w-full min-w-0">
                     <Link
                         to="/blog"
-                        className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white font-medium mb-12 transition-colors"
+                        className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white font-medium mb-8 transition-colors"
                     >
                         <ArrowLeft size={16} />
                         Back to Blog
                     </Link>
 
-                    <header className="mb-12">
-                        <h1 className="font-sans font-bold text-5xl md:text-7xl text-slate-950 dark:text-white mb-6 leading-tight tracking-tight">
+                    <header className="mb-8">
+                        <h1 className="font-sans font-bold text-4xl md:text-5xl lg:text-6xl text-slate-950 dark:text-white mb-4 leading-tight tracking-tight">
                             {post.title}
                         </h1>
 
-                        <div className="flex items-center gap-2 text-slate-500 font-medium text-xs sm:text-sm mb-6">
+                        <div className="flex items-center gap-2 text-slate-500 font-medium text-xs sm:text-sm mb-4">
                             <span className="flex items-center gap-1.5"><Calendar size={14} /> {post.date}</span>
                             <span className="w-1 h-1 rounded-full bg-slate-400"></span>
                             <span className="flex items-center gap-1.5"><Clock size={14} /> {post.readTime}</span>
                         </div>
 
-                        <div className="flex flex-wrap gap-2 mb-8">
+                        <div className="flex flex-wrap gap-2 mb-6">
                             {post.tags.map(tag => (
                                 <span key={tag} className="px-3 py-1 bg-[#a3e635] text-slate-950 font-medium text-xs rounded-full border border-slate-900">
                                     {tag}
@@ -90,14 +83,14 @@ const BlogPost = () => {
                     </header>
 
                     {/* Markdown Content Container */}
-                    <div className="relative rounded-[28px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-8 md:p-12 lg:p-16 shadow-[8px_8px_0px_0px_#1e293b] dark:shadow-[8px_8px_0px_0px_#f1f5f9]">
+                    <div className="relative rounded-[28px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-6 md:p-10 lg:p-12 shadow-[8px_8px_0px_0px_#1e293b] dark:shadow-[8px_8px_0px_0px_#f1f5f9]">
                         
                         {/* Decorative flower shape (optional/subtle) */}
                         <div className="absolute -top-10 -right-10 opacity-30 pointer-events-none z-[-1] hidden md:block">
                            <img src="/shapes/shape-81.svg" alt="" className="w-32 h-32 blur-sm" />
                         </div>
 
-                        <div className="prose prose-lg dark:prose-invert prose-headings:font-heading prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-lime-600 dark:prose-a:text-lime-400 hover:prose-a:text-lime-700 prose-img:rounded-2xl prose-img:border-2 prose-img:border-slate-200 dark:prose-img:border-slate-800 max-w-none prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0 prose-code:font-mono">
+                        <div className="prose md:prose-lg dark:prose-invert prose-headings:font-heading prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-lime-600 dark:prose-a:text-lime-400 hover:prose-a:text-lime-700 prose-img:rounded-2xl prose-img:border-2 prose-img:border-slate-200 dark:prose-img:border-slate-800 max-w-none prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0 prose-code:font-mono">
                             <ReactMarkdown 
                                 remarkPlugins={[remarkGfm]}
                                 components={{
@@ -135,35 +128,81 @@ const BlogPost = () => {
                         </div>
                     </div>
                     
-                    {/* Article Footer */}
-                    <div className="mt-16 rounded-[28px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-8 shadow-[6px_6px_0px_0px_#1e293b] dark:shadow-[6px_6px_0px_0px_#f1f5f9] text-center relative overflow-hidden">
+                    {/* Article Footer - CTA */}
+                    <div className="mt-16 rounded-[28px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 py-6 px-6 md:py-8 md:px-12 shadow-[8px_8px_0px_0px_#1e293b] dark:shadow-[8px_8px_0px_0px_#f1f5f9] text-center relative overflow-hidden">
                         <div className="relative z-10">
-                            <h3 className="font-heading text-3xl text-slate-900 dark:text-white mb-4">Enjoyed this post?</h3>
-                            <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md mx-auto">
-                                Check out my other articles or read this directly on Hashnode.
+                            <h3 className="font-heading text-3xl md:text-4xl text-slate-900 dark:text-white mb-2">Enjoyed this post?</h3>
+                            <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-lg mx-auto text-base md:text-lg leading-relaxed">
+                                If you found this useful, there's more coming.<br/>
+                                I write about what I learn, build, and figure out along the way.
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center gap-4">
                                 <a 
-                                    href={post.hashnodeUrl} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    className="px-6 py-3 rounded-full border border-slate-900 font-medium text-sm bg-slate-900 text-white transition-transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_#a3e635] dark:shadow-[4px_4px_0px_0px_#a3e635]"
+                                    href="https://github.com/darshan02parmar" 
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-6 py-3 rounded-full border-[2px] border-slate-900 font-medium text-sm bg-slate-900 text-white transition-transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_#a3e635] dark:shadow-[4px_4px_0px_0px_#a3e635]"
                                 >
-                                    To Hashnode <ArrowUpRight size={16} />
+                                    <Briefcase size={16} /> See my work
                                 </a>
-                                <button 
-                                    onClick={handleCopyLink}
-                                    className="px-6 py-3 rounded-full border border-slate-900 font-medium text-sm bg-white text-slate-900 transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9]"
+                                <a 
+                                    href={post.hashnodeUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-6 py-3 rounded-full border-[2px] border-slate-900 font-medium text-sm bg-white text-slate-900 transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9]"
                                 >
-                                    {copied ? (
-                                        <><Check size={16} className="text-green-600" /> Copied!</>
-                                    ) : (
-                                        <><Copy size={16} /> Copy link</>
-                                    )}
-                                </button>
+                                    Follow on Hashnode <ArrowUpRight size={16} />
+                                </a>
                             </div>
                         </div>
                     </div>
+
+                    {/* More Posts Section - Hidden for now */}
+                    {false && (
+                        <div className="mt-24">
+                            <h3 className="font-heading text-3xl text-slate-900 dark:text-white mb-8">More posts</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                
+                                {/* Dummy Card 1 */}
+                                <Link to="/blog" className="h-full flex flex-col rounded-2xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-6 shadow-[6px_6px_0px_0px_#1e293b] dark:shadow-[6px_6px_0px_0px_#f1f5f9] transition-transform hover:-translate-y-1">
+                                    <div className="flex items-center gap-2 text-slate-500 font-medium text-xs mb-3">
+                                        <Calendar size={14} />
+                                        <span>Jan 15, 2025</span>
+                                    </div>
+                                    <h4 className="text-xl font-bold font-sans text-slate-900 dark:text-white mb-3 leading-tight">
+                                        Integrating Formbricks for User Feedback in CodeStash
+                                    </h4>
+                                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-3 mt-auto">
+                                        Learn how to add in-app user feedback surveys using Formbricks to gather insights about AI-generated content and improve user experience in your Next.js applications.
+                                    </p>
+                                </Link>
+
+                                {/* Dummy Card 2 */}
+                                <Link to="/blog" className="h-full flex flex-col rounded-2xl border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-6 shadow-[6px_6px_0px_0px_#1e293b] dark:shadow-[6px_6px_0px_0px_#f1f5f9] transition-transform hover:-translate-y-1">
+                                    <div className="flex items-center gap-2 text-slate-500 font-medium text-xs mb-3">
+                                        <Calendar size={14} />
+                                        <span>Dec 15, 2024</span>
+                                    </div>
+                                    <h4 className="text-xl font-bold font-sans text-slate-900 dark:text-white mb-3 leading-tight">
+                                        Adding Rate Limiting to Express API with Unkey
+                                    </h4>
+                                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-3 mt-auto">
+                                        Learn how to implement rate limiting in your Express API using Unkey's ratelimiter to prevent abuse and manage resource usage effectively.
+                                    </p>
+                                </Link>
+
+                            </div>
+                            
+                            <div className="mt-12 text-center">
+                                <Link 
+                                    to="/blog"
+                                    className="inline-flex items-center gap-2 rounded-full border border-slate-900 bg-slate-900 text-white px-6 py-3 font-medium text-sm transition-transform hover:-translate-y-0.5 shadow-[4px_4px_0px_0px_#a3e635]"
+                                >
+                                    <ArrowLeft size={16} /> All posts
+                                </Link>
+                            </div>
+                        </div>
+                    )}
                 </main>
 
             </div>
