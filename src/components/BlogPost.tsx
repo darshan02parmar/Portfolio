@@ -63,7 +63,7 @@ const BlogPost = () => {
                     </Link>
 
                     <header className="mb-8">
-                        <h1 className="font-sans font-bold text-4xl md:text-5xl lg:text-6xl text-slate-950 dark:text-white mb-4 leading-tight tracking-tight">
+                        <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6 text-slate-950 dark:text-white tracking-tight leading-tight">
                             {post.title}
                         </h1>
 
