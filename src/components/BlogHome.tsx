@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { blogs } from '../data/blogs';
 import { ArrowLeft, ExternalLink, Calendar } from 'lucide-react';
 import FloatingShape from './FloatingShape';
+import TiltCard from './TiltCard';
 
 const BlogHome = () => {
     const latestPosts = [
@@ -29,14 +30,19 @@ const BlogHome = () => {
     return (
         <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-lime-200 transition-colors duration-300 relative overflow-hidden font-sans">
             
-            {/* Background Decorative Blobs */}
-            <div className="absolute top-[-100px] left-[10%] w-[600px] h-[600px] bg-pink-300/30 dark:bg-pink-900/30 rounded-full blur-[120px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
-            <div className="absolute top-[0px] left-[-100px] w-[500px] h-[500px] bg-purple-300/30 dark:bg-purple-900/30 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
-            <div className="absolute top-[-50px] left-[30%] w-[400px] h-[400px] bg-orange-300/20 dark:bg-orange-900/20 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
+            {/* Background Decorative Blob (Matched to Home) */}
+            <img
+                src="/gr1.png"
+                alt="spinning blob"
+                className="images glow absolute left-[-85px] top-[-95px] z-0 h-[400px] w-[400px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out opacity-80 dark:opacity-40 pointer-events-none"
+            />
             
-            <div className="absolute top-[15%] right-[5%] lg:right-[15%] z-0 pointer-events-none opacity-70">
-               <FloatingShape shapeUrl="/shapes/shape-81.svg" directionClass="right-0 top-0" amplitude={[15, 20, 10]} speed={0.15} />
-            </div>
+            <FloatingShape 
+                shapeUrl="/shapes/shape-85.svg" 
+                directionClass="absolute right-[5%] top-[15%] z-0 pointer-events-none opacity-70" 
+                amplitude={[20, 50, 20]} 
+                speed={0.15} 
+            />
 
             {/* Header */}
             <header className="pt-24 pb-12 px-6 sm:px-8 max-w-6xl mx-auto relative z-10">
@@ -58,28 +64,29 @@ const BlogHome = () => {
 
             {/* Main Content List */}
             <main className="max-w-6xl mx-auto px-6 sm:px-8 pb-24 relative z-10 flex flex-col gap-8">
-                {latestPosts.map((post, index) => (
-                    <div 
-                        key={post.id} 
-                        className="relative w-full rounded-[28px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 overflow-hidden shadow-[8px_8px_0px_0px_#1e293b] dark:shadow-[8px_8px_0px_0px_#f1f5f9] transition-transform duration-300 hover:-translate-y-1"
-                    >
-                        {/* Internal decorative gradient blob based on index to vary colors slightly */}
-                        <div className={`absolute -right-20 -bottom-20 w-[600px] h-[600px] rounded-full blur-[90px] pointer-events-none opacity-60 dark:opacity-40 ${
-                            index % 3 === 0 ? 'bg-cyan-400' : index % 3 === 1 ? 'bg-emerald-400' : 'bg-teal-400'
-                        }`}></div>
-
-                        <div className="relative z-10 p-6 sm:p-8 flex flex-col h-full">
-                            
-                            {/* Meta */}
-                            <div className="flex items-center gap-2 text-slate-500 font-medium text-xs sm:text-sm mb-4">
-                                <Calendar size={14} />
+                {/* Blue Background Image Behind Cards */}
+                <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[140%] max-w-[1200px] h-[80%] pointer-events-none z-[-1] opacity-70 dark:opacity-40">
+                    <img
+                        src="/background/image.png"
+                        alt=""
+                        className="w-full h-full object-cover blur-[80px]"
+                    />
+                </div>
+                {latestPosts.map((post) => (
+                    <div key={post.id}>
+                        <TiltCard>
+                            <div className="relative w-full h-full flex flex-col rounded-[30px] border-[3px] border-slate-900 dark:border-slate-100 bg-white/10 dark:bg-slate-900 backdrop-blur-sm shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] p-6 sm:p-8">
+                                
+                                {/* Meta */}
+                            <div className="flex items-center gap-2 text-slate-500 font-medium text-sm sm:text-base mb-3">
+                                <Calendar size={16} />
                                 <span>{post.date}</span>
                                 <span className="w-1 h-1 rounded-full bg-slate-400"></span>
                                 <span>{post.readTime}</span>
                             </div>
 
                             {/* Title & Desc */}
-                            <h2 className="text-2xl sm:text-3xl font-bold font-sans text-slate-900 dark:text-white mb-4 leading-tight">
+                            <h2 className="text-3xl sm:text-4xl font-bold font-sans text-slate-900 dark:text-white mb-3 leading-tight">
                                 {post.slug ? (
                                     <Link to={`/blog/${post.slug}`} className="hover:text-lime-600 dark:hover:text-lime-400 transition-colors">
                                         {post.title}
@@ -88,16 +95,16 @@ const BlogHome = () => {
                                     <span className="text-slate-900 dark:text-white">{post.title}</span>
                                 )}
                             </h2>
-                            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg mb-6 leading-relaxed">
+                            <p className="text-slate-600 dark:text-slate-300 text-lg sm:text-xl mb-5 leading-relaxed">
                                 {post.description}
                             </p>
 
                             {/* Tags */}
-                            <div className="flex flex-wrap gap-2 mb-8">
+                            <div className="flex flex-wrap gap-2 mb-6">
                                 {post.tags.map(tag => (
                                     <span 
                                         key={tag} 
-                                        className="px-3 py-1 bg-[#a3e635] text-slate-950 font-medium text-xs rounded-full border border-slate-900"
+                                        className="px-3 py-1 bg-[#a3e635] text-slate-950 font-medium text-sm rounded-full border border-slate-900"
                                     >
                                         {tag}
                                     </span>
@@ -115,7 +122,8 @@ const BlogHome = () => {
                                     </Link>
                                 </div>
                             )}
-                        </div>
+                            </div>
+                        </TiltCard>
                     </div>
                 ))}
             </main>

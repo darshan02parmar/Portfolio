@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { blogs } from '../data/blogs';
 import { ArrowLeft, ArrowUpRight, Calendar, Clock, Briefcase } from 'lucide-react';
+import FloatingShape from './FloatingShape';
 import BlogPostJsonLd from './seo/BlogPostJsonLd';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -45,10 +46,12 @@ const BlogPost = () => {
                 style={{ scaleX }}
             />
 
-            {/* Background Decorative Blobs */}
-            <div className="absolute top-[-100px] left-[10%] w-[600px] h-[600px] bg-pink-300/30 dark:bg-pink-900/30 rounded-full blur-[120px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
-            <div className="absolute top-[0px] left-[-100px] w-[500px] h-[500px] bg-purple-300/30 dark:bg-purple-900/30 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
-            <div className="absolute top-[-50px] left-[30%] w-[400px] h-[400px] bg-orange-300/20 dark:bg-orange-900/20 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-screen"></div>
+            {/* Background Decorative Blob (Matched to Home) */}
+            <img
+                src="/gr1.png"
+                alt="spinning blob"
+                className="images glow absolute left-[-85px] top-[-95px] z-0 h-[400px] w-[400px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out opacity-80 dark:opacity-40 pointer-events-none"
+            />
 
             <div className="max-w-6xl mx-auto px-6 sm:px-8 pt-16 md:pt-20 pb-24 relative z-10 flex flex-col">
                 
@@ -85,9 +88,17 @@ const BlogPost = () => {
                     {/* Markdown Content Container */}
                     <div className="relative rounded-[28px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-6 md:p-10 lg:p-12 shadow-[8px_8px_0px_0px_#1e293b] dark:shadow-[8px_8px_0px_0px_#f1f5f9]">
                         
-                        {/* Decorative flower shape (optional/subtle) */}
-                        <div className="absolute -top-10 -right-10 opacity-30 pointer-events-none z-[-1] hidden md:block">
-                           <img src="/shapes/shape-81.svg" alt="" className="w-32 h-32 blur-sm" />
+                        {/* Floating Shape peeking from behind the Post Border */}
+                        <FloatingShape 
+                            shapeUrl="/shapes/shape-81.svg" 
+                            directionClass="absolute -right-4 md:-right-12 top-[-20px] md:top-[-60px] z-[-1] pointer-events-none opacity-80" 
+                            amplitude={[60, 15, 15]} 
+                            speed={0.12} 
+                        />
+
+                        {/* Static decorative background behind the content block */}
+                        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[140%] md:w-[120%] h-auto aspect-square max-h-[1200px] opacity-50 dark:opacity-20 pointer-events-none z-[-1]">
+                           <img src="/background/image.png" alt="" className="w-full h-full object-cover blur-[40px] mix-blend-multiply dark:mix-blend-screen" />
                         </div>
 
                         <div className="prose md:prose-lg dark:prose-invert prose-headings:font-heading prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-lime-600 dark:prose-a:text-lime-400 hover:prose-a:text-lime-700 prose-img:rounded-2xl prose-img:border-2 prose-img:border-slate-200 dark:prose-img:border-slate-800 max-w-none prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0 prose-code:font-mono">
