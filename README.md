@@ -8,6 +8,12 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 
 - **Modern Split-Screen Layout**: Fixed Left Branding panel coupled with a smooth-scrolling Right Content section, responsive for mobile and desktop viewports.
 - **Three.js Visual Effects**: A WebGL-powered custom shader grid distortion hero image that reacts dynamically to mouse movement.
+- **Markdown-Powered Developer Blog**:
+  - **Glassmorphic Feed Layout**: Articles presented in semi-transparent interactive cards (`TiltCard` with backdrop-blur) floating over a vibrant, blurred background vector.
+  - **Dynamic Article View**: Native markdown parsing (`react-markdown` & GFM), inline syntax-highlighted code blocks, custom reading-progress tracker, and a personalized neo-brutalist wrapping CTA pointing to external development portals (Hashnode & GitHub).
+- **Responsive Experience Timeline**:
+  - Structured, responsive timeline with clean neo-brutalist connector bars and interactive tilt vectors.
+  - Shows professional milestones in chronological order with primary job titles and customized tech-stack badges.
 - **Developer Easter Eggs & Achievements System**:
   - **🏆 Secrets Progress Badge**: A floating golden trophy widget (`🏆 X/5 Secrets Found`) tracking unlocked secrets with a neo-brutalist checklist tooltip, persistent via `localStorage`.
   - **🛠️ God Mode Developer Sandbox** (*Triggered by typing `konami` or keyboard arrows: `↑ ↑ ↓ ↓ ← → ← → B A`*): Opens an interactive, draggable control panel enabling recruiters to inspect:
