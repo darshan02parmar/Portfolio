@@ -26,8 +26,14 @@ export default function WorkExperience() {
       data-aos="fade-left"
     >
       <TiltCard>
-        <div className="wrapper flex flex-col gap-4 rounded-[30px] border-[3px] border-slate-900 dark:border-slate-100 p-6 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] bg-white/10 dark:bg-slate-900">
-          {content}
+        <div className="wrapper relative flex flex-col gap-4 overflow-hidden rounded-[30px] border-[3px] border-slate-900 bg-white/10 p-6 shadow-[4px_4px_0px_0px_#1e293b] dark:border-slate-100 dark:bg-slate-900 dark:shadow-[4px_4px_0px_0px_#f1f5f9]">
+          <img
+            src="/background/br1.png"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20 dark:opacity-10"
+          />
+          <div className="relative z-10 flex flex-col gap-4">{content}</div>
         </div>
       </TiltCard>
     </motion.div>
@@ -72,7 +78,7 @@ export default function WorkExperience() {
                 <div className="flex flex-col gap-1">
                   <p className="text-sm mt-2 flex items-center gap-2 text-slate-600 dark:text-slate-400 md:text-base lg:text-right lg:flex-row-reverse">
                     <DateIcon />
-                    Aug 2026–Present
+                    Aug 2026 - Present
                   </p>
                   <p className="mt-1 text-md lg:self-end font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2 lg:text-right lg:flex-row-reverse">
                     <LocationIcon />

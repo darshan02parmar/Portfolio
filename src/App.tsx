@@ -205,11 +205,6 @@ const Home = ({
             amplitude={[20, 100, 30]}
             speed={0.1}
           />
-          <img
-            src="/background/br1.png"
-            alt="Background"
-            className="absolute top-20 left-1/2 -translate-x-1/2 w-[450px] h-auto object-contain z-0 pointer-events-none opacity-60 dark:opacity-20 dark:invert"
-          />
           <WorkExperience />
         </div>
 
