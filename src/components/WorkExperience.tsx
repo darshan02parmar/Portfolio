@@ -97,8 +97,7 @@ export default function WorkExperience() {
                 <li className={bulletClass}>
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-900 dark:bg-slate-100"></span>
                   <span>
-                    Collaborating with the engineering team on real-world
-                    product features
+                    Collaborating with the engineering team on product features and improvements
                   </span>
                 </li>
                 <li className={bulletClass}>
@@ -111,8 +110,7 @@ export default function WorkExperience() {
                 <li className={bulletClass}>
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-900 dark:bg-slate-100"></span>
                   <span>
-                    Learning, improving, and contributing across the full
-                    software development lifecycle
+                    Contributing through GitHub, code reviews, debugging, and continuous improvements
                   </span>
                 </li>
               </ul>
