@@ -97,7 +97,8 @@ export default function WorkExperience() {
                 <li className={bulletClass}>
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-900 dark:bg-slate-100"></span>
                   <span>
-                    Collaborating with the engineering team on product features and improvements
+                    Collaborating with the engineering team on product features
+                    and improvements
                   </span>
                 </li>
                 <li className={bulletClass}>
@@ -110,7 +111,8 @@ export default function WorkExperience() {
                 <li className={bulletClass}>
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-900 dark:bg-slate-100"></span>
                   <span>
-                    Contributing through GitHub, code reviews, debugging, and continuous improvements
+                    Contributing through GitHub, code reviews, debugging, and
+                    continuous improvements
                   </span>
                 </li>
               </ul>
@@ -194,22 +196,24 @@ export default function WorkExperience() {
           </AnimatePresence>
         </div>
 
-        <motion.button
-          type="button"
-          onClick={() => setShowAll((visible) => !visible)}
-          aria-expanded={showAll}
-          className="group inline-flex items-center gap-1.5 rounded-full border-2 border-slate-900 bg-slate-900 px-5 py-2.5 font-sans text-sm font-semibold text-white shadow-[3px_3px_0px_0px_#a3e635] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_#a3e635] dark:border-white dark:bg-white dark:text-slate-900 dark:shadow-[3px_3px_0px_0px_#a3e635] dark:hover:shadow-[5px_5px_0px_0px_#a3e635]"
-        >
-          <motion.span
-            animate={{ rotate: showAll ? 180 : 0 }}
-            transition={{ duration: 0.25 }}
-            className="text-lime-400 dark:text-lime-600"
-            aria-hidden="true"
+        <div className="mt-2 flex w-full justify-center">
+          <motion.button
+            type="button"
+            onClick={() => setShowAll((visible) => !visible)}
+            aria-expanded={showAll}
+            className="group inline-flex items-center gap-2 rounded-full border-2 border-slate-900 bg-slate-950 px-6 py-3 font-sans text-sm font-bold tracking-wide text-white shadow-[4px_4px_0px_0px_#a3e635] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_#a3e635] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 focus-visible:ring-offset-2 dark:border-white dark:bg-white dark:text-slate-900 dark:shadow-[4px_4px_0px_0px_#a3e635] dark:hover:shadow-[6px_6px_0px_0px_#a3e635] dark:focus-visible:ring-offset-slate-950"
           >
-            <MdKeyboardArrowDown />
-          </motion.span>
-          {showAll ? "Show less" : "View all experience"}
-        </motion.button>
+            <motion.span
+              animate={{ rotate: showAll ? 180 : 0 }}
+              transition={{ duration: 0.25 }}
+              className="flex h-5 w-5 items-center justify-center rounded-full bg-lime-400 text-slate-950 transition-colors group-hover:bg-lime-300 dark:bg-lime-500"
+              aria-hidden="true"
+            >
+              <MdKeyboardArrowDown />
+            </motion.span>
+            {showAll ? "Show less" : "View all experience"}
+          </motion.button>
+        </div>
       </section>
     </AOSComponent>
   );
