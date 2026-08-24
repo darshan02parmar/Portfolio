@@ -6,7 +6,6 @@ import { MdWork as WorkIcon } from "react-icons/md";
 import { BsBuildingsFill as CompanyIcon } from "react-icons/bs";
 import { FaLocationDot as LocationIcon } from "react-icons/fa6";
 import { FaRegCalendarAlt as DateIcon } from "react-icons/fa";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import AOSComponent from "@/lib/aos";
 import TiltCard from "./TiltCard";
 
@@ -196,23 +195,20 @@ export default function WorkExperience() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-2 flex w-full justify-center">
-          <motion.button
+        <div className="mt-4 flex flex-col items-center">
+          <div className="h-8 w-px border-l-2 border-dashed border-slate-300 dark:border-slate-600" />
+          <button
             type="button"
             onClick={() => setShowAll((visible) => !visible)}
             aria-expanded={showAll}
-            className="group inline-flex items-center gap-2 rounded-full border-2 border-slate-900 bg-slate-950 px-6 py-3 font-sans text-sm font-bold tracking-wide text-white shadow-[4px_4px_0px_0px_#a3e635] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_#a3e635] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 focus-visible:ring-offset-2 dark:border-white dark:bg-white dark:text-slate-900 dark:shadow-[4px_4px_0px_0px_#a3e635] dark:hover:shadow-[6px_6px_0px_0px_#a3e635] dark:focus-visible:ring-offset-slate-950"
+            className="flex items-center gap-3 text-sm font-semibold text-slate-900 transition-colors hover:text-lime-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 focus-visible:ring-offset-2 dark:text-slate-100 dark:hover:text-lime-400"
           >
-            <motion.span
-              animate={{ rotate: showAll ? 180 : 0 }}
-              transition={{ duration: 0.25 }}
-              className="flex h-5 w-5 items-center justify-center rounded-full bg-lime-400 text-slate-950 transition-colors group-hover:bg-lime-300 dark:bg-lime-500"
+            <span
+              className="h-3 w-3 rounded-full border-2 border-slate-900 bg-lime-400 dark:border-slate-100"
               aria-hidden="true"
-            >
-              <MdKeyboardArrowDown />
-            </motion.span>
+            />
             {showAll ? "Show less" : "View all experience"}
-          </motion.button>
+          </button>
         </div>
       </section>
     </AOSComponent>
