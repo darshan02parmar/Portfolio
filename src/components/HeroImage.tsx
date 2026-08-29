@@ -2,7 +2,7 @@ import GridDistortion from './GridDistortion';
 
 function HeroImage() {
     return (
-        <div className="images hidden lg:block h-[700px] w-[700px] relative z-0">
+        <section id="hero" className="images hidden lg:block h-[700px] w-[700px] relative z-0">
             <GridDistortion
                 imageSrc='/gr3.png'
                 grid={15}
@@ -11,7 +11,7 @@ function HeroImage() {
                 relaxation={0.9}
                 className="w-full h-full object-cover"
             />
-        </div>
+        </section>
     );
 }
 

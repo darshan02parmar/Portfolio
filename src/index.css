@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 @font-face {
   font-family: 'Chromate';
   src: url('/fonts/Chromate-Regular.ttf') format('truetype');
@@ -252,4 +257,4 @@ body {
 .dark .bg-grid-pattern {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-}
+}

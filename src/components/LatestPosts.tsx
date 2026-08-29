@@ -7,7 +7,7 @@ const LatestPosts = () => {
     const recentBlogs = blogs.slice(0, 3);
 
     return (
-        <section id="latest-posts" className="mb-24 scroll-mt-20 px-4 md:px-8 mt-24">
+        <section id="blog" className="mb-24 scroll-mt-20 px-4 md:px-8 mt-24">
             <h2 className="projects-title font-heading text-4xl mb-12 text-slate-900 dark:text-slate-100 relative inline-block">
                 Latest Posts
                 <span className="absolute -bottom-2 -left-2 -right-6 h-6 bg-lime-300/40 dark:bg-lime-900/40 blur-md -z-10 rounded-full glow-lite"></span>

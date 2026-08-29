@@ -41,7 +41,7 @@ export default function WorkExperience() {
   return (
     <AOSComponent>
       <section
-        id="work"
+        id="work-experience"
         className="relative z-10 mt-32 2xl:mt-52 p-6 text-slate-900 dark:text-slate-100"
       >
         <h3
