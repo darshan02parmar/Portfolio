@@ -29,24 +29,27 @@ export default function CodeBlock({
     showLineNumbers = false,
 }: Props) {
     return (
-        <SyntaxHighlighter
-            language={language}
-            style={oneDark}
-            showLineNumbers={showLineNumbers}
-            wrapLongLines
-            customStyle={{
-                borderRadius: 12,
-                padding: '22px',
-                fontSize: '0.95rem',
-            }}
-            codeTagProps={{
-                style: {
-                    fontFamily:
-                        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
-                },
-            }}
-        >
-            {children}
-        </SyntaxHighlighter>
+        <div className="overflow-x-auto rounded-lg">
+            <SyntaxHighlighter
+                language={language}
+                style={oneDark}
+                showLineNumbers={showLineNumbers}
+                wrapLongLines
+                customStyle={{
+                    borderRadius: 12,
+                    padding: '22px',
+                    fontSize: '0.95rem',
+                    minWidth: '100%',
+                }}
+                codeTagProps={{
+                    style: {
+                        fontFamily:
+                            'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+                    },
+                }}
+            >
+                {children}
+            </SyntaxHighlighter>
+        </div>
     );
 }

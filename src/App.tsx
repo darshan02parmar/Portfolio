@@ -40,6 +40,7 @@ import Preloader from "./components/Preloader";
 import TypewriterEffect from "./components/TypewriterEffect";
 import DevSandbox from "./components/DevSandbox";
 import NotFound from "./components/NotFound";
+import MobileNav from "./components/MobileNav";
 
 import Snowfall from "react-snowfall";
 
@@ -52,10 +53,20 @@ const SpinningShape = () => (
 );
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      const id = hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
   return null;
 };
 
@@ -93,21 +104,21 @@ const Home = ({
   return (
     <>
       <HomePageJsonLd />
-      <aside className="pl-10 pr-6 pt-14 lg:fixed text-slate-900 dark:text-slate-100 lg:w-[35%] lg:pl-32 lg:h-screen lg:overflow-hidden transition-colors duration-300">
+      <aside className="relative isolate px-6 pt-14 text-slate-900 transition-colors duration-300 md:pl-10 md:pr-6 dark:text-slate-100 lg:fixed lg:h-screen lg:w-[35%] lg:overflow-hidden lg:pl-32" id="hero">
         <Suspense fallback={<div>Loading...</div>}>
           <SpinningShape />
         </Suspense>
         <Glow />
 
         <h1
-          className="mt-4 animate-fade-right animate-duration-500 font-heading text-[60px] leading-tight lg:text-[70px] dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]"
+          className="mt-4 animate-fade-right animate-duration-500 font-heading text-3xl xs:text-[40px] sm:text-[54px] leading-tight lg:text-[70px] dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]"
           id="my-name"
         >
           Darshan Parmar
         </h1>
 
         <h2
-          className="mt-20 animate-fade-right animate-duration-600 animate-delay-200 font-heading text-[27px] lg:text-[32px] min-h-[40px] text-lime-600 dark:text-lime-400 whitespace-nowrap"
+          className="mt-12 md:mt-20 animate-fade-right animate-duration-600 animate-delay-200 font-heading text-2xl sm:text-[27px] lg:text-[32px] min-h-[40px] text-lime-600 dark:text-lime-400 whitespace-normal lg:whitespace-nowrap"
           id="profession"
         >
           <TypewriterEffect
@@ -133,20 +144,22 @@ const Home = ({
           .
         </p>
 
-        <a
-          href="/DarshanParmar.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="motion-preset-slide-right mt-6 inline-block !animate-blur-in-800 rounded-[30px] border-2 border-slate-900 bg-slate-900 dark:border-[#50e0b3] dark:bg-[#0f172a] dark:text-[#50e0b3] px-6 py-2 text-sm font-medium text-white shadow-[4px_4px_0px_0px_#84cc16] dark:shadow-[4px_4px_0px_0px_#50e0b3] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-800 dark:hover:bg-[#50e0b3] dark:hover:text-[#0f172a] md:text-xl xl:border-[3px]"
-        >
-          Résumé
-        </a>
-        <a
-          href="/#contact"
-          className="motion-preset-slide-right ml-[20px] inline-block !animate-blur-in-800 rounded-[30px] border-[3px] border-slate-900 dark:border-slate-100 px-6 py-2 text-sm font-medium shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-100 dark:hover:bg-white dark:hover:text-[#0f172a] md:text-xl dark:text-slate-100"
-        >
-          Contact me
-        </a>
+        <div className="mt-6 flex flex-wrap gap-4 items-center">
+          <a
+            href="/DarshanParmar.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="motion-preset-slide-right inline-block !animate-blur-in-800 rounded-[30px] border-2 border-slate-900 bg-slate-900 dark:border-[#50e0b3] dark:bg-[#0f172a] dark:text-[#50e0b3] px-6 py-2 text-sm font-medium text-white shadow-[4px_4px_0px_0px_#84cc16] dark:shadow-[4px_4px_0px_0px_#50e0b3] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-800 dark:hover:bg-[#50e0b3] dark:hover:text-[#0f172a] md:text-xl xl:border-[3px]"
+          >
+            Résumé
+          </a>
+          <a
+            href="/#contact"
+            className="motion-preset-slide-right inline-block !animate-blur-in-800 rounded-[30px] border-[3px] border-slate-900 dark:border-slate-100 px-6 py-2 text-sm font-medium shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-100 dark:hover:bg-white dark:hover:text-[#0f172a] md:text-xl dark:text-slate-100"
+          >
+            Contact me
+          </a>
+        </div>
 
         <div className="mt-6 flex animate-fade-right animate-delay-500 items-center gap-4">
           <a
@@ -212,7 +225,7 @@ const Home = ({
           <img
             src="/background/br3.png"
             alt="Background"
-            className="absolute top-10 left-1/2 -translate-x-1/2 w-[750px] h-auto object-contain z-0 pointer-events-none opacity-80 dark:opacity-20 dark:invert"
+            className="absolute top-10 left-1/2 -translate-x-1/2 w-[320px] sm:w-[500px] md:w-[650px] lg:w-[750px] h-auto object-contain z-0 pointer-events-none opacity-80 dark:opacity-20 dark:invert"
           />
           <ProjectList />
         </div>
@@ -227,7 +240,7 @@ const Home = ({
           <img
             src="/background/br2.png"
             alt="Background"
-            className="absolute top-10 left-1/2 -translate-x-1/2 w-[580px] h-auto object-contain z-0 pointer-events-none opacity-80 dark:opacity-20 dark:invert"
+            className="absolute top-10 left-1/2 -translate-x-1/2 w-[280px] sm:w-[420px] md:w-[500px] lg:w-[580px] h-auto object-contain z-0 pointer-events-none opacity-80 dark:opacity-20 dark:invert"
           />
           <TechStack />
         </div>
@@ -626,6 +639,7 @@ function App() {
         className={`relative mx-auto bg-background text-foreground transition-colors duration-300 min-h-screen ${isLoading ? "h-screen overflow-hidden" : "overflow-hidden"}`}
       >
         <ScrollButton />
+        <MobileNav />
         <MouseGlow />
         <CommandPalette
           isOpen={isPaletteOpen}

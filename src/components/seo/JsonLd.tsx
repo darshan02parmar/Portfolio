@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 interface JsonLdProps {
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 }
 
 const JsonLd = ({ data }: JsonLdProps) => {

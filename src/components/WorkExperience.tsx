@@ -58,7 +58,7 @@ export default function WorkExperience() {
               <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
                 <div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="font-heading text-3xl text-slate-900 dark:text-slate-100">
+                    <h3 className="font-heading text-2xl sm:text-3xl text-slate-900 dark:text-slate-100">
                       Software Developer
                     </h3>
                     {/* <span className="inline-flex items-center gap-2 rounded-full border-2 border-lime-700 bg-lime-300 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-950">

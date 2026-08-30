@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ComponentPropsWithoutRef } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { blogs } from '../data/blogs';
@@ -10,10 +10,15 @@ import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+type MarkdownCodeProps = ComponentPropsWithoutRef<'code'> & {
+    inline?: boolean;
+};
+
 const BlogPost = () => {
     const { slug } = useParams<{ slug: string }>();
     const post = blogs.find(b => b.slug === slug);
     const [content, setContent] = useState('');
+    const showMorePosts = false;
 
     // Reading progress
     const { scrollYProgress } = useScroll();
@@ -105,7 +110,7 @@ const BlogPost = () => {
                             <ReactMarkdown 
                                 remarkPlugins={[remarkGfm]}
                                 components={{
-                                    code({node, inline, className, children, ...props}: any) {
+                                    code({ inline, className, children, ...props }: MarkdownCodeProps) {
                                         const match = /language-(\w+)/.exec(className || '')
                                         return !inline && match ? (
                                             <div className="rounded-xl overflow-hidden border-2 border-slate-800 shadow-lg my-8">
@@ -118,7 +123,6 @@ const BlogPost = () => {
                                                     <div className="ml-4 text-xs font-mono text-slate-400">{match[1]}</div>
                                                 </div>
                                                 <SyntaxHighlighter
-                                                    {...props}
                                                     children={String(children).replace(/\n$/, '')}
                                                     style={vscDarkPlus}
                                                     language={match[1]}
@@ -127,7 +131,7 @@ const BlogPost = () => {
                                                 />
                                             </div>
                                         ) : (
-                                            <code {...props} className="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-sm font-mono border border-slate-200 dark:border-slate-700">
+                                            <code {...props} className="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-sm font-mono border border-slate-200 dark:border-slate-700 break-words">
                                                 {children}
                                             </code>
                                         )
@@ -169,7 +173,7 @@ const BlogPost = () => {
                     </div>
 
                     {/* More Posts Section - Hidden for now */}
-                    {false && (
+                    {showMorePosts && (
                         <div className="mt-24">
                             <h3 className="font-heading text-3xl text-slate-900 dark:text-white mb-8">More posts</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

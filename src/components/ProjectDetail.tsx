@@ -12,6 +12,7 @@ import {
 } from 'react-icons/lu';
 import { FaCodeBranch as CodeIcon } from 'react-icons/fa6';
 import AOSComponent from '@/lib/aos';
+import ProjectJsonLd from './seo/ProjectJsonLd';
 import { 
     ArrowRight, 
     Zap, 
@@ -520,8 +521,6 @@ const BrowserMock = ({ title, url, type, imgUrl }: { title: string; url: string;
         </div>
     );
 };
-
-import ProjectJsonLd from './seo/ProjectJsonLd';
 
 export default function ProjectDetail() {
     const { id } = useParams<{ id: string }>();
