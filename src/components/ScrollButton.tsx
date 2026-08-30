@@ -32,7 +32,7 @@ const ScrollButton = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleClick}
-            className="fixed bottom-8 right-8 z-50 p-3.5 bg-background/60 backdrop-blur-xl text-foreground rounded-full border border-border/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:bg-foreground hover:text-background hover:shadow-xl transition-all duration-500 flex items-center justify-center group"
+            className="group fixed bottom-8 right-8 z-50 flex items-center justify-center rounded-full border-[3px] border-slate-900 bg-white p-4 text-slate-900 shadow-[4px_4px_0px_0px_#1e293b] transition-all duration-200 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none dark:border-slate-100 dark:bg-slate-900 dark:text-slate-100 dark:shadow-[4px_4px_0px_0px_#f1f5f9]"
             aria-label={direction === 'up' ? "Scroll to top" : "Scroll to bottom"}
         >
             {direction === 'up' ? (

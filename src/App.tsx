@@ -48,7 +48,7 @@ const SpinningShape = () => (
   <img
     src="/gr1.png"
     alt="spinning blob"
-    className="images glow absolute left-[-85px] top-[-95px] z-[-10] h-[400px] w-[400px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out dark:opacity-40"
+    className="images glow absolute left-[-105px] top-[-115px] z-[-10] h-[360px] w-[360px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out opacity-70 md:left-[-85px] md:top-[-95px] md:h-[400px] md:w-[400px] md:opacity-100 dark:opacity-40"
   />
 );
 
@@ -105,7 +105,7 @@ const Home = ({
     <>
       <HomePageJsonLd />
       <aside
-        className="relative isolate px-6 pt-14 text-slate-900 transition-colors duration-300 md:pl-10 md:pr-6 dark:text-slate-100 lg:fixed lg:h-screen lg:w-[35%] lg:overflow-hidden lg:pl-32"
+        className="relative isolate px-6 pt-14 text-center text-slate-900 transition-colors duration-300 md:px-10 md:text-left dark:text-slate-100 lg:fixed lg:h-screen lg:w-[35%] lg:overflow-hidden lg:pl-32"
         id="hero"
       >
         <Suspense fallback={<div>Loading...</div>}>
@@ -114,14 +114,14 @@ const Home = ({
         <Glow />
 
         <h1
-          className="mt-4 animate-fade-right animate-duration-500 font-heading text-3xl xs:text-[40px] sm:text-[54px] leading-tight lg:text-[70px] dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]"
+          className="mt-0 animate-fade-right animate-duration-500 font-heading text-3xl leading-tight xs:text-[40px] sm:text-[54px] md:mt-4 lg:text-[70px] dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]"
           id="my-name"
         >
           Darshan Parmar
         </h1>
 
         <h2
-          className="mt-12 md:mt-20 animate-fade-right animate-duration-600 animate-delay-200 font-heading text-2xl sm:text-[27px] lg:text-[32px] min-h-[40px] text-lime-600 dark:text-lime-400 whitespace-normal lg:whitespace-nowrap"
+          className="mt-12 min-h-[40px] animate-fade-right animate-duration-600 animate-delay-200 whitespace-normal font-heading text-2xl text-lime-600 [text-shadow:0_1px_10px_rgba(255,255,255,0.85)] sm:text-[27px] md:mt-20 md:[text-shadow:none] md:dark:[text-shadow:none] lg:text-[32px] lg:whitespace-nowrap dark:text-lime-400 dark:[text-shadow:0_1px_10px_rgba(15,23,42,0.85)]"
           id="profession"
         >
           <TypewriterEffect
@@ -134,7 +134,7 @@ const Home = ({
         </h2>
 
         <p
-          className="mt-4 animate-fade-right animate-duration-700 animate-delay-300 text-xl"
+          className="mx-auto mt-4 max-w-md animate-fade-right animate-duration-700 animate-delay-300 text-xl md:mx-0"
           id="more-info"
         >
           Hello there, I'm Darshan Parmar, and I build full-stack web apps with{" "}
@@ -147,28 +147,29 @@ const Home = ({
           .
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-4 items-center">
+        <div className="mt-8 flex flex-nowrap items-center justify-center gap-3 md:mt-6 md:flex-wrap md:justify-start md:gap-4">
           <a
             href="/DarshanParmar.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="motion-preset-slide-right inline-block !animate-blur-in-800 rounded-[30px] border-2 border-slate-900 bg-slate-900 dark:border-[#50e0b3] dark:bg-[#0f172a] dark:text-[#50e0b3] px-6 py-2 text-sm font-medium text-white shadow-[4px_4px_0px_0px_#84cc16] dark:shadow-[4px_4px_0px_0px_#50e0b3] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-800 dark:hover:bg-[#50e0b3] dark:hover:text-[#0f172a] md:text-xl xl:border-[3px]"
+            className="motion-preset-slide-right inline-flex w-[calc(50%-0.375rem)] max-w-[135px] items-center justify-center !animate-blur-in-800 rounded-[30px] border-2 border-slate-900 bg-slate-900 px-3 py-3 text-sm font-medium text-white shadow-[4px_4px_0px_0px_#84cc16] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-800 md:w-auto md:max-w-none md:px-6 md:py-2 md:text-xl xl:border-[3px] dark:border-[#50e0b3] dark:bg-[#0f172a] dark:text-[#50e0b3] dark:shadow-[4px_4px_0px_0px_#50e0b3] dark:hover:bg-[#50e0b3] dark:hover:text-[#0f172a]"
           >
             Résumé
           </a>
           <a
             href="/#contact"
-            className="motion-preset-slide-right inline-block !animate-blur-in-800 rounded-[30px] border-[3px] border-slate-900 dark:border-slate-100 px-6 py-2 text-sm font-medium shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-100 dark:hover:bg-white dark:hover:text-[#0f172a] md:text-xl dark:text-slate-100"
+            className="motion-preset-slide-right inline-flex w-[calc(50%-0.375rem)] max-w-[145px] items-center justify-center !animate-blur-in-800 rounded-[30px] border-2 border-slate-900 px-3 py-3 text-sm font-medium shadow-[4px_4px_0px_0px_#1e293b] transition-all duration-200 motion-delay-500 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-100 md:w-auto md:max-w-none md:border-[3px] md:px-6 md:py-2 md:text-xl dark:border-slate-100 dark:text-slate-100 dark:shadow-[4px_4px_0px_0px_#f1f5f9] dark:hover:bg-white dark:hover:text-[#0f172a]"
           >
             Contact me
           </a>
         </div>
 
-        <div className="mt-6 flex animate-fade-right animate-delay-500 items-center gap-4">
+        <div className="mt-10 flex animate-fade-right animate-delay-500 items-center justify-center gap-5 md:mt-6 md:justify-start md:gap-4">
           <a
             href="https://github.com/darshan02parmar"
             target="_blank"
             aria-label="Github"
+            className="inline-flex h-11 w-11 items-center justify-center"
           >
             <GithubIcon className="h-8 w-8" />
           </a>
@@ -176,6 +177,7 @@ const Home = ({
             href="https://linkedin.com/in/parmar-darshan"
             target="_blank"
             aria-label="Linkedin"
+            className="inline-flex h-11 w-11 items-center justify-center"
           >
             <LinkedinIcon className="h-8 w-8" />
           </a>
@@ -183,6 +185,7 @@ const Home = ({
             href="https://twitter.com/darshan02parmar"
             target="_blank"
             aria-label="Twitter"
+            className="inline-flex h-11 w-11 items-center justify-center"
           >
             <TwitterIcon className="h-8 w-8" />
           </a>
@@ -190,6 +193,7 @@ const Home = ({
             href="mailto:darshanparmar0302@gmail.com"
             target="_blank"
             aria-label="Email"
+            className="inline-flex h-11 w-11 items-center justify-center"
           >
             <MailIcon className="h-10 w-10" />
           </a>
