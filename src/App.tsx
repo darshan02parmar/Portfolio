@@ -104,7 +104,10 @@ const Home = ({
   return (
     <>
       <HomePageJsonLd />
-      <aside className="relative isolate px-6 pt-14 text-slate-900 transition-colors duration-300 md:pl-10 md:pr-6 dark:text-slate-100 lg:fixed lg:h-screen lg:w-[35%] lg:overflow-hidden lg:pl-32" id="hero">
+      <aside
+        className="relative isolate px-6 pt-14 text-slate-900 transition-colors duration-300 md:pl-10 md:pr-6 dark:text-slate-100 lg:fixed lg:h-screen lg:w-[35%] lg:overflow-hidden lg:pl-32"
+        id="hero"
+      >
         <Suspense fallback={<div>Loading...</div>}>
           <SpinningShape />
         </Suspense>
