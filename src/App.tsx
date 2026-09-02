@@ -105,7 +105,7 @@ const Home = ({
     <>
       <HomePageJsonLd />
       <aside
-        className="relative isolate px-6 pt-14 text-center text-slate-900 transition-colors duration-300 md:px-10 md:text-left dark:text-slate-100 lg:fixed lg:h-screen lg:w-[35%] lg:overflow-hidden lg:pl-32"
+        className="relative isolate px-6 pt-24 text-center text-slate-900 transition-colors duration-300 md:px-10 md:pt-14 md:text-left dark:text-slate-100 lg:fixed lg:h-screen lg:w-[35%] lg:overflow-hidden lg:pl-32"
         id="hero"
       >
         <Suspense fallback={<div>Loading...</div>}>
@@ -147,7 +147,7 @@ const Home = ({
           .
         </p>
 
-        <div className="mt-8 flex flex-nowrap items-center justify-center gap-3 md:mt-6 md:flex-wrap md:justify-start md:gap-4">
+        <div className="mt-10 flex flex-nowrap items-center justify-center gap-3 md:mt-6 md:flex-wrap md:justify-start md:gap-4">
           <a
             href="/DarshanParmar.pdf"
             target="_blank"
