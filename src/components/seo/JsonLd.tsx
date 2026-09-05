@@ -1,22 +1,17 @@
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface JsonLdProps {
   data: Record<string, unknown>;
 }
 
 const JsonLd = ({ data }: JsonLdProps) => {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify(data);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, [data]);
-
-  return null;
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(data)}
+      </script>
+    </Helmet>
+  );
 };
 
 export default JsonLd;

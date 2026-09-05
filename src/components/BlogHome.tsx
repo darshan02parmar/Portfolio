@@ -3,6 +3,7 @@ import { blogs } from '../data/blogs';
 import { ArrowLeft, ExternalLink, Calendar } from 'lucide-react';
 import FloatingShape from './FloatingShape';
 import TiltCard from './TiltCard';
+import SEO from './SEO';
 
 const BlogHome = () => {
     const latestPosts = [
@@ -29,6 +30,11 @@ const BlogHome = () => {
 
     return (
         <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-lime-200 transition-colors duration-300 relative overflow-hidden font-sans">
+            <SEO
+                title="Blog | Darshan Parmar"
+                description="Articles and notes on web development, React, Next.js, TypeScript, AI, and things I learn while building software."
+                canonical="/blog"
+            />
             
             {/* Background Decorative Blob (Matched to Home) */}
             <img

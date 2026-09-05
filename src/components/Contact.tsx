@@ -50,12 +50,12 @@ export default function Contact({ onOpenHints }: { onOpenHints?: () => void }) {
         id="contact"
         className="relative z-10 mt-32 flex flex-col gap-6 px-6 pt-6 text-slate-900 dark:text-slate-100 pb-32"
       >
-        <h3
+        <h2
           className="contact-title mb-4 font-heading text-4xl"
           data-aos="fade-left"
         >
           Contact me
-        </h3>
+        </h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();

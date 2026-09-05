@@ -1,8 +1,7 @@
-import { useEffect, Suspense, useState, useRef } from "react";
+import { lazy, useEffect, Suspense, useState, useRef } from "react";
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
+  Outlet,
+  useOutletContext,
   useLocation,
 } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -19,35 +18,33 @@ import TechStack from "./components/TechStack";
 import Contact from "./components/Contact";
 import ScrollButton from "./components/ScrollButton";
 import Glow from "./components/Glow";
-import Github from "./components/Github";
+import Deferred from "./components/Deferred";
 import FloatingShape from "./components/FloatingShape";
 import HeroImage from "./components/HeroImage";
 import WorkExperience from "./components/WorkExperience";
 import Footer from "./components/Footer";
-import GitRoll from "./components/GitRoll";
-import ProjectDetail from "./components/ProjectDetail";
-import BlogHome from "./components/BlogHome";
-import BlogPost from "./components/BlogPost";
 import LatestPosts from "./components/LatestPosts";
-import CommandPalette from "./components/CommandPalette";
-import MatrixRain from "./components/MatrixRain";
-import DevSecretsDrawer from "./components/DevSecretsDrawer";
-import HintModal from "./components/HintModal";
+const Github = lazy(() => import("./components/Github"));
+const GitRoll = lazy(() => import("./components/GitRoll"));
+const CommandPalette = lazy(() => import("./components/CommandPalette"));
+const MatrixRain = lazy(() => import("./components/MatrixRain"));
+const DevSecretsDrawer = lazy(() => import("./components/DevSecretsDrawer"));
+const HintModal = lazy(() => import("./components/HintModal"));
 import AchievementBadge from "./components/AchievementBadge";
-import WhoamiTerminal from "./components/WhoamiTerminal";
-import ConfettiOverlay from "./components/ConfettiOverlay";
+const WhoamiTerminal = lazy(() => import("./components/WhoamiTerminal"));
+const ConfettiOverlay = lazy(() => import("./components/ConfettiOverlay"));
 import Preloader from "./components/Preloader";
 import TypewriterEffect from "./components/TypewriterEffect";
-import DevSandbox from "./components/DevSandbox";
-import NotFound from "./components/NotFound";
+const DevSandbox = lazy(() => import("./components/DevSandbox"));
 import MobileNav from "./components/MobileNav";
 
 import Snowfall from "react-snowfall";
 
-const SpinningShape = () => (
+  const SpinningShape = () => (
   <img
     src="/gr1.png"
     alt="spinning blob"
+    aria-hidden="true"
     className="images glow absolute left-[-105px] top-[-115px] z-[-10] h-[360px] w-[360px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out opacity-70 md:left-[-85px] md:top-[-95px] md:h-[400px] md:w-[400px] md:opacity-100 dark:opacity-40"
   />
 );
@@ -93,6 +90,8 @@ const MouseGlow = () => {
 
 import OrganizationJsonLd from "./components/seo/OrganizationJsonLd";
 import HomePageJsonLd from "./components/seo/HomePageJsonLd";
+import SEO from "./components/SEO";
+import { HelmetProvider } from "react-helmet-async";
 
 const Home = ({
   theme,
@@ -103,6 +102,11 @@ const Home = ({
 }) => {
   return (
     <>
+      <SEO
+        title="Darshan Parmar | Software Developer"
+        description="Darshan Parmar is a software developer interested in React, Next.js, full-stack development, and open-source software."
+        canonical="/"
+      />
       <HomePageJsonLd />
       <aside
         className="relative isolate px-6 pt-24 text-center text-slate-900 transition-colors duration-300 md:px-10 md:pt-14 md:text-left dark:text-slate-100 lg:fixed lg:h-screen lg:w-[35%] lg:overflow-hidden lg:pl-32"
@@ -259,7 +263,9 @@ const Home = ({
             amplitude={[100, 100, 30]}
             speed={0.2}
           />
-          <Github theme={theme} />
+          <Deferred>
+            <Github theme={theme} />
+          </Deferred>
         </div>
 
         <div className="relative">
@@ -269,7 +275,9 @@ const Home = ({
             amplitude={[40, 100, 30]}
             speed={0.2}
           />
-          <GitRoll theme={theme} />
+          <Deferred>
+            <GitRoll theme={theme} />
+          </Deferred>
         </div>
 
         <div className="relative">
@@ -294,7 +302,7 @@ const Home = ({
   );
 };
 
-const PageWrapper = ({ children }: { children: React.ReactNode }) => {
+export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -308,64 +316,15 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const AnimatedRoutes = ({
-  theme,
-  onOpenHints,
-}: {
-  theme: "light" | "dark";
-  onOpenHints: () => void;
-}) => {
-  const location = useLocation();
+export function HomeRoute() {
+  const { theme, onOpenHints } = useOutletContext<{
+    theme: "light" | "dark";
+    onOpenHints: () => void;
+  }>();
+  return <PageWrapper><Home theme={theme} onOpenHints={onOpenHints} /></PageWrapper>;
+}
 
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <PageWrapper>
-              <Home theme={theme} onOpenHints={onOpenHints} />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/project/:id"
-          element={
-            <PageWrapper>
-              <ProjectDetail />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/blog"
-          element={
-            <PageWrapper>
-              <BlogHome />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/blog/:slug"
-          element={
-            <PageWrapper>
-              <BlogPost />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <PageWrapper>
-              <NotFound />
-            </PageWrapper>
-          }
-        />
-      </Routes>
-    </AnimatePresence>
-  );
-};
-
-function App() {
+export function AppShell() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -637,7 +596,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <HelmetProvider>
       <ScrollToTop />
       <Toaster position="top-right" />
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
@@ -648,12 +607,13 @@ function App() {
         <ScrollButton />
         <MobileNav />
         <MouseGlow />
-        <CommandPalette
-          isOpen={isPaletteOpen}
-          onClose={() => setIsPaletteOpen(false)}
-          toggleTheme={toggleTheme}
-          theme={theme}
-        />
+        <Suspense fallback={null}>
+          <CommandPalette
+            isOpen={isPaletteOpen}
+            onClose={() => setIsPaletteOpen(false)}
+            toggleTheme={toggleTheme}
+            theme={theme}
+          />
 
         {/* Matrix Rain Canvas overlay */}
         <AnimatePresence>
@@ -705,6 +665,8 @@ function App() {
           )}
         </AnimatePresence>
 
+        </Suspense>
+
         {/* Secret Achievements Counter Progress Widget */}
         <AchievementBadge unlockedSecrets={unlockedSecrets} />
 
@@ -717,13 +679,12 @@ function App() {
           {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
         </button>
 
-        <AnimatedRoutes
-          theme={theme}
-          onOpenHints={() => setIsHintModalOpen(true)}
-        />
+        <AnimatePresence mode="wait">
+          <Outlet context={{ theme, onOpenHints: () => setIsHintModalOpen(true) }} />
+        </AnimatePresence>
       </main>
-    </Router>
+    </HelmetProvider>
   );
 }
 
-export default App;
+export default AppShell;

@@ -15,20 +15,18 @@ const BlogPostJsonLd = ({ post }: BlogPostJsonLdProps) => {
     },
     "headline": post.title,
     "description": post.description,
+    "url": `https://darshan-parmar.vercel.app/blog/${post.slug}`,
     "author": {
       "@type": "Person",
       "name": "Darshan Parmar",
       "url": "https://darshan-parmar.vercel.app/"
     },
     "publisher": {
-      "@type": "Organization",
+      "@type": "Person",
       "name": "Darshan Parmar",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://darshan-parmar.vercel.app/gr3.png"
-      }
+      "url": "https://darshan-parmar.vercel.app/"
     },
-    "datePublished": new Date(post.date).toISOString(), // Roughly parsing "Aug 08, 2026" works well enough for ISO in most browsers
+    "datePublished": "2026-08-08",
     "keywords": post.tags.join(', ')
   };
 

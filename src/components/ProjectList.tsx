@@ -13,12 +13,12 @@ export default function Projects() {
         id="projects"
         className="relative z-10 mt-32 p-6 text-slate-900 dark:text-slate-100"
       >
-        <h3
+        <h2
           data-aos="fade-left"
           className="projects-title motion-preset-blur-right mb-8 font-heading text-4xl"
         >
           Selected Projects
-        </h3>
+        </h2>
 
         <div id="projects-container" className="mb-6 flex flex-col gap-6">
           {projects.map((project, index) => (

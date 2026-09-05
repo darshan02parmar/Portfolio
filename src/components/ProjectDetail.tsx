@@ -13,6 +13,7 @@ import {
 import { FaCodeBranch as CodeIcon } from "react-icons/fa6";
 import AOSComponent from "@/lib/aos";
 import ProjectJsonLd from "./seo/ProjectJsonLd";
+import SEO from "./SEO";
 import {
   ArrowRight,
   Zap,
@@ -897,8 +898,24 @@ export default function ProjectDetail() {
 
   const study = caseStudyData[project.id] || caseStudyData["ideaflow"];
 
+  const shortSubtitles: Record<string, string> = {
+    wanderlust: "Full-Stack Vacation Rental Platform",
+    ideaflow: "AI-Powered Startup Idea Generator",
+    investease: "Investment Management Platform",
+  };
+
+  const subtitle = shortSubtitles[project.id] || project.oneLinePitch || "Project Showcase";
+  const seoTitle = `${project.title} — ${subtitle} | Darshan Parmar`;
+  const ogImage = study?.mockScreenshots?.[0]?.imgUrl || `/projects/${project.id}.png`;
+
   return (
     <AOSComponent>
+      <SEO
+        title={seoTitle}
+        description={project.description}
+        canonical={`/project/${project.id}`}
+        ogImage={ogImage}
+      />
       <ProjectJsonLd project={project} />
       <div className="min-h-screen bg-background bg-grid-pattern text-foreground selection:bg-lime-200 transition-colors duration-300">
         <Link

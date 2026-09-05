@@ -9,12 +9,12 @@ export default function GitRoll({ theme }: { theme: 'light' | 'dark' }) {
                 id="gitroll"
                 className="mt-32 flex max-w-[630px] flex-col gap-6 p-6 pb-0 text-slate-900 dark:text-slate-100 relative z-10"
             >
-                <h3
+                <h2
                     className="tech-stack-title mb-4 font-heading text-4xl"
                     data-aos="fade-left"
                 >
                     GitRoll Profile
-                </h3>
+                </h2>
 
                 <a
                     href="https://gitroll.io/profile/uiFTdl9Q6LlQiYvD1CGbe8avuasm1"
