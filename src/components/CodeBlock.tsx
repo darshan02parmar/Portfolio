@@ -7,7 +7,8 @@ import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
 import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
 import bash from "react-syntax-highlighter/dist/esm/languages/prism/bash";
 // Import a Prism theme
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+// Use the concrete ESM file so the Node-based SSG build resolves it correctly.
+import oneDark from "react-syntax-highlighter/dist/esm/styles/prism/one-dark.js";
 
 SyntaxHighlighter.registerLanguage("tsx", tsx);
 SyntaxHighlighter.registerLanguage("typescript", ts);

@@ -14,7 +14,8 @@ import BlogPostJsonLd from "./seo/BlogPostJsonLd";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import vscDarkPlus from "react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus.js";
+import multilingualSupportContent from "../../public/posts/adding-multilingual-support-to-nextjs-with-i18n.md?raw";
 
 type MarkdownCodeProps = ComponentPropsWithoutRef<"code"> & {
   inline?: boolean;
@@ -23,7 +24,11 @@ type MarkdownCodeProps = ComponentPropsWithoutRef<"code"> & {
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = blogs.find((b) => b.slug === slug);
-  const [content, setContent] = useState("");
+  const initialContent =
+    post?.slug === "adding-multilingual-support-to-nextjs-with-i18n"
+      ? multilingualSupportContent
+      : "";
+  const [content, setContent] = useState(initialContent);
   const showMorePosts = false;
 
   // Reading progress
@@ -35,13 +40,13 @@ const BlogPost = () => {
   });
 
   useEffect(() => {
-    if (post?.contentPath) {
+    if (post?.contentPath && !initialContent) {
       fetch(post.contentPath)
         .then((res) => res.text())
         .then((text) => setContent(text))
         .catch((err) => console.error("Failed to load markdown:", err));
     }
-  }, [post]);
+  }, [post, initialContent]);
 
   if (!post) {
     return <Navigate to="/blog" replace />;
