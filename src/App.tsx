@@ -1,4 +1,4 @@
-import { useEffect, Suspense, useState, useRef } from "react";
+import { lazy, useEffect, Suspense, useState, useRef } from "react";
 import {
   Outlet,
   useOutletContext,
@@ -18,23 +18,24 @@ import TechStack from "./components/TechStack";
 import Contact from "./components/Contact";
 import ScrollButton from "./components/ScrollButton";
 import Glow from "./components/Glow";
-import Github from "./components/Github";
+import Deferred from "./components/Deferred";
 import FloatingShape from "./components/FloatingShape";
 import HeroImage from "./components/HeroImage";
 import WorkExperience from "./components/WorkExperience";
 import Footer from "./components/Footer";
-import GitRoll from "./components/GitRoll";
 import LatestPosts from "./components/LatestPosts";
-import CommandPalette from "./components/CommandPalette";
-import MatrixRain from "./components/MatrixRain";
-import DevSecretsDrawer from "./components/DevSecretsDrawer";
-import HintModal from "./components/HintModal";
+const Github = lazy(() => import("./components/Github"));
+const GitRoll = lazy(() => import("./components/GitRoll"));
+const CommandPalette = lazy(() => import("./components/CommandPalette"));
+const MatrixRain = lazy(() => import("./components/MatrixRain"));
+const DevSecretsDrawer = lazy(() => import("./components/DevSecretsDrawer"));
+const HintModal = lazy(() => import("./components/HintModal"));
 import AchievementBadge from "./components/AchievementBadge";
-import WhoamiTerminal from "./components/WhoamiTerminal";
-import ConfettiOverlay from "./components/ConfettiOverlay";
+const WhoamiTerminal = lazy(() => import("./components/WhoamiTerminal"));
+const ConfettiOverlay = lazy(() => import("./components/ConfettiOverlay"));
 import Preloader from "./components/Preloader";
 import TypewriterEffect from "./components/TypewriterEffect";
-import DevSandbox from "./components/DevSandbox";
+const DevSandbox = lazy(() => import("./components/DevSandbox"));
 import MobileNav from "./components/MobileNav";
 
 import Snowfall from "react-snowfall";
@@ -262,7 +263,9 @@ const Home = ({
             amplitude={[100, 100, 30]}
             speed={0.2}
           />
-          <Github theme={theme} />
+          <Deferred>
+            <Github theme={theme} />
+          </Deferred>
         </div>
 
         <div className="relative">
@@ -272,7 +275,9 @@ const Home = ({
             amplitude={[40, 100, 30]}
             speed={0.2}
           />
-          <GitRoll theme={theme} />
+          <Deferred>
+            <GitRoll theme={theme} />
+          </Deferred>
         </div>
 
         <div className="relative">
@@ -602,12 +607,13 @@ export function AppShell() {
         <ScrollButton />
         <MobileNav />
         <MouseGlow />
-        <CommandPalette
-          isOpen={isPaletteOpen}
-          onClose={() => setIsPaletteOpen(false)}
-          toggleTheme={toggleTheme}
-          theme={theme}
-        />
+        <Suspense fallback={null}>
+          <CommandPalette
+            isOpen={isPaletteOpen}
+            onClose={() => setIsPaletteOpen(false)}
+            toggleTheme={toggleTheme}
+            theme={theme}
+          />
 
         {/* Matrix Rain Canvas overlay */}
         <AnimatePresence>
@@ -658,6 +664,8 @@ export function AppShell() {
             />
           )}
         </AnimatePresence>
+
+        </Suspense>
 
         {/* Secret Achievements Counter Progress Widget */}
         <AchievementBadge unlockedSecrets={unlockedSecrets} />
