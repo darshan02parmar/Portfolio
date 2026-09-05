@@ -88,6 +88,8 @@ const MouseGlow = () => {
 
 import OrganizationJsonLd from "./components/seo/OrganizationJsonLd";
 import HomePageJsonLd from "./components/seo/HomePageJsonLd";
+import SEO from "./components/SEO";
+import { HelmetProvider } from "react-helmet-async";
 
 const Home = ({
   theme,
@@ -98,6 +100,11 @@ const Home = ({
 }) => {
   return (
     <>
+      <SEO
+        title="Darshan Parmar | Software Developer"
+        description="Full-stack developer building with React, Next.js, TypeScript, Node.js, and Three.js. Open-source contributor (GSSoC'25 Top 1%, NSoC'26 Rank #22)."
+        canonical="/"
+      />
       <HomePageJsonLd />
       <aside
         className="relative isolate px-6 pt-24 text-center text-slate-900 transition-colors duration-300 md:px-10 md:pt-14 md:text-left dark:text-slate-100 lg:fixed lg:h-screen lg:w-[35%] lg:overflow-hidden lg:pl-32"
@@ -583,7 +590,7 @@ export function AppShell() {
   }, []);
 
   return (
-    <>
+    <HelmetProvider>
       <ScrollToTop />
       <Toaster position="top-right" />
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
@@ -667,7 +674,7 @@ export function AppShell() {
           <Outlet context={{ theme, onOpenHints: () => setIsHintModalOpen(true) }} />
         </AnimatePresence>
       </main>
-    </>
+    </HelmetProvider>
   );
 }
 

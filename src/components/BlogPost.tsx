@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import FloatingShape from "./FloatingShape";
 import BlogPostJsonLd from "./seo/BlogPostJsonLd";
+import SEO from "./SEO";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -54,6 +55,13 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-lime-200 transition-colors duration-300 relative overflow-hidden font-sans">
+      <SEO
+        title={`${post.title} | Darshan Parmar`}
+        description={post.description || `Read ${post.title} on Darshan Parmar's developer blog.`}
+        canonical={`/blog/${post.slug}`}
+        type="article"
+        publishedTime={post.date}
+      />
       <BlogPostJsonLd post={post} />
 
       {/* Reading Progress Bar */}
