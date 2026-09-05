@@ -1,9 +1,5 @@
 import { lazy, useEffect, Suspense, useState, useRef } from "react";
-import {
-  Outlet,
-  useOutletContext,
-  useLocation,
-} from "react-router-dom";
+import { Outlet, useOutletContext, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -40,7 +36,7 @@ import MobileNav from "./components/MobileNav";
 
 import Snowfall from "react-snowfall";
 
-  const SpinningShape = () => (
+const SpinningShape = () => (
   <img
     src="/gr1.png"
     alt="spinning blob"
@@ -321,7 +317,11 @@ export function HomeRoute() {
     theme: "light" | "dark";
     onOpenHints: () => void;
   }>();
-  return <PageWrapper><Home theme={theme} onOpenHints={onOpenHints} /></PageWrapper>;
+  return (
+    <PageWrapper>
+      <Home theme={theme} onOpenHints={onOpenHints} />
+    </PageWrapper>
+  );
 }
 
 export function AppShell() {
@@ -615,56 +615,57 @@ export function AppShell() {
             theme={theme}
           />
 
-        {/* Matrix Rain Canvas overlay */}
-        <AnimatePresence>
-          {isMatrixActive && (
-            <MatrixRain
-              onClose={() => setIsMatrixActive(false)}
-              isNeoMode={isNeoModeActive}
-            />
+          {/* Matrix Rain Canvas overlay */}
+          <AnimatePresence>
+            {isMatrixActive && (
+              <MatrixRain
+                onClose={() => setIsMatrixActive(false)}
+                isNeoMode={isNeoModeActive}
+              />
+            )}
+          </AnimatePresence>
+
+          {/* Dev Diagnostics Drawer overlay */}
+          <AnimatePresence>
+            {isSecretsDrawerActive && (
+              <DevSecretsDrawer
+                onClose={() => setIsSecretsDrawerActive(false)}
+              />
+            )}
+          </AnimatePresence>
+
+          {/* Retro Whoami Terminal overlay */}
+          <AnimatePresence>
+            {isWhoamiOpen && (
+              <WhoamiTerminal onClose={() => setIsWhoamiOpen(false)} />
+            )}
+          </AnimatePresence>
+
+          {/* Hint Clue Modal */}
+          <AnimatePresence>
+            {isHintModalOpen && (
+              <HintModal
+                isOpen={isHintModalOpen}
+                onClose={() => setIsHintModalOpen(false)}
+              />
+            )}
+          </AnimatePresence>
+
+          {/* Canvas Confetti Explosion */}
+          {isConfettiActive && (
+            <ConfettiOverlay onComplete={() => setIsConfettiActive(false)} />
           )}
-        </AnimatePresence>
 
-        {/* Dev Diagnostics Drawer overlay */}
-        <AnimatePresence>
-          {isSecretsDrawerActive && (
-            <DevSecretsDrawer onClose={() => setIsSecretsDrawerActive(false)} />
-          )}
-        </AnimatePresence>
-
-        {/* Retro Whoami Terminal overlay */}
-        <AnimatePresence>
-          {isWhoamiOpen && (
-            <WhoamiTerminal onClose={() => setIsWhoamiOpen(false)} />
-          )}
-        </AnimatePresence>
-
-        {/* Hint Clue Modal */}
-        <AnimatePresence>
-          {isHintModalOpen && (
-            <HintModal
-              isOpen={isHintModalOpen}
-              onClose={() => setIsHintModalOpen(false)}
-            />
-          )}
-        </AnimatePresence>
-
-        {/* Canvas Confetti Explosion */}
-        {isConfettiActive && (
-          <ConfettiOverlay onComplete={() => setIsConfettiActive(false)} />
-        )}
-
-        {/* Dev God Mode Sandbox Console */}
-        <AnimatePresence>
-          {isSandboxOpen && (
-            <DevSandbox
-              isOpen={isSandboxOpen}
-              onClose={() => setIsSandboxOpen(false)}
-              unlockedSecretsCount={unlockedSecrets.length}
-            />
-          )}
-        </AnimatePresence>
-
+          {/* Dev God Mode Sandbox Console */}
+          <AnimatePresence>
+            {isSandboxOpen && (
+              <DevSandbox
+                isOpen={isSandboxOpen}
+                onClose={() => setIsSandboxOpen(false)}
+                unlockedSecretsCount={unlockedSecrets.length}
+              />
+            )}
+          </AnimatePresence>
         </Suspense>
 
         {/* Secret Achievements Counter Progress Widget */}
@@ -680,7 +681,9 @@ export function AppShell() {
         </button>
 
         <AnimatePresence mode="wait">
-          <Outlet context={{ theme, onOpenHints: () => setIsHintModalOpen(true) }} />
+          <Outlet
+            context={{ theme, onOpenHints: () => setIsHintModalOpen(true) }}
+          />
         </AnimatePresence>
       </main>
     </HelmetProvider>
