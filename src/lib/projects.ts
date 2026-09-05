@@ -20,8 +20,7 @@ export const projects: Project[] = [
   {
     id: "wanderlust",
     title: "Wanderlust",
-    description:
-      "Wanderlust — an Airbnb-style vacation rental platform built with Node.js, Express, MongoDB, and Mapbox, featuring property listings, search, bookings, and user reviews.",
+    description: "A full-stack vacation rental platform similar to Airbnb.",
     oneLinePitch:
       "A seamless platform to list, discover, and book unique stays worldwide.",
     longDescription:
@@ -77,7 +76,7 @@ export const projects: Project[] = [
     id: "ideaflow",
     title: "IdeaFlow",
     description:
-      "IdeaFlow — an AI-powered tool using Tambo AI to turn raw startup ideas into structured product briefs, user personas, roadmaps, and tech stack recommendations.",
+      "AI-powered Generative UI tool that converts startup ideas into structured product blueprints.",
     oneLinePitch:
       "Transforming napkin sketches into comprehensive product roadmaps with AI.",
     longDescription:
@@ -131,7 +130,7 @@ export const projects: Project[] = [
     id: "investease",
     title: "InvestEase",
     description:
-      "InvestEase — a MERN-stack investor self-service platform with real-time portfolio recalculation, KYC workflows, and admin verification, reaching the final round of a hackathon.",
+      "A full-stack MERN platform for modern investor self-service and portfolio management.",
     oneLinePitch:
       "One secure platform for investors to manage portfolios, compliance, and account operations—backed by a powerful administrative workflow.",
     longDescription:
