@@ -7,13 +7,15 @@ const HomePageJsonLd = () => {
     name: "Darshan Parmar",
     jobTitle: "Software Developer",
     url: "https://darshan-parmar.vercel.app/",
+    description: "Darshan Parmar is a software developer interested in React, Next.js, full-stack development, and open-source software.",
     sameAs: [
       "https://github.com/darshan02parmar",
       "https://linkedin.com/in/parmar-darshan",
       "https://twitter.com/darshan02parmar",
+      "https://darshan-builds.hashnode.dev/",
       "https://gitroll.io/profile/uiFTdl9Q6LlQiYvD1CGbe8avuasm1",
     ],
-    knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "Three.js"],
+    knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "full-stack development", "open-source software", "Three.js"],
   };
 
   const websiteData = {

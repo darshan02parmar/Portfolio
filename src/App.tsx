@@ -104,7 +104,7 @@ const Home = ({
     <>
       <SEO
         title="Darshan Parmar | Software Developer"
-        description="Full-stack developer building with React, Next.js, TypeScript, Node.js, and Three.js. Open-source contributor (GSSoC'25 Top 1%, NSoC'26 Rank #22)."
+        description="Darshan Parmar is a software developer interested in React, Next.js, full-stack development, and open-source software."
         canonical="/"
       />
       <HomePageJsonLd />
