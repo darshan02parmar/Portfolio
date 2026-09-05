@@ -31,7 +31,7 @@ const BlogHome = () => {
     return (
         <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-lime-200 transition-colors duration-300 relative overflow-hidden font-sans">
             <SEO
-                title="Blog | Darshan Parmar"
+                title="Blog | Darshan Parmar — Software & Full-Stack Development"
                 description="Articles and notes on web development, React, Next.js, TypeScript, AI, and things I learn while building software."
                 canonical="/blog"
             />

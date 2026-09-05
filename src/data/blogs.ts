@@ -18,7 +18,7 @@ export const blogs: BlogPostMeta[] = [
         slug: "adding-multilingual-support-to-nextjs-with-i18n",
         title: "Adding Multilingual Support to Next.js with i18n",
         series: "BUILD LOG #001",
-        description: "How I implemented internationalization, locale routing, accessibility and SEO while learning Next.js.",
+        description: "Step-by-step guide to implementing i18n in Next.js with locale routing, TypeScript, accessibility features, and SEO best practices for multilingual sites.",
         tags: ["Next.js", "TypeScript", "i18n", "SEO", "Internationalization"],
         date: "Aug 08, 2026",
         readTime: "13 min read",
