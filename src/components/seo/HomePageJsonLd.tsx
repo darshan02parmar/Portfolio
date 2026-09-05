@@ -1,12 +1,27 @@
 import JsonLd from './JsonLd';
 
 const HomePageJsonLd = () => {
+  const personData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Darshan Parmar",
+    jobTitle: "Software Developer",
+    url: "https://darshan-parmar.vercel.app/",
+    sameAs: [
+      "https://github.com/darshan02parmar",
+      "https://linkedin.com/in/parmar-darshan",
+      "https://twitter.com/darshan02parmar",
+      "https://gitroll.io/profile/uiFTdl9Q6LlQiYvD1CGbe8avuasm1",
+    ],
+    knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "Three.js"],
+  };
+
   const websiteData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "url": "https://darshan-parmar.vercel.app/",
-    "name": "Darshan Parmar | Fullstack Developer",
-    "description": "Professional Fullstack Web Developer specializing in MERN stack and 3D web experiences."
+    "name": "Darshan Parmar | Software Developer",
+    "description": "Full-stack developer building web applications with React, Next.js, TypeScript, Node.js, and Three.js."
   };
 
   const faqData = {
@@ -18,15 +33,15 @@ const HomePageJsonLd = () => {
         "name": "What is your main technology stack?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "I specialize in the MERN stack (MongoDB, Express.js, React, Node.js), along with TypeScript, Tailwind CSS, and Three.js for interactive 3D experiences."
+          "text": "I specialize in React, Next.js, TypeScript, Node.js, Express.js, MongoDB, Tailwind CSS, and Three.js for 3D web experiences."
         }
       },
       {
         "@type": "Question",
-        "name": "Are you available for freelance work?",
+        "name": "Are you available for full-time roles or open-source projects?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, I am open to freelance opportunities and full-time roles as a full-stack developer."
+          "text": "Yes, I am actively open to full-stack developer roles, open-source collaborations, and freelance opportunities."
         }
       }
     ]
@@ -34,6 +49,7 @@ const HomePageJsonLd = () => {
 
   return (
     <>
+      <JsonLd data={personData} />
       <JsonLd data={websiteData} />
       <JsonLd data={faqData} />
     </>

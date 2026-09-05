@@ -44,13 +44,13 @@ export default function WorkExperience() {
         id="work-experience"
         className="relative z-10 mt-32 2xl:mt-52 p-6 text-slate-900 dark:text-slate-100"
       >
-        <h3
+        <h2
           data-aos="fade-left"
           className="work-title motion-preset-blur-right mb-8 font-heading text-4xl flex items-center gap-2"
         >
           <WorkIcon />
           Work Experience
-        </h3>
+        </h2>
 
         <div id="experience-container" className="mb-6 flex flex-col gap-6">
           {experienceCard(

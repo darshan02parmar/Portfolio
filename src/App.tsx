@@ -39,10 +39,11 @@ import MobileNav from "./components/MobileNav";
 
 import Snowfall from "react-snowfall";
 
-const SpinningShape = () => (
+  const SpinningShape = () => (
   <img
     src="/gr1.png"
     alt="spinning blob"
+    aria-hidden="true"
     className="images glow absolute left-[-105px] top-[-115px] z-[-10] h-[360px] w-[360px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out opacity-70 md:left-[-85px] md:top-[-95px] md:h-[400px] md:w-[400px] md:opacity-100 dark:opacity-40"
   />
 );

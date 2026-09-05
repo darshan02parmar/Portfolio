@@ -46,12 +46,12 @@ export default function TechStack() {
                 className="mt-32 flex max-w-[630px] flex-col gap-6 p-6 pb-0 text-slate-900 dark:text-slate-100 relative z-10"
             >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
-                    <h3
+                    <h2
                         className="tech-stack-title font-heading text-4xl"
                         data-aos="fade-down"
                     >
                         Tech Stack <span className="hidden md:inline">/ Tools</span>
-                    </h3>
+                    </h2>
                     
                     {/* Toggle Buttons */}
                     <div className="flex rounded-full border-[3px] border-slate-900 dark:border-slate-100 overflow-hidden text-xs font-mono font-bold bg-white dark:bg-slate-950 p-0.5 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] select-none shrink-0 self-start sm:self-auto">

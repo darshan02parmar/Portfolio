@@ -5,13 +5,23 @@ const OrganizationJsonLd = () => {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Darshan Parmar",
-    "jobTitle": "Software Developer|Fullstack Web Developer",
+    "jobTitle": "Software Developer",
     "url": "https://darshan-parmar.vercel.app/",
     "sameAs": [
       "https://github.com/darshan02parmar",
-      "https://linkedin.com/in/darshanparmar"
+      "https://linkedin.com/in/parmar-darshan",
+      "https://twitter.com/darshan02parmar"
     ],
-    "knowsAbout": ["React", "Node.js", "Express.js", "MongoDB", "Three.js", "Tailwind CSS", "TypeScript"]
+    "knowsAbout": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Three.js",
+      "Tailwind CSS"
+    ]
   };
 
   return <JsonLd data={data} />;

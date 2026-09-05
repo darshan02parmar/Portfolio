@@ -2,9 +2,10 @@ import JsonLd from './JsonLd';
 
 interface ProjectJsonLdProps {
   project: {
+    id: string;
     title: string;
     description: string;
-    url?: string;
+    deployedUrl?: string;
   };
 }
 
@@ -16,10 +17,12 @@ const ProjectJsonLd = ({ project }: ProjectJsonLdProps) => {
     "description": project.description,
     "applicationCategory": "WebApplication",
     "operatingSystem": "Web",
-    "url": project.url || "https://darshan-parmar.vercel.app/",
+    "url": `https://darshan-parmar.vercel.app/project/${project.id}`,
+    "sameAs": project.deployedUrl ? [project.deployedUrl] : [],
     "author": {
       "@type": "Person",
-      "name": "Darshan Parmar"
+      "name": "Darshan Parmar",
+      "url": "https://darshan-parmar.vercel.app/"
     }
   };
 

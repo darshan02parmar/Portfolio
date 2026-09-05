@@ -12,12 +12,12 @@ export default function Github({ theme }: { theme: 'light' | 'dark' }) {
                 id="github"
                 className="relative z-10 mt-32 flex max-w-[630px] flex-col gap-6 p-6 pb-0 text-slate-900 dark:text-slate-100"
             >
-                <h3
+                <h2
                     className="gitroll-title mb-4 font-heading text-4xl"
                     data-aos="fade-left"
                 >
                     Commit History
-                </h3>
+                </h2>
 
                 <div className="flex flex-col gap-6">
                     {years.map((year) => (
