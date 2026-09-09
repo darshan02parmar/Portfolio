@@ -147,9 +147,7 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 
 ---
 
-## 📝 License
 
-This project is licensed under the MIT License.
 
 ## 🤝 Contact
 
