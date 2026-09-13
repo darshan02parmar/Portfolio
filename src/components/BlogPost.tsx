@@ -17,10 +17,25 @@ import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import vscDarkPlus from "react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus.js";
 import multilingualSupportContent from "../../public/posts/adding-multilingual-support-to-nextjs-with-i18n.md?raw";
+import fullStackNextJsProjectStructureContent from "../../public/posts/how-to-structure-a-full-stack-next-js-project-for-production.md?raw";
 
 type MarkdownCodeProps = ComponentPropsWithoutRef<"code"> & {
   inline?: boolean;
 };
+
+// The imported markdown contains a few UTF-8 tree/arrow characters that were
+// saved through a legacy encoding. Repair those display-only artifacts without
+// changing the source article.
+const normalizeMarkdown = (markdown: string) =>
+  markdown
+    .replace(/â”œâ”€â”€/g, "├──")
+    .replace(/â””â”€â”€/g, "└──")
+    .replace(/â”‚/g, "│")
+    .replace(/â†“/g, "↓")
+    .replace(/â†’/g, "→")
+    .replace(/â€”/g, "—")
+    .replace(/â€™/g, "’")
+    .replace(/â€œ|â€/g, '"');
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -28,9 +43,13 @@ const BlogPost = () => {
   const initialContent =
     post?.slug === "adding-multilingual-support-to-nextjs-with-i18n"
       ? multilingualSupportContent
-      : "";
+      : post?.slug ===
+          "how-to-structure-a-full-stack-next-js-project-for-production"
+        ? fullStackNextJsProjectStructureContent
+        : "";
   const [content, setContent] = useState(initialContent);
   const showMorePosts = false;
+  const renderedContent = normalizeMarkdown(content);
 
   // Reading progress
   const { scrollYProgress } = useScroll();
@@ -57,7 +76,10 @@ const BlogPost = () => {
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-lime-200 transition-colors duration-300 relative overflow-hidden font-sans">
       <SEO
         title={`${post.title} | Darshan Parmar`}
-        description={post.description || `Read ${post.title} on Darshan Parmar's developer blog.`}
+        description={
+          post.description ||
+          `Read ${post.title} on Darshan Parmar's developer blog.`
+        }
         canonical={`/blog/${post.slug}`}
         type="article"
         publishedTime={post.date}
@@ -134,10 +156,84 @@ const BlogPost = () => {
               />
             </div>
 
-            <div className="prose md:prose-lg dark:prose-invert prose-headings:font-heading prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-lime-600 dark:prose-a:text-lime-400 hover:prose-a:text-lime-700 prose-img:rounded-2xl prose-img:border-2 prose-img:border-slate-200 dark:prose-img:border-slate-800 max-w-none prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0 prose-code:font-mono">
+            <div className="prose prose-slate md:prose-lg dark:prose-invert prose-headings:font-heading prose-headings:text-slate-900 dark:prose-headings:text-white prose-headings:scroll-mt-24 prose-h2:border-b prose-h2:border-slate-200 dark:prose-h2:border-slate-700 prose-h2:pb-3 prose-h2:mt-14 prose-h3:mt-10 prose-a:text-lime-600 dark:prose-a:text-lime-400 hover:prose-a:text-lime-700 prose-blockquote:border-l-lime-500 prose-blockquote:bg-lime-50/70 dark:prose-blockquote:bg-lime-950/30 prose-blockquote:rounded-r-xl prose-blockquote:py-1 prose-table:block prose-table:overflow-x-auto prose-table:whitespace-nowrap prose-th:bg-slate-100 dark:prose-th:bg-slate-800 prose-th:px-4 prose-td:px-4 prose-img:rounded-2xl prose-img:border-2 prose-img:border-slate-200 dark:prose-img:border-slate-800 max-w-none prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0 prose-code:font-mono">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
+                  h2({ children, ...props }) {
+                    const headingId = String(children)
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/(^-|-$)/g, "");
+                    return (
+                      <h2 {...props} id={headingId}>
+                        <span className="group relative inline-flex items-center gap-2">
+                          {children}
+                          <a
+                            href={`#${headingId}`}
+                            aria-label={`Link to ${String(children)}`}
+                            className="text-slate-300 no-underline opacity-0 transition-opacity group-hover:opacity-100 dark:text-slate-600"
+                          >
+                            #
+                          </a>
+                        </span>
+                      </h2>
+                    );
+                  },
+                  table({ children, ...props }) {
+                    return (
+                      <div className="not-prose my-10 overflow-hidden rounded-2xl border-2 border-slate-900 bg-white shadow-[5px_5px_0px_0px_#a3e635] dark:border-slate-100 dark:bg-slate-900 dark:shadow-[5px_5px_0px_0px_#a3e635]">
+                        <div className="overflow-x-auto">
+                          <table
+                            {...props}
+                            className="m-0 min-w-full text-left text-sm"
+                          >
+                            {children}
+                          </table>
+                        </div>
+                      </div>
+                    );
+                  },
+                  thead({ children, ...props }) {
+                    return (
+                      <thead
+                        {...props}
+                        className="bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900"
+                      >
+                        {children}
+                      </thead>
+                    );
+                  },
+                  tr({ children, ...props }) {
+                    return (
+                      <tr
+                        {...props}
+                        className="border-b border-slate-200 last:border-b-0 odd:bg-slate-50 even:bg-white dark:border-slate-700 dark:odd:bg-slate-800/70 dark:even:bg-slate-900"
+                      >
+                        {children}
+                      </tr>
+                    );
+                  },
+                  th({ children, ...props }) {
+                    return (
+                      <th
+                        {...props}
+                        className="px-5 py-4 text-xs font-bold uppercase tracking-[0.12em]"
+                      >
+                        {children}
+                      </th>
+                    );
+                  },
+                  td({ children, ...props }) {
+                    return (
+                      <td
+                        {...props}
+                        className="px-5 py-4 align-top text-slate-700 dark:text-slate-200"
+                      >
+                        {children}
+                      </td>
+                    );
+                  },
                   code({
                     inline,
                     className,
@@ -180,7 +276,7 @@ const BlogPost = () => {
                   },
                 }}
               >
-                {content || "Loading content..."}
+                {renderedContent || "Loading content..."}
               </ReactMarkdown>
             </div>
           </div>
@@ -206,7 +302,7 @@ const BlogPost = () => {
                   <Briefcase size={16} /> See my work
                 </a>
                 <a
-                  href={post.hashnodeUrl}
+                  href="https://hashnode.com/@darshan-parmar"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 rounded-full border-[2px] border-slate-900 font-medium text-sm bg-white text-slate-900 transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9]"

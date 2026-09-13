@@ -8,6 +8,7 @@ import SEO from "./SEO";
 const BlogHome = () => {
   const latestPosts = [
     blogs[0],
+    blogs[1],
     {
       id: "coming-soon-1",
       slug: "",

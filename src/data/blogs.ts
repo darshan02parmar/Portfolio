@@ -40,4 +40,29 @@ export const blogs: BlogPostMeta[] = [
       { id: "references", title: "References" },
     ],
   },
+  {
+    id: "2",
+    slug: "how-to-structure-a-full-stack-next-js-project-for-production",
+    title: "How to Structure a Full-Stack Next.js Project for Production",
+    series: "BUILD LOG #002",
+    description:
+      "A production-ready project layout for full-stack Next.js apps, covering routing, server/client boundaries, services, configuration, and scalable architecture.",
+    tags: ["Next.js", "Architecture", "Full-Stack", "TypeScript", "Production"],
+    date: "Sep 13, 2026",
+    readTime: "8 min read",
+    hashnodeUrl:
+      "https://darshan-builds.hashnode.dev/how-to-structure-a-full-stack-next-js-project-for-production",
+    contentPath:
+      "/posts/how-to-structure-a-full-stack-next-js-project-for-production.md",
+    sections: [
+      { id: "introduction", title: "Introduction" },
+      { id: "architecture", title: "Architecture" },
+      { id: "project-structure", title: "Project Structure" },
+      { id: "routes", title: "Routes" },
+      { id: "services", title: "Services" },
+      { id: "config", title: "Configuration" },
+      { id: "security", title: "Security" },
+      { id: "observability", title: "Observability" },
+    ],
+  },
 ];
