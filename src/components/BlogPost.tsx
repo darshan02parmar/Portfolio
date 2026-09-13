@@ -1,4 +1,4 @@
-import { useState, useEffect, type ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithoutRef } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { blogs } from "../data/blogs";
@@ -16,8 +16,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import vscDarkPlus from "react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus.js";
-import multilingualSupportContent from "../../public/posts/adding-multilingual-support-to-nextjs-with-i18n.md?raw";
-import fullStackNextJsProjectStructureContent from "../../public/posts/how-to-structure-a-full-stack-next-js-project-for-production.md?raw";
+import multilingualSupportContent from "../data/posts/adding-multilingual-support-to-nextjs-with-i18n.md?raw";
+import fullStackNextJsProjectStructureContent from "../data/posts/how-to-structure-a-full-stack-next-js-project-for-production.md?raw";
 
 type MarkdownCodeProps = ComponentPropsWithoutRef<"code"> & {
   inline?: boolean;
@@ -47,7 +47,7 @@ const BlogPost = () => {
           "how-to-structure-a-full-stack-next-js-project-for-production"
         ? fullStackNextJsProjectStructureContent
         : "";
-  const [content, setContent] = useState(initialContent);
+  const content = initialContent;
   const showMorePosts = false;
   const renderedContent = normalizeMarkdown(content);
 
@@ -58,15 +58,6 @@ const BlogPost = () => {
     damping: 30,
     restDelta: 0.001,
   });
-
-  useEffect(() => {
-    if (post?.contentPath && !initialContent) {
-      fetch(post.contentPath)
-        .then((res) => res.text())
-        .then((text) => setContent(text))
-        .catch((err) => console.error("Failed to load markdown:", err));
-    }
-  }, [post, initialContent]);
 
   if (!post) {
     return <Navigate to="/blog" replace />;

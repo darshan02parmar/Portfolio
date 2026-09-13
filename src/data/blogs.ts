@@ -8,7 +8,6 @@ export interface BlogPostMeta {
   date: string;
   readTime: string;
   hashnodeUrl: string;
-  contentPath?: string;
   sections: { id: string; title: string }[];
 }
 
@@ -25,7 +24,6 @@ export const blogs: BlogPostMeta[] = [
     readTime: "13 min read",
     hashnodeUrl:
       "https://darshan-builds.hashnode.dev/adding-multilingual-support-to-nextjs-with-i18n",
-    contentPath: "/posts/adding-multilingual-support-to-nextjs-with-i18n.md",
     sections: [
       { id: "introduction", title: "Introduction" },
       { id: "architecture", title: "Architecture" },
@@ -49,11 +47,9 @@ export const blogs: BlogPostMeta[] = [
       "A production-ready project layout for full-stack Next.js apps, covering routing, server/client boundaries, services, configuration, and scalable architecture.",
     tags: ["Next.js", "Architecture", "Full-Stack", "TypeScript", "Production"],
     date: "Sep 13, 2026",
-    readTime: "8 min read",
+    readTime: "15 min read",
     hashnodeUrl:
       "https://darshan-builds.hashnode.dev/how-to-structure-a-full-stack-next-js-project-for-production",
-    contentPath:
-      "/posts/how-to-structure-a-full-stack-next-js-project-for-production.md",
     sections: [
       { id: "introduction", title: "Introduction" },
       { id: "architecture", title: "Architecture" },
