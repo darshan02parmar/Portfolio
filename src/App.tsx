@@ -38,7 +38,7 @@ import Snowfall from "react-snowfall";
 
 const SpinningShape = () => (
   <img
-    src="/gr1.png"
+    src="/gr1.webp"
     alt="spinning blob"
     aria-hidden="true"
     className="images glow absolute left-[-105px] top-[-115px] z-[-10] h-[360px] w-[360px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out opacity-70 md:left-[-85px] md:top-[-95px] md:h-[400px] md:w-[400px] md:opacity-100 dark:opacity-40"
@@ -230,7 +230,7 @@ const Home = ({
 
         <div className="relative">
           <img
-            src="/background/br3.png"
+            src="/background/br3.webp"
             alt="Background"
             className="absolute top-10 left-1/2 -translate-x-1/2 w-[320px] sm:w-[500px] md:w-[650px] lg:w-[750px] h-auto object-contain z-0 pointer-events-none opacity-80 dark:opacity-20 dark:invert"
           />
@@ -245,7 +245,7 @@ const Home = ({
             speed={0.2}
           />
           <img
-            src="/background/br2.png"
+            src="/background/br2.webp"
             alt="Background"
             className="absolute top-10 left-1/2 -translate-x-1/2 w-[280px] sm:w-[420px] md:w-[500px] lg:w-[580px] h-auto object-contain z-0 pointer-events-none opacity-80 dark:opacity-20 dark:invert"
           />

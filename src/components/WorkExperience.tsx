@@ -27,7 +27,7 @@ export default function WorkExperience() {
       <TiltCard>
         <div className="wrapper relative flex flex-col gap-4 overflow-hidden rounded-[30px] border-[3px] border-slate-900 bg-white/10 p-6 shadow-[4px_4px_0px_0px_#1e293b] dark:border-slate-100 dark:bg-slate-900 dark:shadow-[4px_4px_0px_0px_#f1f5f9]">
           <img
-            src="/background/br1.png"
+            src="/background/br1.webp"
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20 dark:opacity-10"

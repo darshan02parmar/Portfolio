@@ -7,7 +7,7 @@ function HeroImage() {
       className="images hidden lg:block h-[700px] w-[700px] relative z-0"
     >
       <GridDistortion
-        imageSrc="/gr3.png"
+        imageSrc="/gr3.webp"
         grid={15}
         mouse={0.1}
         strength={0.15}
