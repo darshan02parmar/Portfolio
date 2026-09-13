@@ -1,0 +1,27 @@
+{
+  "name": "Darshan Parmar Portfolio",
+  "short_name": "Darshan",
+  "description": "Darshan Parmar's personal portfolio and software developer profile.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo-D/icon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-D/icon-192 (1).png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-D/icon-512 (1).png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
