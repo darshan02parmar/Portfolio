@@ -29,6 +29,9 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
   - **GitHub Calendar**: Live contribution graph showing yearly Git commits.
   - **GitRoll Card**: Live developer skill ratings badge.
 - **Functional Contact Form**: Clean form integrated with **Web3Forms API** and `react-hot-toast` notifications.
+- **Progressive Web App Support**: Installable web app manifest with branded 32px, 192px, and 512px icons.
+- **Optimized Media**: Background and decorative graphics use WebP assets to reduce image size and improve loading performance.
+- **SEO & Structured Data**: Page-level metadata, canonical URLs, Open Graph support, and JSON-LD for the home page, projects, organization, and blog articles.
 
 ---
 
@@ -43,11 +46,18 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 - **Three.js** - 3D WebGL rendering (Grid Distortion Shader)
 - **AOS (Animate On Scroll)** - Page-scroll entrance effects
 - **React Snowfall** - Decorative canvas snow particles in the Experience section
+- **React Markdown & Remark GFM** - Markdown articles with GitHub-flavored Markdown support
+- **React Syntax Highlighter** - Language-aware code blocks in blog posts
+- **React Helmet Async** - Page metadata and document SEO
 
 ### Backend & APIs
 - **Web3Forms** - Secure, serverless email delivery
 - **GitHub API** - Repository contribution data fetching
 - **Web Audio API** - Oscillator synthesis for retro sound effects
+
+### Performance & PWA
+- **WebP** - Compressed background and decorative image assets
+- **Web App Manifest** - Installable portfolio experience with branded icons
 
 ### Development & Linters
 - **ESLint** & **TypeScript-ESLint** - Code quality enforcement
@@ -156,3 +166,21 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 - **GitHub**: [@darshan02parmar](https://github.com/darshan02parmar)
 - **LinkedIn**: [Parmar Darshan](https://linkedin.com/in/parmar-darshan)
 - **Twitter**: [@darshan02parmar](https://twitter.com/darshan02parmar)
+
+## Blog content
+
+The portfolio currently includes two bundled developer articles:
+
+- **Adding Multilingual Support to Next.js with i18n** — locale routing, translations, accessibility, TypeScript, and SEO.
+- **How to Structure a Full-Stack Next.js Project for Production** — routing, server/client boundaries, services, configuration, security, and observability.
+
+Article metadata lives in `src/data/blogs.ts`, while the Markdown source is stored in `src/data/posts/` and imported at build time for reliable static deployments.
+
+## Available scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Generate the production static build |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint across the project |
