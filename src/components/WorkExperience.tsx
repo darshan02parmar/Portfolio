@@ -90,28 +90,29 @@ export default function WorkExperience() {
                 <li className={bulletClass}>
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-900 dark:bg-slate-100"></span>
                   <span>
-                    Building and shipping production software at GetNorthPath
+                    Building and shipping production-ready web applications and
+                    developer tools at GetNorthPath
                   </span>
                 </li>
                 <li className={bulletClass}>
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-900 dark:bg-slate-100"></span>
                   <span>
-                    Collaborating with the engineering team on product features
-                    and improvements
+                    Developing and refining product features across React,
+                    Next.js, TypeScript, and modern web technologies
                   </span>
                 </li>
                 <li className={bulletClass}>
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-900 dark:bg-slate-100"></span>
                   <span>
-                    Developing with modern tools, thoughtful interfaces, and
-                    reliable workflows
+                    Collaborating with the engineering team through GitHub, code
+                    reviews, debugging, and iterative product improvements
                   </span>
                 </li>
                 <li className={bulletClass}>
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-900 dark:bg-slate-100"></span>
                   <span>
-                    Contributing through GitHub, code reviews, debugging, and
-                    continuous improvements
+                    Improving user experience, responsive interfaces,
+                    performance, and reliability across production workflows
                   </span>
                 </li>
               </ul>
