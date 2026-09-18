@@ -117,45 +117,6 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or later recommended)
-- `npm` (packaged by default with Node.js)
-
-### Installation
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/darshan02parmar/Portfolio.git
-   cd Portfolio
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Configure environment variables**:
-   Create a `.env` file in the root directory and add your Web3Forms access key:
-   ```env
-   VITE_WEB3FORMS_ACCESS_KEY=your_web3forms_key_here
-   ```
-   *(You can generate a free key instantly at [web3forms.com](https://web3forms.com/))*
-
-4. **Run development server**:
-   ```bash
-   npm run dev
-   ```
-   Open `http://localhost:5173` in your browser.
-
-5. **Build for production**:
-   ```bash
-   npm run build
-   ```
-   Deploy the resulting `dist/` directory to your static hosting provider (Vercel, Netlify, Cloudflare Pages, or GitHub Pages).
-
----
 
 
 
