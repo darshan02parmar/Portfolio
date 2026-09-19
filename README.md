@@ -1,4 +1,4 @@
-# 💼 Portfolio -[ darshan.dev](https://darshan-parmar.vercel.app/)
+# Portfolio -[ darshan.dev](https://darshan-parmar.vercel.app/)
 
 Welcome to the repository for my personal portfolio website, showcasing my projects, skills, professional experience, and hidden interactive developer easter eggs as a full-stack developer.
 
