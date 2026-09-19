@@ -117,7 +117,33 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 
 ---
 
+---
+## 🧩 Architecture
 
+```text
+                         ┌─────────────────────┐
+                         │      Portfolio      │
+                         │    React + Vite     │
+                         └──────────┬──────────┘
+                                    │
+             ┌──────────────────────┼──────────────────────┐
+             │                      │                      │
+             ▼                      ▼                      ▼
+      ┌─────────────┐       ┌─────────────┐       ┌─────────────┐
+      │   Pages &   │       │    Blog     │       │  Projects   │
+      │  Components │       │  Markdown   │       │ Case Studies│
+      └─────────────┘       └─────────────┘       └─────────────┘
+                                    │
+                                    ▼
+                           ┌─────────────────┐
+                           │ Static Build /  │
+                           │      SSG        │
+                           └────────┬────────┘
+                                    │
+                    ┌───────────────┼───────────────┐
+                    ▼               ▼               ▼
+                 Vercel          Hashnode       GitHub API
+---
 
 
 ## 🤝 Contact
