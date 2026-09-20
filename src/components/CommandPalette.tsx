@@ -142,12 +142,22 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                 setSelectedIndex(0);
             });
             setTimeout(() => inputRef.current?.focus(), 100);
+            const previousBodyOverflow = document.body.style.overflow;
+            const previousDocumentOverflow = document.documentElement.style.overflow;
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+
+            return () => {
+                document.body.style.overflow = previousBodyOverflow;
+                document.documentElement.style.overflow = previousDocumentOverflow;
+            };
         } else {
             document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         }
         return () => {
             document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         };
     }, [isOpen]);
 
