@@ -3,7 +3,7 @@ import { Outlet, useOutletContext, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Search } from "lucide-react";
 import { Toaster, toast } from "react-hot-toast";
 import { FaGithub as GithubIcon } from "react-icons/fa";
 import { FaLinkedin as LinkedinIcon } from "react-icons/fa";
@@ -363,6 +363,11 @@ export function AppShell() {
   const [isWhoamiOpen, setIsWhoamiOpen] = useState(false);
   const [isConfettiActive, setIsConfettiActive] = useState(false);
   const [isSandboxOpen, setIsSandboxOpen] = useState(false);
+  const [isMac, setIsMac] = useState(false);
+
+  useEffect(() => {
+    setIsMac(/Mac|iPhone|iPad|iPod/i.test(navigator.platform));
+  }, []);
 
   // Stored achievements
   const [unlockedSecrets, setUnlockedSecrets] = useState<string[]>(() => {
@@ -678,6 +683,16 @@ export function AppShell() {
           aria-label="Toggle Theme"
         >
           {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+        </button>
+
+        <button
+          onClick={() => setIsPaletteOpen(true)}
+          className="fixed right-24 top-8 z-50 hidden items-center gap-2 rounded-full border-2 border-slate-900 bg-white px-3 py-2 text-xs font-semibold text-slate-900 shadow-[3px_3px_0px_0px_#1e293b] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none md:inline-flex dark:border-slate-100 dark:bg-slate-900 dark:text-slate-100 dark:shadow-[3px_3px_0px_0px_#f1f5f9]"
+          aria-label="Open command palette"
+        >
+          <Search size={14} aria-hidden="true" />
+          <span>Search</span>
+          <kbd className="rounded border border-slate-300 bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] dark:border-slate-700 dark:bg-slate-800">{isMac ? "⌘ K" : "Ctrl K"}</kbd>
         </button>
 
         <AnimatePresence mode="wait">

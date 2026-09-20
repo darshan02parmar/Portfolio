@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Compass, Terminal, Moon, Sun, ArrowRight, Laptop } from 'lucide-react';
+import { Search, Terminal, Moon, Sun, ArrowRight, Laptop, BriefcaseBusiness, FolderKanban, Cpu, Mail, BookOpen } from 'lucide-react';
 import { projects } from '../lib/projects';
+import { blogs } from '../data/blogs';
 import toast from 'react-hot-toast';
 
 interface CommandPaletteProps {
@@ -26,10 +27,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
     // Dynamic actions list
     const navigationActions = [
-        { id: 'work', label: 'Go to Work Experience', icon: <Compass size={18} />, action: () => scrollToSection('work') },
-        { id: 'projects', label: 'Go to Selected Projects', icon: <Compass size={18} />, action: () => scrollToSection('projects') },
-        { id: 'tech-stack', label: 'Go to Tech Stack', icon: <Compass size={18} />, action: () => scrollToSection('tech-stack') },
-        { id: 'contact', label: 'Go to Contact Form', icon: <Compass size={18} />, action: () => scrollToSection('contact') },
+        { id: 'work', label: 'Go to Work Experience', icon: <BriefcaseBusiness size={18} />, action: () => scrollToSection('work') },
+        { id: 'projects', label: 'Go to Selected Projects', icon: <FolderKanban size={18} />, action: () => scrollToSection('projects') },
+        { id: 'tech-stack', label: 'Go to Tech Stack', icon: <Cpu size={18} />, action: () => scrollToSection('tech-stack') },
+        { id: 'contact', label: 'Go to Contact Form', icon: <Mail size={18} />, action: () => scrollToSection('contact') },
     ];
 
     const themeAction = {
@@ -66,17 +67,54 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         }
     }));
 
+    const blogActions = [
+        {
+            id: 'blog',
+            label: 'Open Blog',
+            icon: <BookOpen size={18} />,
+            action: () => {
+                navigate('/blog');
+                onClose();
+            }
+        },
+        ...blogs.map(post => ({
+            id: `blog-${post.id}`,
+            label: `Read Blog Post: ${post.title}`,
+            icon: <BookOpen size={18} />,
+            action: () => {
+                navigate(`/blog/${post.slug}`);
+                onClose();
+            }
+        }))
+    ];
+
     const allActions = [
         ...navigationActions,
         themeAction,
         ...projectActions,
+        ...blogActions,
         secretAction
     ];
 
     // Filtered actions based on search input
-    const filteredActions = allActions.filter(action =>
-        action.label.toLowerCase().includes(search.toLowerCase())
-    );
+    const fuzzyScore = (query: string, value: string) => {
+        const q = query.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const v = value.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (!q) return 0;
+        if (v.includes(q)) return 100 - v.indexOf(q);
+        let qi = 0;
+        let score = 0;
+        for (let vi = 0; vi < v.length && qi < q.length; vi += 1) {
+            if (v[vi] === q[qi]) { score += vi === 0 || value[vi - 1] === ' ' ? 4 : 1; qi += 1; }
+        }
+        return qi === q.length ? score : -1;
+    };
+
+    const filteredActions = allActions
+        .map((action) => ({ action, score: fuzzyScore(search, action.label) }))
+        .filter(({ score }) => score >= 0)
+        .sort((a, b) => b.score - a.score)
+        .map(({ action }) => action);
 
     const scrollToSection = (id: string) => {
         onClose();
@@ -160,7 +198,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.95, opacity: 0 }}
                     transition={{ duration: 0.15, ease: 'easeOut' }}
-                    className="w-full max-w-lg overflow-hidden rounded-[30px] border-[3px] border-slate-900 bg-[#0f172a] text-slate-100 shadow-[8px_8px_0px_0px_#50e0b3] dark:shadow-[8px_8px_0px_0px_#50e0b3]"
+                    className="w-full max-w-lg overflow-hidden rounded-[30px] border-[3px] border-slate-900 bg-[#0f172a] text-slate-100 shadow-[8px_8px_0px_0px_#a3e635]"
                 >
                     {/* Search Input */}
                     <div className="flex items-center gap-3 border-b-2 border-slate-800 p-4">
@@ -191,9 +229,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                                         key={action.id}
                                         onClick={action.action}
                                         onMouseEnter={() => setSelectedIndex(index)}
-                                        className={`flex items-center justify-between cursor-none rounded-xl p-3 transition-colors duration-150 ${
+                                        className={`flex items-center justify-between cursor-pointer rounded-xl p-3 transition-colors duration-150 ${
                                             active
-                                                ? 'bg-[#50e0b3] text-[#0f172a]'
+                                                ? 'bg-[#a3e635] text-[#0f172a]'
                                                 : 'text-slate-300 hover:text-slate-100'
                                         }`}
                                     >

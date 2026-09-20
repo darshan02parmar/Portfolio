@@ -230,7 +230,7 @@ export default function DevSandbox({ isOpen, onClose, unlockedSecretsCount }: De
             {/* Header */}
             <div className="flex justify-between items-center border-b border-[#eab308]/45 pb-3 mb-4">
                 <div className="flex items-center gap-2 text-[#eab308] font-bold text-xs">
-                    <Settings className="animate-spin duration-[4000ms] h-4 w-4" />
+                    <Settings className="animate-spin [animation-duration:4000ms] h-4 w-4" />
                     <span>DEV GOD MODE SANDBOX</span>
                 </div>
                 <button
@@ -350,4 +350,3 @@ export default function DevSandbox({ isOpen, onClose, unlockedSecretsCount }: De
         </motion.div>
     );
 }
-
