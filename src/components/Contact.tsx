@@ -9,39 +9,56 @@ export default function Contact({ onOpenHints }: { onOpenHints?: () => void }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
 
   async function sendEmail() {
-    if (!name || !message || !email) {
+    if (!name.trim() || !message.trim() || !email.trim()) {
       toast.error("Please fill in all fields");
       return;
     }
 
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "";
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
+    if (!accessKey) {
+      toast.error(
+        "Contact form is not configured. Set VITE_WEB3FORMS_ACCESS_KEY in the deployment environment.",
+      );
+      return;
+    }
 
-    const emailPromise = axios
-      .post("https://api.web3forms.com/submit", {
+    setIsSending(true);
+    try {
+      const { data } = await axios.post("https://api.web3forms.com/submit", {
         access_key: accessKey,
-        name,
-        email,
-        message,
-        subject: `New Message from ${name} (Portfolio)`,
-      })
-      .then((res) => {
-        if (res.data.success) {
-          setName("");
-          setEmail("");
-          setMessage("");
-        } else {
-          throw new Error(res.data.message || "Submission failed");
-        }
+        name: name.trim(),
+        email: email.trim(),
+        message: message.trim(),
+        subject: `New Message from ${name.trim()} (Portfolio)`,
       });
 
-    toast.promise(emailPromise, {
-      loading: "Sending email...",
-      success: "Thank you for contacting me!",
-      error: (err) =>
-        err?.message || "Something went wrong while sending email :(",
-    });
+      if (!data.success) {
+        throw new Error(data.message || "Web3Forms could not submit your message.");
+      }
+
+      setName("");
+      setEmail("");
+      setMessage("");
+      toast.success("Thanks for reaching out! I’ll get back to you soon..!!");
+    } catch (error) {
+      const responseMessage = axios.isAxiosError(error)
+        ? error.response?.data?.message
+        : undefined;
+      const errorMessage =
+        typeof responseMessage === "string"
+          ? responseMessage
+          : axios.isAxiosError(error) && !error.response
+            ? "Could not reach Web3Forms. Check your connection and try again."
+            : error instanceof Error
+              ? error.message
+              : "Something went wrong while sending your message.";
+      toast.error(errorMessage);
+    } finally {
+      setIsSending(false);
+    }
   }
 
   return (
@@ -99,9 +116,10 @@ export default function Contact({ onOpenHints }: { onOpenHints?: () => void }) {
 
           <button
             type="submit"
+            disabled={isSending}
             className="max-w-[600px] rounded-[30px] border-[2px] border-slate-900 bg-slate-900 dark:border-[#50e0b3] dark:bg-[#0f172a] dark:text-[#50e0b3] px-6 py-4 text-sm font-medium text-white shadow-[4px_4px_0px_0px_#84cc16] dark:shadow-[4px_4px_0px_0px_#50e0b3] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-800 dark:hover:bg-[#50e0b3] dark:hover:text-[#0f172a] md:text-xl cursor-pointer"
           >
-            Send
+            {isSending ? "Sending..." : "Send"}
           </button>
         </form>
 

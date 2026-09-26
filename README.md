@@ -63,6 +63,9 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 - **ESLint** & **TypeScript-ESLint** - Code quality enforcement
 - **PostCSS** & **Autoprefixer** - CSS compilation and vendor prefixing
 
+### Contact Form Setup
+The contact form requires `VITE_WEB3FORMS_ACCESS_KEY`. Set it in a local `.env` file for development and in the Vercel project's Environment Variables for each deployment environment you use. Vite embeds `VITE_*` values during the build, so redeploy after changing the key.
+
 ---
 
 ## 🏗️ Project Structure
