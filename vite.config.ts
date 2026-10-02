@@ -43,6 +43,11 @@ export default defineConfig((configEnv: ConfigEnv & { ssrBuild?: boolean }) => {
         ]
       : []),
   ],
+  server: {
+    watch: {
+      ignored: ["**/.vite-react-ssg-temp/**", "**/dist/**"],
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

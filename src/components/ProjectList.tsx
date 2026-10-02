@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
-import { LuExternalLink as LinkIcon, LuInfo as InfoIcon } from "react-icons/lu";
+import {
+  LuExternalLink as LinkIcon,
+  LuInfo as InfoIcon,
+  LuSparkles as SparklesIcon,
+  LuTrendingUp as TrendingUpIcon,
+} from "react-icons/lu";
 import { FaCodeBranch as CodeIcon } from "react-icons/fa6";
 import { VscGitStash as CodeStashIcon } from "react-icons/vsc";
 import AOSComponent from "@/lib/aos";
@@ -28,10 +33,16 @@ export default function Projects() {
             >
               <TiltCard>
                 <div className="wrapper flex flex-col gap-4 rounded-[30px] border-[3px] border-slate-900 dark:border-slate-100 p-6 shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] bg-white/10 dark:bg-slate-900 backdrop-blur-sm">
-                  <h3 className="flex gap-4 font-heading text-3xl text-slate-900 dark:text-slate-100">
+                  <h3 className="flex items-center gap-4 font-heading text-3xl text-slate-900 dark:text-slate-100">
                     {project.title}
                     {project.id === "wanderlust" && (
                       <CodeStashIcon className="text-green-600 dark:text-green-400" />
+                    )}
+                    {project.id === "ideaflow" && (
+                      <SparklesIcon className="text-lime-500 dark:text-lime-400" />
+                    )}
+                    {project.id === "investease" && (
+                      <TrendingUpIcon className="text-emerald-500 dark:text-[#50e0b3]" />
                     )}
                   </h3>
 

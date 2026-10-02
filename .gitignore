@@ -30,3 +30,6 @@ dist-ssr
 .env.development
 .env.production
 
+
+# Build temporary files
+.vite-react-ssg-temp

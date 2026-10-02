@@ -96,7 +96,7 @@ const BlogHome = () => {
                 </div>
 
                 {/* Title & Desc */}
-                <h2 className="text-3xl sm:text-4xl font-bold font-sans text-slate-900 dark:text-white mb-3 leading-tight">
+                <h2 className="text-3xl sm:text-4xl font-heading text-slate-900 dark:text-white mb-3 leading-tight">
                   {post.slug ? (
                     <Link
                       to={`/blog/${post.slug}`}
