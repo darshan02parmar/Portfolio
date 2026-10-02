@@ -42,6 +42,8 @@ const BlogHome = () => {
       <img
         src="/gr1.webp"
         alt="spinning blob"
+        width={400}
+        height={400}
         className="images glow absolute left-[-85px] top-[-95px] z-0 h-[400px] w-[400px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out opacity-80 dark:opacity-40 pointer-events-none"
       />
 

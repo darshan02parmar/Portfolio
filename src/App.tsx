@@ -41,6 +41,8 @@ const SpinningShape = () => (
     src="/gr1.webp"
     alt="spinning blob"
     aria-hidden="true"
+    width={360}
+    height={360}
     className="images glow absolute left-[-105px] top-[-115px] z-[-10] h-[360px] w-[360px] animate-spin animate-duration-[40000ms] animate-infinite animate-ease-in-out opacity-70 md:left-[-85px] md:top-[-95px] md:h-[400px] md:w-[400px] md:opacity-100 dark:opacity-40"
   />
 );

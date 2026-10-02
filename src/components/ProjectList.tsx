@@ -72,9 +72,9 @@ export default function Projects() {
                     <p className="mb-2 text-xl text-slate-700 dark:text-slate-300">
                       {project.description}
                     </p>
-                    <div className="badge-container">
+                    <div className="badge-container min-h-[28px]">
                       {project.badges.map((badge, bIndex) => (
-                        <img key={bIndex} src={badge.src} alt={badge.alt} />
+                        <img key={bIndex} src={badge.src} alt={badge.alt} height="28" />
                       ))}
                     </div>
                   </div>

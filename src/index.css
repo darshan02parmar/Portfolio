@@ -48,11 +48,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  min-height: 28px;
 }
 
 .badge-container img {
   display: inline;
   border-radius: 15px;
+  height: 28px;
 }
 
 #experience-container {
