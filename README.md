@@ -68,44 +68,24 @@ The contact form requires `VITE_WEB3FORMS_ACCESS_KEY`. Set it in a local `.env` 
 
 ---
 
+
 ## 🏗️ Project Structure
 
+Built with Vite + React + TypeScript — organized into a few clear categories rather than a flat file dump:
+
 ```text
-├── public/                 # Static assets (images, fonts, shapes)
-│   ├── favicon.svg         # Brand letter 'D' favicon
-│   ├── DarshanParmar.pdf   # Developer PDF Resume
-│   └── background/         # Gradient overlays and texture images
-├── src/
-│   ├── assets/             # Font styles and images
-│   ├── components/         # Modular React Components
-│   │   ├── AchievementBadge.tsx # Secrets trophy status & tracker
-│   │   ├── CodeBlock.tsx        # Styled markdown syntax viewer
-│   │   ├── CommandPalette.tsx   # Ctrl+K modal quick links
-│   │   ├── ConfettiOverlay.tsx  # God Mode canvas confetti burst
-│   │   ├── Contact.tsx          # Form inputs and Web3Forms action
-│   │   ├── CustomCursor.tsx     # Magnetic pointer tracker
-│   │   ├── DevSandbox.tsx       # Draggable Developer Control Dashboard
-│   │   ├── DevSecretsDrawer.tsx # Active bundle diagnostics panel
-│   │   ├── FloatingShape.tsx    # Wavy background SVG shapes
-│   │   ├── GitRoll.tsx          # Developer grade card
-│   │   ├── Github.tsx           # GitHub contributions calendar
-│   │   ├── GridDistortion.tsx   # Three.js mouse-distortion shader
-│   │   ├── HintModal.tsx        # Clues modal for Easter eggs
-│   │   ├── MatrixRain.tsx       # Matrix rain screen with mouse distortion
-│   │   ├── ProjectDetail.tsx    # Full page case studies
-│   │   ├── ProjectList.tsx      # Cards grid for projects
-│   │   ├── ScrollButton.tsx     # Neo-brutalist scroll-to-top button
-│   │   ├── TechStack.tsx        # Tool category grids
-│   │   ├── WhoamiTerminal.tsx   # Monochromatic command line overlay
-│   │   └── WorkExperience.tsx   # Work history cards
-│   ├── lib/
-│   │   └── aos.tsx              # AOS scroll animations wrapper
-│   ├── App.tsx             # Main App layout, keydown hooks & routing
-│   ├── index.css           # Design tokens, variables, & utility layers
-│   └── main.tsx            # App bootstrap entry
-├── index.html              # HTML shell & SEO meta/open-graph tags
-├── tailwind.config.js      # Custom animations, fonts, and HSL tokens
-└── vite.config.ts          # Vite build and react compiler config
+src/
+├── components/
+│   ├── 🎨 UI & Layout      → ProjectList, ProjectDetail, WorkExperience, TechStack, Contact
+│   ├── 🕹️ Easter Eggs      → MatrixRain, WhoamiTerminal, DevSandbox, ConfettiOverlay, AchievementBadge
+│   ├── ⚙️ Core Experience  → CommandPalette, CustomCursor, GridDistortion, FloatingShape
+│   └── 🧩 Utilities        → CodeBlock, HintModal, DevSecretsDrawer, ScrollButton, Github, GitRoll
+├── lib/           → scroll animation helpers
+├── App.tsx        → layout, routing, global keydown hooks
+└── index.css      → design tokens & utility layers
+```
+
+40+ components total — some build the actual UI, others exist purely for people who go looking.
 ```
 
 ---
