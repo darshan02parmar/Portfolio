@@ -904,9 +904,11 @@ export default function ProjectDetail() {
     investease: "Investment Management Platform",
   };
 
-  const subtitle = shortSubtitles[project.id] || project.oneLinePitch || "Project Showcase";
+  const subtitle =
+    shortSubtitles[project.id] || project.oneLinePitch || "Project Showcase";
   const seoTitle = `${project.title} – ${subtitle} | Darshan Parmar`;
-  const ogImage = study?.mockScreenshots?.[0]?.imgUrl || `/projects/${project.id}.png`;
+  const ogImage =
+    study?.mockScreenshots?.[0]?.imgUrl || `/projects/${project.id}.png`;
 
   return (
     <AOSComponent>

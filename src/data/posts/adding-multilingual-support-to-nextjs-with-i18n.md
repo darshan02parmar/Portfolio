@@ -12,7 +12,7 @@ The short version of what I learned: **good localization is not simply translati
 
 ## What is i18n?
 
-"i18n" is shorthand for *internationalization* – the number 18 represents the letters omitted between the "i" and the "n." It refers to designing software so it *can* support multiple languages and regional formats without structural rewrites.
+"i18n" is shorthand for _internationalization_ – the number 18 represents the letters omitted between the "i" and the "n." It refers to designing software so it _can_ support multiple languages and regional formats without structural rewrites.
 
 i18n is preparation work. It doesn't mean your app speaks five languages; it means your app is architected so that adding a new language is a matter of adding data, not rewriting logic.
 
@@ -20,16 +20,14 @@ i18n is preparation work. It doesn't mean your app speaks five languages; it mea
 
 These two terms get used interchangeably, but they describe different phases:
 
-*   **Internationalization (i18n)** is the engineering work: abstracting text, dates, numbers, and layout so they aren't hardcoded to one language or region.
-    
-*   **Localization (l10n)** is the content work: actually producing translated text, locale-specific formatting, and culturally appropriate content for a target audience.
-    
+- **Internationalization (i18n)** is the engineering work: abstracting text, dates, numbers, and layout so they aren't hardcoded to one language or region.
+- **Localization (l10n)** is the content work: actually producing translated text, locale-specific formatting, and culturally appropriate content for a target audience.
 
 Internationalization is primarily an architectural investment, while localization is repeated as new languages and regions are added. A well-internationalized app makes each new localization cheap.
 
 ## Locale vs Language
 
-A **language** is a language – English, French, Spanish. A **locale** is a language *plus* a region and its conventions: date formats, number formats, currency, and sometimes even word choice (e.g., `en-US` vs `en-GB`).
+A **language** is a language – English, French, Spanish. A **locale** is a language _plus_ a region and its conventions: date formats, number formats, currency, and sometimes even word choice (e.g., `en-US` vs `en-GB`).
 
 This distinction matters because routing, metadata, and formatting logic in most i18n systems operate on locale codes, not just language names. Two locales can share a language but need different formatting rules, and two regions can share formatting conventions but need entirely different translations.
 
@@ -97,26 +95,16 @@ When adding a new locale, the fastest and safest approach is to copy an existing
 
 Rather than one giant translation file, splitting content into **namespaces** keeps things manageable. A namespace groups translations by feature area rather than by page:
 
-*   `common` – shared UI text (buttons, labels, error messages)
-    
-*   `home` – homepage-specific copy
-    
-*   `calculator` – any interactive tool copy
-    
-*   `guides` – long-form content sections
-    
-*   `tools` – utility page copy
-    
-*   `faq` – frequently asked questions
-    
-*   `blog` – blog listing/detail copy
-    
-*   `marketing` – promotional banners, CTAs
-    
-*   `sticky-cta` – persistent call-to-action components
-    
-*   `not-found` – 404 page copy
-    
+- `common` – shared UI text (buttons, labels, error messages)
+- `home` – homepage-specific copy
+- `calculator` – any interactive tool copy
+- `guides` – long-form content sections
+- `tools` – utility page copy
+- `faq` – frequently asked questions
+- `blog` – blog listing/detail copy
+- `marketing` – promotional banners, CTAs
+- `sticky-cta` – persistent call-to-action components
+- `not-found` – 404 page copy
 
 This separation keeps the translation architecture manageable and makes it easier to locate and maintain strings as the application grows.
 
@@ -172,11 +160,13 @@ This is why registering the locale early (step 6) matters so much – it's the s
 The language switcher is a small component, but it's an easy place to forget a locale. It typically maps over the same `locales` array and swaps the locale segment of the current path:
 
 ```tsx
-{locales.map((locale) => (
-  <Link key={locale} href={swapLocale(pathname, locale)}>
-    {localeLabels[locale]}
-  </Link>
-))}
+{
+  locales.map((locale) => (
+    <Link key={locale} href={swapLocale(pathname, locale)}>
+      {localeLabels[locale]}
+    </Link>
+  ));
+}
 ```
 
 Because it reads from the shared `locales` array rather than a hardcoded list, a new locale appears here automatically once registered – one less place to remember to touch manually.
@@ -226,9 +216,7 @@ Adding a locale here means populating a new entry in that record – and, as the
 Two small but important details for multilingual SEO:
 
 1.  **The** `<html lang>` **attribute** should reflect the active locale, so browsers, screen readers, and search engines all know what language the page is in.
-    
 2.  **Open Graph locale metadata** (`og:locale`) tells social platforms and crawlers which language variant they're looking at, which matters for correctly indexing and displaying localized pages.
-    
 
 Because Open Graph expects locale identifiers in a specific format (e.g., `en_US` rather than `en`, or `ur_PK` rather than `ur`), a simple locale-to-metadata mapping is useful:
 
@@ -241,7 +229,11 @@ const OG_LOCALE: Record<Locale, string> = {
 ```
 
 ```tsx
-export async function generateMetadata({ params }: { params: { locale: Locale } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}) {
   return {
     openGraph: { locale: OG_LOCALE[params.locale] },
   };
@@ -287,8 +279,10 @@ Not every piece of content needs to exist for every locale on day one. A sensibl
 
 ```ts
 function getGuide(locale: Locale, slug: string) {
-  return guideContent[locale]?.find((g) => g.slug === slug)
-    ?? guideContent[defaultLocale].find((g) => g.slug === slug);
+  return (
+    guideContent[locale]?.find((g) => g.slug === slug) ??
+    guideContent[defaultLocale].find((g) => g.slug === slug)
+  );
 }
 ```
 
@@ -298,14 +292,10 @@ This decouples "the locale is live" from "every single piece of content is trans
 
 Testing a new locale isn't just eyeballing the homepage. It's worth deliberately checking:
 
-*   The locale's homepage renders with fully translated copy
-    
-*   Nested routes (guides, tools, comparison pages) resolve correctly under the new locale prefix
-    
-*   The language switcher correctly links between locales without losing the current page context
-    
-*   Metadata (`lang`, `og:locale`) reflects the active locale on every route, not just the homepage
-    
+- The locale's homepage renders with fully translated copy
+- Nested routes (guides, tools, comparison pages) resolve correctly under the new locale prefix
+- The language switcher correctly links between locales without losing the current page context
+- Metadata (`lang`, `og:locale`) reflects the active locale on every route, not just the homepage
 
 ## A Realistic Problem-Solving Section
 
@@ -326,10 +316,8 @@ The broader lesson: if a route behaves in a way that contradicts your code – e
 
 Localization work often has dependencies between pieces – shared component translation might need to land before locale-specific content can reference the new keys. I handled this with a mix of standard feature branches and, temporarily, **stacked branches**:
 
-*   A stacked branch is a feature branch built on top of another *unmerged* feature branch, used when work B genuinely depends on work A but A isn't merged yet.
-    
-*   Once the base branch (A) merges into `main`, subsequent work rebases onto `main` directly instead of staying stacked, keeping the branch history simple going forward.
-    
+- A stacked branch is a feature branch built on top of another _unmerged_ feature branch, used when work B genuinely depends on work A but A isn't merged yet.
+- Once the base branch (A) merges into `main`, subsequent work rebases onto `main` directly instead of staying stacked, keeping the branch history simple going forward.
 
 This is a temporary structure, not a permanent workflow – stacking is a tool for a specific dependency window, not a default way of working.
 
@@ -341,39 +329,26 @@ Before opening a pull request, I ran a full TypeScript check and production buil
 
 A few things stuck with me from this work:
 
-*   **Internationalization is an investment you make once; localization is a cost you pay repeatedly.** The better the initial architecture, the cheaper every subsequent language becomes.
-    
-*   **TypeScript's strictness around locale-keyed records is a feature.** It's frustrating in the moment but prevents silent gaps in production.
-    
-*   **Accessibility labels are content, not code.** They deserve the same translation discipline as visible text.
-    
-*   **Fallback behavior matters more than perfection.** Shipping a locale with sensible fallbacks beats waiting for 100% content parity.
-    
-*   **Debug environment issues before logic issues.** A stale cache can look exactly like a routing bug.
-    
+- **Internationalization is an investment you make once; localization is a cost you pay repeatedly.** The better the initial architecture, the cheaper every subsequent language becomes.
+- **TypeScript's strictness around locale-keyed records is a feature.** It's frustrating in the moment but prevents silent gaps in production.
+- **Accessibility labels are content, not code.** They deserve the same translation discipline as visible text.
+- **Fallback behavior matters more than perfection.** Shipping a locale with sensible fallbacks beats waiting for 100% content parity.
+- **Debug environment issues before logic issues.** A stale cache can look exactly like a routing bug.
 
 ## Final Takeaway
 
 Adding a new locale to an already-internationalized app should feel like a data problem, not an engineering problem. If it instead feels like you're rewriting logic, chasing hardcoded strings, or patching routing behavior by hand, that's usually a sign the original i18n architecture has room to improve – because in a well-designed system, language really is just data flowing through the same pipeline every other locale already uses.
 
-* * *
+---
 
 **Technical takeaways:**
 
 1.  Internationalization is architecture; localization is content.
-    
 2.  Locale-based routing needs a single source of truth for supported locales.
-    
 3.  Translation namespaces keep large translation catalogs maintainable.
-    
 4.  Shared components and accessibility labels need translation discipline, not just visible page copy.
-    
 5.  Locale-keyed `Record` types in TypeScript will surface every place a new locale needs data – treat the resulting errors as a checklist, not a nuisance.
-    
 6.  Fallback content lets a locale launch before every piece of content is translated.
-    
 7.  `<html lang>` and `og:locale` metadata matter for both accessibility and SEO.
-    
 8.  Stale development caches can produce misleading routing errors after structural changes – clear them before deep debugging.
-    
 9.  Stacked branches are useful for temporary dependencies between features, not a permanent workflow.
