@@ -132,7 +132,7 @@ export const projects: Project[] = [
     description:
       "A full-stack MERN platform for modern investor self-service and portfolio management.",
     oneLinePitch:
-      "One secure platform for investors to manage portfolios, compliance, and account operations—backed by a powerful administrative workflow.",
+      "One secure platform for investors to manage portfolios, compliance, and account operations–backed by a powerful administrative workflow.",
     longDescription:
       "Built a complete investor operations platform using React, Node.js, Express, and MongoDB Atlas that demonstrates secure JWT authentication, portfolio management, digital KYC, SIP workflows, nominee management, PDF statement generation, and role-based administrator operations. Features real-time portfolio calculations and modular three-tier MERN architecture with reusable service layers. InvestEase demonstrates how fragmented investor services can be unified into a secure, scalable, and user-friendly platform.",
     techStack: [

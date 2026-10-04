@@ -17,7 +17,7 @@ const BlogHome = () => {
         "I'm currently documenting my process of building this portfolio and diving deep into React, Node.js, and modern AI tools. Check back shortly for new content!",
       tags: ["Writing", "In Progress"],
       date: "Coming Soon",
-      readTime: "—",
+      readTime: "–",
     },
     // {
     //     id: "coming-soon-2",
@@ -33,7 +33,7 @@ const BlogHome = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-lime-200 transition-colors duration-300 relative overflow-hidden font-sans">
       <SEO
-        title="Blog | Darshan Parmar — Software & Full-Stack Development"
+        title="Blog | Darshan Parmar – Software & Full-Stack Development"
         description="Articles and notes on web development, React, Next.js, TypeScript, AI, and things I learn while building software."
         canonical="/blog"
       />

@@ -905,7 +905,7 @@ export default function ProjectDetail() {
   };
 
   const subtitle = shortSubtitles[project.id] || project.oneLinePitch || "Project Showcase";
-  const seoTitle = `${project.title} — ${subtitle} | Darshan Parmar`;
+  const seoTitle = `${project.title} – ${subtitle} | Darshan Parmar`;
   const ogImage = study?.mockScreenshots?.[0]?.imgUrl || `/projects/${project.id}.png`;
 
   return (

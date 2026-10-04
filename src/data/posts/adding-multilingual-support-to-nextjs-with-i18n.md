@@ -6,13 +6,13 @@ A practical deep dive into i18n, locale routing, translation architecture, TypeS
 
 Recently, I worked on adding a new language to an existing Next.js application that already supported multiple locales. On paper, "add a language" sounds like a translation task. In practice, it touched routing, TypeScript types, content architecture, accessibility, SEO metadata, and even the Git workflow I used to ship the change safely.
 
-This article walks through that process — not as a case study of a specific product, but as a general implementation guide for anyone about to do the same thing. The tools involved were Next.js, TypeScript, and a JSON-based translation system, but the underlying ideas apply regardless of framework.
+This article walks through that process – not as a case study of a specific product, but as a general implementation guide for anyone about to do the same thing. The tools involved were Next.js, TypeScript, and a JSON-based translation system, but the underlying ideas apply regardless of framework.
 
 The short version of what I learned: **good localization is not simply translating strings. It is designing the application so language becomes data rather than application logic.**
 
 ## What is i18n?
 
-"i18n" is shorthand for *internationalization* — the number 18 represents the letters omitted between the "i" and the "n." It refers to designing software so it *can* support multiple languages and regional formats without structural rewrites.
+"i18n" is shorthand for *internationalization* – the number 18 represents the letters omitted between the "i" and the "n." It refers to designing software so it *can* support multiple languages and regional formats without structural rewrites.
 
 i18n is preparation work. It doesn't mean your app speaks five languages; it means your app is architected so that adding a new language is a matter of adding data, not rewriting logic.
 
@@ -29,7 +29,7 @@ Internationalization is primarily an architectural investment, while localizatio
 
 ## Locale vs Language
 
-A **language** is a language — English, French, Spanish. A **locale** is a language *plus* a region and its conventions: date formats, number formats, currency, and sometimes even word choice (e.g., `en-US` vs `en-GB`).
+A **language** is a language – English, French, Spanish. A **locale** is a language *plus* a region and its conventions: date formats, number formats, currency, and sometimes even word choice (e.g., `en-US` vs `en-GB`).
 
 This distinction matters because routing, metadata, and formatting logic in most i18n systems operate on locale codes, not just language names. Two locales can share a language but need different formatting rules, and two regions can share formatting conventions but need entirely different translations.
 
@@ -55,7 +55,7 @@ Localized UI
 Localized Metadata / SEO
 ```
 
-Every layer in this pipeline needs to know about the new locale, or the chain breaks silently somewhere — usually manifesting as English text leaking into a translated page, or a route that 404s despite looking correct.
+Every layer in this pipeline needs to know about the new locale, or the chain breaks silently somewhere – usually manifesting as English text leaking into a translated page, or a route that 404s despite looking correct.
 
 ## Registering a New Locale
 
@@ -91,31 +91,31 @@ messages/
     calculator.json
 ```
 
-When adding a new locale, the fastest and safest approach is to copy an existing locale's directory structure and use it as the schema. The English (or any complete locale's) files become the reference for which keys must exist — you're not guessing at structure, you're matching it.
+When adding a new locale, the fastest and safest approach is to copy an existing locale's directory structure and use it as the schema. The English (or any complete locale's) files become the reference for which keys must exist – you're not guessing at structure, you're matching it.
 
 ## Translation Namespaces
 
 Rather than one giant translation file, splitting content into **namespaces** keeps things manageable. A namespace groups translations by feature area rather than by page:
 
-*   `common` — shared UI text (buttons, labels, error messages)
+*   `common` – shared UI text (buttons, labels, error messages)
     
-*   `home` — homepage-specific copy
+*   `home` – homepage-specific copy
     
-*   `calculator` — any interactive tool copy
+*   `calculator` – any interactive tool copy
     
-*   `guides` — long-form content sections
+*   `guides` – long-form content sections
     
-*   `tools` — utility page copy
+*   `tools` – utility page copy
     
-*   `faq` — frequently asked questions
+*   `faq` – frequently asked questions
     
-*   `blog` — blog listing/detail copy
+*   `blog` – blog listing/detail copy
     
-*   `marketing` — promotional banners, CTAs
+*   `marketing` – promotional banners, CTAs
     
-*   `sticky-cta` — persistent call-to-action components
+*   `sticky-cta` – persistent call-to-action components
     
-*   `not-found` — 404 page copy
+*   `not-found` – 404 page copy
     
 
 This separation keeps the translation architecture manageable and makes it easier to locate and maintain strings as the application grows.
@@ -143,7 +143,7 @@ export const catalogs = {
 } as const;
 ```
 
-In this implementation, the message loader explicitly assembles the translation catalog for each supported locale. Adding a locale therefore requires wiring its namespaces into the catalog — there's no implicit discovery step, which makes it very clear, at a glance, exactly which namespaces exist for which locales, at the cost of needing to touch this file for every new locale or namespace.
+In this implementation, the message loader explicitly assembles the translation catalog for each supported locale. Adding a locale therefore requires wiring its namespaces into the catalog – there's no implicit discovery step, which makes it very clear, at a glance, exactly which namespaces exist for which locales, at the cost of needing to touch this file for every new locale or namespace.
 
 ## Locale-Based Routing
 
@@ -165,7 +165,7 @@ export function generateStaticParams() {
 }
 ```
 
-This is why registering the locale early (step 6) matters so much — it's the single source of truth that both routing and static generation depend on.
+This is why registering the locale early (step 6) matters so much – it's the single source of truth that both routing and static generation depend on.
 
 ## Building the Language Switcher
 
@@ -179,11 +179,11 @@ The language switcher is a small component, but it's an easy place to forget a l
 ))}
 ```
 
-Because it reads from the shared `locales` array rather than a hardcoded list, a new locale appears here automatically once registered — one less place to remember to touch manually.
+Because it reads from the shared `locales` array rather than a hardcoded list, a new locale appears here automatically once registered – one less place to remember to touch manually.
 
 ## Localizing Shared Components
 
-Shared components — buttons, modals, form validation messages — are often the last place hardcoded strings hide, because they were written early in a project's life before i18n existed. Converting them means replacing literal strings with translation lookups:
+Shared components – buttons, modals, form validation messages – are often the last place hardcoded strings hide, because they were written early in a project's life before i18n existed. Converting them means replacing literal strings with translation lookups:
 
 ```tsx
 // Before
@@ -197,7 +197,7 @@ This is tedious but mechanical work. The payoff is that any future locale gets t
 
 ## Localizing Accessibility Labels
 
-It's easy to translate visible text and forget `aria-label`, `alt`, and `title` attributes. These are just as user-facing as visible text — arguably more important, since screen reader users depend entirely on them:
+It's easy to translate visible text and forget `aria-label`, `alt`, and `title` attributes. These are just as user-facing as visible text – arguably more important, since screen reader users depend entirely on them:
 
 ```tsx
 <button aria-label={t("common.closeMenu")}>
@@ -209,7 +209,7 @@ Treating accessibility strings as translation keys from the start, rather than a
 
 ## Localizing Structured Application Content
 
-Beyond simple string translation, some content is structured data — calculator configurations, guide content, region-specific information, comparison tables. This content typically lives in its own locale-aware content registry rather than a flat JSON file, because it may include nested objects, arrays, or references between entries:
+Beyond simple string translation, some content is structured data – calculator configurations, guide content, region-specific information, comparison tables. This content typically lives in its own locale-aware content registry rather than a flat JSON file, because it may include nested objects, arrays, or references between entries:
 
 ```ts
 export const guideContent: Record<Locale, GuideEntry[]> = {
@@ -219,7 +219,7 @@ export const guideContent: Record<Locale, GuideEntry[]> = {
 };
 ```
 
-Adding a locale here means populating a new entry in that record — and, as the next section covers, that's exactly where TypeScript starts to become both a helpful guardrail and a source of friction.
+Adding a locale here means populating a new entry in that record – and, as the next section covers, that's exactly where TypeScript starts to become both a helpful guardrail and a source of friction.
 
 ## Metadata, HTML lang, and SEO
 
@@ -252,11 +252,11 @@ export async function generateMetadata({ params }: { params: { locale: Locale } 
 <html lang={locale}>
 ```
 
-For a production multilingual site, `hreflang` alternates are another important SEO consideration to evaluate alongside localized routes — they help search engines understand that `/en/guides/x` and `/fr/guides/x` are the same content in different languages, rather than duplicate content.
+For a production multilingual site, `hreflang` alternates are another important SEO consideration to evaluate alongside localized routes – they help search engines understand that `/en/guides/x` and `/fr/guides/x` are the same content in different languages, rather than duplicate content.
 
 ## TypeScript Challenges When Adding a Locale
 
-This was the part I underestimated. In a well-typed i18n setup, the `Locale` union type isn't just used for routing — it propagates into every `Record<Locale, ...>` structure across the codebase: content maps, configuration objects, translation schemas.
+This was the part I underestimated. In a well-typed i18n setup, the `Locale` union type isn't just used for routing – it propagates into every `Record<Locale, ...>` structure across the codebase: content maps, configuration objects, translation schemas.
 
 ```ts
 export const locales = ["en", "fr", "es"] as const;
@@ -279,7 +279,7 @@ export const locales = ["en", "fr", "es", "de"] as const;
 // '{ en: string; fr: string; es: string; }'
 ```
 
-The upside is that this is a feature, not a bug — the compiler surfaces every place a new locale needs data, rather than letting it silently fall through at runtime. The downside is that a single locale addition can produce a cascade of type errors across content registries, config objects, and test fixtures, all of which need to be resolved before the build passes. Budget real time for this step; it's rarely a one-line change.
+The upside is that this is a feature, not a bug – the compiler surfaces every place a new locale needs data, rather than letting it silently fall through at runtime. The downside is that a single locale addition can produce a cascade of type errors across content registries, config objects, and test fixtures, all of which need to be resolved before the build passes. Budget real time for this step; it's rarely a one-line change.
 
 ## Fallback Strategy
 
@@ -292,7 +292,7 @@ function getGuide(locale: Locale, slug: string) {
 }
 ```
 
-This decouples "the locale is live" from "every single piece of content is translated," which is usually the more realistic rollout path — ship the shell and core pages first, backfill long-tail content over time.
+This decouples "the locale is live" from "every single piece of content is translated," which is usually the more realistic rollout path – ship the shell and core pages first, backfill long-tail content over time.
 
 ## Testing a New Locale
 
@@ -311,7 +311,7 @@ Testing a new locale isn't just eyeballing the homepage. It's worth deliberately
 
 Midway through testing, a route that should have worked kept returning a 404, despite the locale being registered correctly and the page file existing in the right place. The routing config was correct; the file structure was correct. The page just wasn't resolving.
 
-The cause turned out to be a **stale development cache**. Next.js's development server (particularly with Turbopack) caches route and build information in a `.next` directory to speed up rebuilds. When route configuration changes significantly — like adding a new locale segment — that cache can become stale and serve outdated route-resolution data, producing a 404 for a route that is, in fact, valid.
+The cause turned out to be a **stale development cache**. Next.js's development server (particularly with Turbopack) caches route and build information in a `.next` directory to speed up rebuilds. When route configuration changes significantly – like adding a new locale segment – that cache can become stale and serve outdated route-resolution data, producing a 404 for a route that is, in fact, valid.
 
 The fix was straightforward once identified: stop the dev server, clear the `.next` cache, and restart.
 
@@ -320,22 +320,22 @@ rm -rf .next
 npm run dev
 ```
 
-The broader lesson: if a route behaves in a way that contradicts your code — especially right after a structural change like adding a locale — a stale cache is worth ruling out before assuming the routing logic itself is wrong. It's a cheap check that can save a lot of time spent debugging code that was never actually broken.
+The broader lesson: if a route behaves in a way that contradicts your code – especially right after a structural change like adding a locale – a stale cache is worth ruling out before assuming the routing logic itself is wrong. It's a cheap check that can save a lot of time spent debugging code that was never actually broken.
 
 ## Git Workflow for Localization Features
 
-Localization work often has dependencies between pieces — shared component translation might need to land before locale-specific content can reference the new keys. I handled this with a mix of standard feature branches and, temporarily, **stacked branches**:
+Localization work often has dependencies between pieces – shared component translation might need to land before locale-specific content can reference the new keys. I handled this with a mix of standard feature branches and, temporarily, **stacked branches**:
 
 *   A stacked branch is a feature branch built on top of another *unmerged* feature branch, used when work B genuinely depends on work A but A isn't merged yet.
     
 *   Once the base branch (A) merges into `main`, subsequent work rebases onto `main` directly instead of staying stacked, keeping the branch history simple going forward.
     
 
-This is a temporary structure, not a permanent workflow — stacking is a tool for a specific dependency window, not a default way of working.
+This is a temporary structure, not a permanent workflow – stacking is a tool for a specific dependency window, not a default way of working.
 
 Commits throughout were **GPG-signed**, so GitHub could display them as verified. This isn't specific to localization work, but it's good practice for any change touching shared, security-sensitive, or widely-depended-upon code paths.
 
-Before opening a pull request, I ran a full TypeScript check and production build locally — catching the `Record<Locale, ...>` gaps mentioned earlier before they became CI failures.
+Before opening a pull request, I ran a full TypeScript check and production build locally – catching the `Record<Locale, ...>` gaps mentioned earlier before they became CI failures.
 
 ## What I Learned
 
@@ -354,7 +354,7 @@ A few things stuck with me from this work:
 
 ## Final Takeaway
 
-Adding a new locale to an already-internationalized app should feel like a data problem, not an engineering problem. If it instead feels like you're rewriting logic, chasing hardcoded strings, or patching routing behavior by hand, that's usually a sign the original i18n architecture has room to improve — because in a well-designed system, language really is just data flowing through the same pipeline every other locale already uses.
+Adding a new locale to an already-internationalized app should feel like a data problem, not an engineering problem. If it instead feels like you're rewriting logic, chasing hardcoded strings, or patching routing behavior by hand, that's usually a sign the original i18n architecture has room to improve – because in a well-designed system, language really is just data flowing through the same pipeline every other locale already uses.
 
 * * *
 
@@ -368,12 +368,12 @@ Adding a new locale to an already-internationalized app should feel like a data 
     
 4.  Shared components and accessibility labels need translation discipline, not just visible page copy.
     
-5.  Locale-keyed `Record` types in TypeScript will surface every place a new locale needs data — treat the resulting errors as a checklist, not a nuisance.
+5.  Locale-keyed `Record` types in TypeScript will surface every place a new locale needs data – treat the resulting errors as a checklist, not a nuisance.
     
 6.  Fallback content lets a locale launch before every piece of content is translated.
     
 7.  `<html lang>` and `og:locale` metadata matter for both accessibility and SEO.
     
-8.  Stale development caches can produce misleading routing errors after structural changes — clear them before deep debugging.
+8.  Stale development caches can produce misleading routing errors after structural changes – clear them before deep debugging.
     
 9.  Stacked branches are useful for temporary dependencies between features, not a permanent workflow.
