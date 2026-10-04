@@ -16,15 +16,15 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
   - Shows professional milestones in chronological order with primary job titles and customized tech-stack badges.
 - **Developer Easter Eggs & Achievements System**:
   - **🏆 Secrets Progress Badge**: A floating golden trophy widget (`🏆 X/5 Secrets Found`) tracking unlocked secrets with a neo-brutalist checklist tooltip, persistent via `localStorage`.
-  - **🛠️ God Mode Developer Sandbox** (*Triggered by typing `konami` or keyboard arrows: `↑ ↑ ↓ ↓ ← → ← → B A`*): Opens an interactive, draggable control panel enabling recruiters to inspect:
-    - *Wireframe Blueprint Mode*: Outlines all DOM elements with dashed green strokes.
-    - *Page Editor*: Sets `designMode = 'on'` to edit any text directly on the page.
-    - *Slow Motion*: Runs transitions/animations at 0.2x speed.
-    - *Click to Explode*: Explodes page elements (they fly away in random directions with an 8-bit synth sound effect).
-    - *Accent Hue Customizer*: Rotates the HSL color palette of the entire UI, leaving images natural.
-  - **📟 Neo Matrix Rain Console** (*Triggered by typing `matrix` or `neo`*): Blackout digital rain streams showing a typewriter intro, responsive mouse force distortion (brighten, bend, repel), and a typewriter exit sequence ("*Disconnecting... Reality restored.*").
-  - **🖥️ CRT Whoami Terminal** (*Triggered by typing `darshan`*): Retro monochrome hacker terminal printing developer profile info.
-  - **📊 Diagnostic Console** (*Triggered by typing `secrets`*): Neon-themed drawer reporting active bundle diagnostics and frequencies.
+  - **🛠️ God Mode Developer Sandbox** (_Triggered by typing `konami` or keyboard arrows: `↑ ↑ ↓ ↓ ← → ← → B A`_): Opens an interactive, draggable control panel enabling recruiters to inspect:
+    - _Wireframe Blueprint Mode_: Outlines all DOM elements with dashed green strokes.
+    - _Page Editor_: Sets `designMode = 'on'` to edit any text directly on the page.
+    - _Slow Motion_: Runs transitions/animations at 0.2x speed.
+    - _Click to Explode_: Explodes page elements (they fly away in random directions with an 8-bit synth sound effect).
+    - _Accent Hue Customizer_: Rotates the HSL color palette of the entire UI, leaving images natural.
+  - **📟 Neo Matrix Rain Console** (_Triggered by typing `matrix` or `neo`_): Blackout digital rain streams showing a typewriter intro, responsive mouse force distortion (brighten, bend, repel), and a typewriter exit sequence ("_Disconnecting... Reality restored._").
+  - **🖥️ CRT Whoami Terminal** (_Triggered by typing `darshan`_): Retro monochrome hacker terminal printing developer profile info.
+  - **📊 Diagnostic Console** (_Triggered by typing `secrets`_): Neon-themed drawer reporting active bundle diagnostics and frequencies.
 - **Live Integrations**:
   - **GitHub Calendar**: Live contribution graph showing yearly Git commits.
   - **GitRoll Card**: Live developer skill ratings badge.
@@ -38,6 +38,7 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **React 19** - UI Library
 - **Vite 7** - Ultra-fast bundler and dev server
 - **TypeScript** - Type-safe programming
@@ -51,19 +52,23 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 - **React Helmet Async** - Page metadata and document SEO
 
 ### Backend & APIs
+
 - **Web3Forms** - Secure, serverless email delivery
 - **GitHub API** - Repository contribution data fetching
 - **Web Audio API** - Oscillator synthesis for retro sound effects
 
 ### Performance & PWA
+
 - **WebP** - Compressed background and decorative image assets
 - **Web App Manifest** - Installable portfolio experience with branded icons
 
 ### Development & Linters
+
 - **ESLint** & **TypeScript-ESLint** - Code quality enforcement
 - **PostCSS** & **Autoprefixer** - CSS compilation and vendor prefixing
 
 ### Contact Form Setup
+
 The contact form requires `VITE_WEB3FORMS_ACCESS_KEY`. Set it in a local `.env` file for development and in the Vercel project's Environment Variables for each deployment environment you use. Vite embeds `VITE_*` values during the build, so redeploy after changing the key.
 
 ---
@@ -120,8 +125,6 @@ The contact form requires `VITE_WEB3FORMS_ACCESS_KEY`. Set it in a local `.env` 
 
 ---
 
-
-
 ## 🤝 Contact
 
 - **Website**: [darshan.dev](https://darshan-parmar.vercel.app/)
@@ -134,16 +137,16 @@ The contact form requires `VITE_WEB3FORMS_ACCESS_KEY`. Set it in a local `.env` 
 
 The portfolio currently includes two bundled developer articles:
 
-- **Adding Multilingual Support to Next.js with i18n** — locale routing, translations, accessibility, TypeScript, and SEO.
-- **How to Structure a Full-Stack Next.js Project for Production** — routing, server/client boundaries, services, configuration, security, and observability.
+- **Adding Multilingual Support to Next.js with i18n** – locale routing, translations, accessibility, TypeScript, and SEO.
+- **How to Structure a Full-Stack Next.js Project for Production** – routing, server/client boundaries, services, configuration, security, and observability.
 
 Article metadata lives in `src/data/blogs.ts`, while the Markdown source is stored in `src/data/posts/` and imported at build time for reliable static deployments.
 
 ## Available scripts
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the Vite development server |
-| `npm run build` | Generate the production static build |
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the Vite development server    |
+| `npm run build`   | Generate the production static build |
 | `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint across the project |
+| `npm run lint`    | Run ESLint across the project        |
