@@ -61,4 +61,24 @@ export const blogs: BlogPostMeta[] = [
       { id: "observability", title: "Observability" },
     ],
   },
+  {
+    id: "3",
+    slug: "ai-design-to-production-ready-nextjs",
+    title: "AI Design to Production-Ready Next.js",
+    series: "BUILD LOG #003",
+    description:
+      "From product idea to a polished production-ready app: balancing AI-driven design decisions, product thinking, and clean frontend architecture in Next.js.",
+    tags: ["AI", "Next.js", "Design", "Production", "Product"],
+    date: "Oct 08, 2026",
+    readTime: "9 min read",
+    hashnodeUrl: "https://darshan-builds.hashnode.dev/ai-design-to-production-ready-nextjs",
+    sections: [
+      { id: "introduction", title: "Introduction" },
+      { id: "design-system", title: "Design System" },
+      { id: "product-thinking", title: "Product Thinking" },
+      { id: "nextjs-implementation", title: "Next.js Implementation" },
+      { id: "ai-workflows", title: "AI Workflows" },
+      { id: "shipping", title: "Shipping" },
+    ],
+  },
 ];

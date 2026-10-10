@@ -6,29 +6,7 @@ import TiltCard from "./TiltCard";
 import SEO from "./SEO";
 
 const BlogHome = () => {
-  const latestPosts = [
-    blogs[0],
-    blogs[1],
-    {
-      id: "coming-soon-1",
-      slug: "",
-      title: "More Engineering Notes Coming Soon",
-      description:
-        "I'm currently documenting my process of building this portfolio and diving deep into React, Node.js, and modern AI tools. Check back shortly for new content!",
-      tags: ["Writing", "In Progress"],
-      date: "Coming Soon",
-      readTime: "–",
-    },
-    // {
-    //     id: "coming-soon-2",
-    //     slug: "",
-    //     title: "",
-    //     description: "  ",
-    //     tags: [],
-    //     date: "Coming Soon",
-    //     readTime: "—"
-    // }
-  ];
+  const latestPosts = blogs.slice(0, 3);
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-lime-200 transition-colors duration-300 relative overflow-hidden font-sans">
@@ -97,7 +75,16 @@ const BlogHome = () => {
 
                 {/* Title & Desc */}
                 <h2 className="text-3xl sm:text-4xl font-heading text-slate-900 dark:text-white mb-3 leading-tight">
-                  {post.slug ? (
+                  {post.hashnodeUrl ? (
+                    <a
+                      href={post.hashnodeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+                    >
+                      {post.title}
+                    </a>
+                  ) : post.slug ? (
                     <Link
                       to={`/blog/${post.slug}`}
                       className="hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
@@ -126,15 +113,26 @@ const BlogHome = () => {
                   ))}
                 </div>
 
-                {/* Read More Button (Only if slug exists) */}
-                {post.slug && (
+                {/* Read More Button */}
+                {(post.slug || post.hashnodeUrl) && (
                   <div className="mt-auto">
-                    <Link
-                      to={`/blog/${post.slug}`}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 text-white px-5 py-2 font-medium text-sm transition-transform hover:-translate-y-0.5 active:translate-y-0 w-fit shadow-[4px_4px_0px_0px_#a3e635] dark:shadow-[4px_4px_0px_0px_#a3e635] border border-slate-900"
-                    >
-                      Read More <ExternalLink size={14} />
-                    </Link>
+                    {post.hashnodeUrl ? (
+                      <a
+                        href={post.hashnodeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 text-white px-5 py-2 font-medium text-sm transition-transform hover:-translate-y-0.5 active:translate-y-0 w-fit shadow-[4px_4px_0px_0px_#a3e635] dark:shadow-[4px_4px_0px_0px_#a3e635] border border-slate-900"
+                      >
+                        Read More <ExternalLink size={14} />
+                      </a>
+                    ) : (
+                      <Link
+                        to={`/blog/${post.slug}`}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 text-white px-5 py-2 font-medium text-sm transition-transform hover:-translate-y-0.5 active:translate-y-0 w-fit shadow-[4px_4px_0px_0px_#a3e635] dark:shadow-[4px_4px_0px_0px_#a3e635] border border-slate-900"
+                      >
+                        Read More <ExternalLink size={14} />
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>

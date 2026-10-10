@@ -13,27 +13,49 @@ const LatestPosts = () => {
       </h2>
 
       <div className="flex flex-col gap-6">
-        {recentBlogs.map((post) => (
-          <Link
-            key={post.id}
-            to={`/blog/${post.slug}`}
-            className="group flex flex-col justify-between rounded-[32px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-8 shadow-[6px_6px_0px_0px_#1e293b] dark:shadow-[6px_6px_0px_0px_#f1f5f9] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-          >
-            <div>
-              <h3 className="font-heading text-2xl text-slate-900 dark:text-white mb-3 group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
-                {post.title}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-6 line-clamp-2">
-                {post.description}
-              </p>
-            </div>
-            <div className="text-slate-500 font-mono text-xs flex items-center gap-3">
-              <span>{post.date}</span>
-              <span className="w-1 h-1 rounded-full bg-slate-400"></span>
-              <span>{post.readTime}</span>
-            </div>
-          </Link>
-        ))}
+        {recentBlogs.map((post) => {
+          const cardContent = (
+            <>
+              <div>
+                <h3 className="font-heading text-2xl text-slate-900 dark:text-white mb-3 group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+                  {post.title}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 mb-6 line-clamp-2">
+                  {post.description}
+                </p>
+              </div>
+              <div className="text-slate-500 font-mono text-xs flex items-center gap-3">
+                <span>{post.date}</span>
+                <span className="w-1 h-1 rounded-full bg-slate-400"></span>
+                <span>{post.readTime}</span>
+              </div>
+            </>
+          );
+
+          if (post.hashnodeUrl) {
+            return (
+              <a
+                key={post.id}
+                href={post.hashnodeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col justify-between rounded-[32px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-8 shadow-[6px_6px_0px_0px_#1e293b] dark:shadow-[6px_6px_0px_0px_#f1f5f9] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+              >
+                {cardContent}
+              </a>
+            );
+          }
+
+          return (
+            <Link
+              key={post.id}
+              to={`/blog/${post.slug}`}
+              className="group flex flex-col justify-between rounded-[32px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-8 shadow-[6px_6px_0px_0px_#1e293b] dark:shadow-[6px_6px_0px_0px_#f1f5f9] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+            >
+              {cardContent}
+            </Link>
+          );
+        })}
 
         <Link
           to="/blog"
