@@ -71,7 +71,8 @@ export const blogs: BlogPostMeta[] = [
     tags: ["AI", "Next.js", "Design", "Production", "Product"],
     date: "Oct 08, 2026",
     readTime: "9 min read",
-    hashnodeUrl: "https://darshan-builds.hashnode.dev/ai-design-to-production-ready-nextjs",
+    hashnodeUrl:
+      "https://darshan-builds.hashnode.dev/ai-design-to-production-ready-nextjs",
     sections: [
       { id: "introduction", title: "Introduction" },
       { id: "design-system", title: "Design System" },
