@@ -11,7 +11,7 @@ const HomePageJsonLd = () => {
     sameAs: [
       "https://github.com/darshan02parmar",
       "https://linkedin.com/in/parmar-darshan",
-      "https://twitter.com/darshan02parmar",
+      "https://x.com/darshan_p0302",
       "https://darshan-builds.hashnode.dev/",
       "https://gitroll.io/profile/uiFTdl9Q6LlQiYvD1CGbe8avuasm1",
     ],

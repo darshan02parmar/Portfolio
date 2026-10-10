@@ -111,7 +111,7 @@ src/
 - **Email**: [darshanparmar0302@gmail.com](mailto:darshanparmar0302@gmail.com)
 - **GitHub**: [@darshan02parmar](https://github.com/darshan02parmar)
 - **LinkedIn**: [Parmar Darshan](https://linkedin.com/in/parmar-darshan)
-- **Twitter**: [@darshan02parmar](https://twitter.com/darshan02parmar)
+- **X**: [@darshan_p0302](https://x.com/darshan_p0302)
 
 ## Blog content
 

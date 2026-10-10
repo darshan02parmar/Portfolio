@@ -145,12 +145,12 @@ const BlogHome = () => {
       <footer className="text-center pb-24 px-6 text-slate-500 dark:text-slate-400 text-sm font-medium relative z-10">
         More posts coming soon! Follow me on{" "}
         <a
-          href="https://twitter.com/darshanparmar03"
+          href="https://x.com/darshan_p0302"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:text-slate-900 dark:hover:text-white transition-colors text-slate-700 dark:text-slate-300"
         >
-          Twitter
+          X
         </a>{" "}
         for updates.
       </footer>

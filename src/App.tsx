@@ -184,9 +184,9 @@ const Home = ({
             <LinkedinIcon className="h-8 w-8" />
           </a>
           <a
-            href="https://twitter.com/darshan02parmar"
+            href="https://x.com/darshan_p0302"
             target="_blank"
-            aria-label="Twitter"
+            aria-label="X"
             className="inline-flex h-11 w-11 items-center justify-center"
           >
             <TwitterIcon className="h-8 w-8" />
