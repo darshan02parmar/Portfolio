@@ -94,6 +94,23 @@ src/
 ```
 
 ---
+## Blog content
+
+The portfolio currently includes two bundled developer articles:
+
+- **Adding Multilingual Support to Next.js with i18n** – locale routing, translations, accessibility, TypeScript, and SEO.
+- **How to Structure a Full-Stack Next.js Project for Production** – routing, server/client boundaries, services, configuration, security, and observability.
+
+Article metadata lives in `src/data/blogs.ts`, while the Markdown source is stored in `src/data/posts/` and imported at build time for reliable static deployments.
+
+## Available scripts
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the Vite development server    |
+| `npm run build`   | Generate the production static build |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint`    | Run ESLint across the project        |
 
 ## 🎨 Design System
 
@@ -113,20 +130,4 @@ src/
 - **LinkedIn**: [Parmar Darshan](https://linkedin.com/in/parmar-darshan)
 - **X**: [@darshan_p0302](https://x.com/darshan_p0302)
 
-## Blog content
 
-The portfolio currently includes two bundled developer articles:
-
-- **Adding Multilingual Support to Next.js with i18n** – locale routing, translations, accessibility, TypeScript, and SEO.
-- **How to Structure a Full-Stack Next.js Project for Production** – routing, server/client boundaries, services, configuration, security, and observability.
-
-Article metadata lives in `src/data/blogs.ts`, while the Markdown source is stored in `src/data/posts/` and imported at build time for reliable static deployments.
-
-## Available scripts
-
-| Command           | Description                          |
-| ----------------- | ------------------------------------ |
-| `npm run dev`     | Start the Vite development server    |
-| `npm run build`   | Generate the production static build |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint`    | Run ESLint across the project        |
