@@ -4,7 +4,7 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 
 ---
 
-## ✨ Features
+## Features
 
 - **Modern Split-Screen Layout**: Fixed Left Branding panel coupled with a smooth-scrolling Right Content section, responsive for mobile and desktop viewports.
 - **Three.js Visual Effects**: A WebGL-powered custom shader grid distortion hero image that reacts dynamically to mouse movement.
@@ -15,8 +15,8 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
   - Structured, responsive timeline with clean neo-brutalist connector bars and interactive tilt vectors.
   - Shows professional milestones in chronological order with primary job titles and customized tech-stack badges.
 - **Developer Easter Eggs & Achievements System**:
-  - **🏆 Secrets Progress Badge**: A floating golden trophy widget (`🏆 X/5 Secrets Found`) tracking unlocked secrets with a neo-brutalist checklist tooltip, persistent via `localStorage`.
-  - **🛠️ God Mode Developer Sandbox** (_Triggered by typing `konami` or keyboard arrows: `↑ ↑ ↓ ↓ ← → ← → B A`_): Opens an interactive, draggable control panel enabling recruiters to inspect:
+  - ** Secrets Progress Badge**: A floating golden trophy widget (`🏆 X/5 Secrets Found`) tracking unlocked secrets with a neo-brutalist checklist tooltip, persistent via `localStorage`.
+  - ** God Mode Developer Sandbox** (_Triggered by typing `konami` or keyboard arrows: `↑ ↑ ↓ ↓ ← → ← → B A`_): Opens an interactive, draggable control panel enabling recruiters to inspect:
     - _Wireframe Blueprint Mode_: Outlines all DOM elements with dashed green strokes.
     - _Page Editor_: Sets `designMode = 'on'` to edit any text directly on the page.
     - _Slow Motion_: Runs transitions/animations at 0.2x speed.
