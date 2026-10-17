@@ -51,13 +51,6 @@ const BlogPost = () => {
   const showMorePosts = false;
   const renderedContent = normalizeMarkdown(content);
 
-  if (post && !content && post.hashnodeUrl) {
-    if (typeof window !== "undefined") {
-      window.location.assign(post.hashnodeUrl);
-    }
-    return null;
-  }
-
   // Reading progress
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -276,7 +269,7 @@ const BlogPost = () => {
                   },
                 }}
               >
-                {renderedContent || "Loading content..."}
+                {renderedContent || post.description}
               </ReactMarkdown>
             </div>
           </div>

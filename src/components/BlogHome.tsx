@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { blogs } from "../data/blogs";
-import { ArrowLeft, ExternalLink, Calendar } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
 import FloatingShape from "./FloatingShape";
 import TiltCard from "./TiltCard";
 import SEO from "./SEO";
@@ -75,27 +75,12 @@ const BlogHome = () => {
 
                 {/* Title & Desc */}
                 <h2 className="text-3xl sm:text-4xl font-heading text-slate-900 dark:text-white mb-3 leading-tight">
-                  {post.hashnodeUrl ? (
-                    <a
-                      href={post.hashnodeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
-                    >
-                      {post.title}
-                    </a>
-                  ) : post.slug ? (
-                    <Link
-                      to={`/blog/${post.slug}`}
-                      className="hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
-                    >
-                      {post.title}
-                    </Link>
-                  ) : (
-                    <span className="text-slate-900 dark:text-white">
-                      {post.title}
-                    </span>
-                  )}
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+                  >
+                    {post.title}
+                  </Link>
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 text-lg sm:text-xl mb-5 leading-relaxed">
                   {post.description}
@@ -114,27 +99,14 @@ const BlogHome = () => {
                 </div>
 
                 {/* Read More Button */}
-                {(post.slug || post.hashnodeUrl) && (
-                  <div className="mt-auto">
-                    {post.hashnodeUrl ? (
-                      <a
-                        href={post.hashnodeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 text-white px-5 py-2 font-medium text-sm transition-transform hover:-translate-y-0.5 active:translate-y-0 w-fit shadow-[4px_4px_0px_0px_#a3e635] dark:shadow-[4px_4px_0px_0px_#a3e635] border border-slate-900"
-                      >
-                        Read More <ExternalLink size={14} />
-                      </a>
-                    ) : (
-                      <Link
-                        to={`/blog/${post.slug}`}
-                        className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 text-white px-5 py-2 font-medium text-sm transition-transform hover:-translate-y-0.5 active:translate-y-0 w-fit shadow-[4px_4px_0px_0px_#a3e635] dark:shadow-[4px_4px_0px_0px_#a3e635] border border-slate-900"
-                      >
-                        Read More <ExternalLink size={14} />
-                      </Link>
-                    )}
-                  </div>
-                )}
+                <div className="mt-auto">
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 text-white px-5 py-2 font-medium text-sm transition-transform hover:-translate-y-0.5 active:translate-y-0 w-fit shadow-[4px_4px_0px_0px_#a3e635] dark:shadow-[4px_4px_0px_0px_#a3e635] border border-slate-900"
+                  >
+                    Read More <ArrowRight size={14} />
+                  </Link>
+                </div>
               </div>
             </TiltCard>
           </div>

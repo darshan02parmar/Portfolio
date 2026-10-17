@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { blogs } from "../data/blogs";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const LatestPosts = () => {
   // Show top 3 or recent blogs
@@ -33,20 +33,6 @@ const LatestPosts = () => {
             </>
           );
 
-          if (post.hashnodeUrl) {
-            return (
-              <a
-                key={post.id}
-                href={post.hashnodeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col justify-between rounded-[32px] border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 p-8 shadow-[6px_6px_0px_0px_#1e293b] dark:shadow-[6px_6px_0px_0px_#f1f5f9] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-              >
-                {cardContent}
-              </a>
-            );
-          }
-
           return (
             <Link
               key={post.id}
@@ -62,7 +48,7 @@ const LatestPosts = () => {
           to="/blog"
           className="mt-4 flex items-center justify-center gap-2 w-full rounded-full border-[3px] border-slate-900 dark:border-slate-100 bg-white dark:bg-slate-900 px-8 py-5 font-heading text-xl text-slate-900 dark:text-white shadow-[4px_4px_0px_0px_#1e293b] dark:shadow-[4px_4px_0px_0px_#f1f5f9] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none hover:bg-slate-100 dark:hover:bg-slate-800"
         >
-          View All Posts <ExternalLink size={20} />
+          View All Posts <ArrowRight size={20} />
         </Link>
       </div>
     </section>
