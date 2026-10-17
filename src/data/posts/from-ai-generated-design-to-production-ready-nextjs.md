@@ -1,4 +1,4 @@
-# From AI-Generated Design to a Production-Ready Next.js Website
+> A practical guide to transforming AI-generated designs into production-ready Next.js websites using reusable components, responsive layouts, clean TypeScript, and maintainable code.
 
 A practical workflow for turning AI-assisted design into maintainable, responsive, fully working web applications.
 
