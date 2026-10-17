@@ -18,6 +18,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import vscDarkPlus from "react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus.js";
 import multilingualSupportContent from "../data/posts/adding-multilingual-support-to-nextjs-with-i18n.md?raw";
 import fullStackNextJsProjectStructureContent from "../data/posts/how-to-structure-a-full-stack-next-js-project-for-production.md?raw";
+import fromAiGeneratedDesignContent from "../data/posts/from-ai-generated-design-to-production-ready-nextjs.md?raw";
 
 type MarkdownCodeProps = ComponentPropsWithoutRef<"code"> & {
   inline?: boolean;
@@ -46,7 +47,10 @@ const BlogPost = () => {
       : post?.slug ===
           "how-to-structure-a-full-stack-next-js-project-for-production"
         ? fullStackNextJsProjectStructureContent
-        : "";
+        : post?.slug ===
+              "from-ai-generated-design-to-production-ready-nextjs"
+          ? fromAiGeneratedDesignContent
+          : "";
   const content = initialContent;
   const showMorePosts = false;
   const renderedContent = normalizeMarkdown(content);
