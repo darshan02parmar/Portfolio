@@ -4,7 +4,7 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
 
 ---
 
-## ✨ Features
+## Features
 
 - **Modern Split-Screen Layout**: Fixed Left Branding panel coupled with a smooth-scrolling Right Content section, responsive for mobile and desktop viewports.
 - **Three.js Visual Effects**: A WebGL-powered custom shader grid distortion hero image that reacts dynamically to mouse movement.
@@ -15,8 +15,8 @@ Welcome to the repository for my personal portfolio website, showcasing my proje
   - Structured, responsive timeline with clean neo-brutalist connector bars and interactive tilt vectors.
   - Shows professional milestones in chronological order with primary job titles and customized tech-stack badges.
 - **Developer Easter Eggs & Achievements System**:
-  - **🏆 Secrets Progress Badge**: A floating golden trophy widget (`🏆 X/5 Secrets Found`) tracking unlocked secrets with a neo-brutalist checklist tooltip, persistent via `localStorage`.
-  - **🛠️ God Mode Developer Sandbox** (_Triggered by typing `konami` or keyboard arrows: `↑ ↑ ↓ ↓ ← → ← → B A`_): Opens an interactive, draggable control panel enabling recruiters to inspect:
+  - ** Secrets Progress Badge**: A floating golden trophy widget (`🏆 X/5 Secrets Found`) tracking unlocked secrets with a neo-brutalist checklist tooltip, persistent via `localStorage`.
+  - ** God Mode Developer Sandbox** (_Triggered by typing `konami` or keyboard arrows: `↑ ↑ ↓ ↓ ← → ← → B A`_): Opens an interactive, draggable control panel enabling recruiters to inspect:
     - _Wireframe Blueprint Mode_: Outlines all DOM elements with dashed green strokes.
     - _Page Editor_: Sets `designMode = 'on'` to edit any text directly on the page.
     - _Slow Motion_: Runs transitions/animations at 0.2x speed.
@@ -94,6 +94,23 @@ src/
 ```
 
 ---
+## Blog content
+
+The portfolio currently includes two bundled developer articles:
+
+- **Adding Multilingual Support to Next.js with i18n** – locale routing, translations, accessibility, TypeScript, and SEO.
+- **How to Structure a Full-Stack Next.js Project for Production** – routing, server/client boundaries, services, configuration, security, and observability.
+
+Article metadata lives in `src/data/blogs.ts`, while the Markdown source is stored in `src/data/posts/` and imported at build time for reliable static deployments.
+
+## Available scripts
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the Vite development server    |
+| `npm run build`   | Generate the production static build |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint`    | Run ESLint across the project        |
 
 ## 🎨 Design System
 
@@ -113,20 +130,4 @@ src/
 - **LinkedIn**: [Parmar Darshan](https://linkedin.com/in/parmar-darshan)
 - **X**: [@darshan_p0302](https://x.com/darshan_p0302)
 
-## Blog content
 
-The portfolio currently includes two bundled developer articles:
-
-- **Adding Multilingual Support to Next.js with i18n** – locale routing, translations, accessibility, TypeScript, and SEO.
-- **How to Structure a Full-Stack Next.js Project for Production** – routing, server/client boundaries, services, configuration, security, and observability.
-
-Article metadata lives in `src/data/blogs.ts`, while the Markdown source is stored in `src/data/posts/` and imported at build time for reliable static deployments.
-
-## Available scripts
-
-| Command           | Description                          |
-| ----------------- | ------------------------------------ |
-| `npm run dev`     | Start the Vite development server    |
-| `npm run build`   | Generate the production static build |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint`    | Run ESLint across the project        |
