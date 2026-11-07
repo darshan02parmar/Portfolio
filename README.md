@@ -91,7 +91,7 @@ src/
 ```
 
 40+ components total — some build the actual UI, others exist purely for people who go looking.
-```
+
 
 ---
 ## Blog content
@@ -112,7 +112,7 @@ Article metadata lives in `src/data/blogs.ts`, while the Markdown source is stor
 | `npm run preview` | Preview the production build locally |
 | `npm run lint`    | Run ESLint across the project        |
 
-## 🎨 Design System
+##  Design System
 
 - **Color Palette**: Minimalist white/slate background contrasted with vibrant retro accents (lime, amber, emerald, cyan) styled using thick borders and flat shadow depths.
 - **Typography**:
@@ -122,7 +122,7 @@ Article metadata lives in `src/data/blogs.ts`, while the Markdown source is stor
 
 ---
 
-## 🤝 Contact
+##  Contact
 
 - **Website**: [darshan.dev](https://darshan-parmar.vercel.app/)
 - **Email**: [darshanparmar0302@gmail.com](mailto:darshanparmar0302@gmail.com)
