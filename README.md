@@ -128,6 +128,5 @@ Article metadata lives in `src/data/blogs.ts`, while the Markdown source is stor
 - **Email**: [darshanparmar0302@gmail.com](mailto:darshanparmar0302@gmail.com)
 - **GitHub**: [@darshan02parmar](https://github.com/darshan02parmar)
 - **LinkedIn**: [Parmar Darshan](https://linkedin.com/in/parmar-darshan)
-- **X**: [@darshan_p0302](https://x.com/darshan_p0302)
 
 
